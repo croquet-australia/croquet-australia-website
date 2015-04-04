@@ -1,0 +1,24 @@
+﻿.body-content {
+    margin-top: 70px;
+}
+
+/*  ---------------------------------------------------------------------
+    Styles for MVC5 validation helpers 
+    --------------------------------------------------------------------- */
+.field-validation-error,
+.validation-summary-errors {
+    color: #b94a48;
+    font-weight: bold;
+}
+
+.field-validation-valid,
+.validation-summary-valid {
+    display: none;
+}
+
+input.input-validation-error,
+textarea.input-validation-error,
+select.input-validation-error,
+input[type="checkbox"].input-validation-error {
+    border: 1px solid #b94a48;
+}

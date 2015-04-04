@@ -1,0 +1,28 @@
+﻿@model CroquetAustraliaWebsite.Application.App.admin.home.NewPageViewModel
+
+<h1>New Page in @Model.Directory/</h1>
+
+@using (Html.BeginForm("NewPage"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Directory)
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.PageName, new { placeholder = "File name", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PageName)
+    </div>
+    <div class="form-group">
+        @Html.TextAreaFor(m => m.Content, new { placeholder = "Content", @class = "form-control", rows = "20" })
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
+    <div class="form-group">
+        @*<input name="SubmitButton" value="Save" type="submit" class="btn btn-default" disabled="disabled">*@
+        <input name="SubmitButton" value="Publish" type="submit" class="btn btn-primary">
+    </div>
+}
+
+<p><b>todo</b></p>
+<ul>
+    <li>Preview</li>
+    <li>Implement Save button</li>
+    <li>PublishPage at date & time</li>
+</ul>

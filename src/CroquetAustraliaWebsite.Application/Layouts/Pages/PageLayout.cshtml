@@ -1,0 +1,8 @@
+﻿@* PageLayout.cshtml is called by ~/_PageStart.cshtml and is used by pages served from ~/App_Data/Content/Published folder. *@
+@using CroquetAustraliaWebsite.Application.App.Infrastructure
+@using CroquetAustraliaWebsite.Application.Layouts.Shared
+@{
+    var model = (IViewModel)(Model ?? new ViewModel());
+
+    SharedLayout.Render(this, model);
+}
