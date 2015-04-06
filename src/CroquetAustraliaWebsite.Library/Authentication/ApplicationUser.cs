@@ -24,7 +24,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication
             Name = name;
             Email = email;
 
-            IsEditor = new[] { "tim@26tp.com", "admin@croquet-australia.com.au" }.Contains(email);
+            IsEditor = new[] { "tim@26tp.com", "croquet.australia@gmail.com" }.Contains(email);
         }
 
         public string Name { get; set; }
