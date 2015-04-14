@@ -21,10 +21,13 @@ param(
     [Parameter(Mandatory = $false)] 
     [string] $ContentRepositoryFullDirectoryPath = "~/App_Data/Content/Git",
     [Parameter(Mandatory = $false)] 
-    [string] $ContentPublishedRepositoryFullDirectoryPath = "~/App_Data/Content/Published"
+    [string] $ContentPublishedRepositoryFullDirectoryPath = "~/App_Data/Content/Published",
+    [Parameter(Mandatory = $false)] 
+    [string] $ContentBlogDirectoryName = "news"
 )
 
 $appSettings = @{ ` 
+    "Content:BlogDirectoryName" = $ContentBlogDirectoryName; `
     "Content:Repository:Url" = $ContentRepositoryUrl; `
     "Content:Repository:FullDirectoryPath" = $ContentRepositoryFullDirectoryPath; `
     "Content:Repository:UserName" = $ContentRepositoryUserName; `
