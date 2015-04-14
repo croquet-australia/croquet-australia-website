@@ -47,14 +47,17 @@
       <HintPath>..\..\packages\Anotar.NLog.Fody.2.16.3\Lib\Anotar.NLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Casper.Core">
-      <HintPath>..\..\..\..\Tim Murphy\Casper\source\Casper.Data.Git\bin\Release\Casper.Core.dll</HintPath>
+    <Reference Include="Casper.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.3.0\lib\net45\Casper.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Data.Git">
-      <HintPath>..\..\..\..\Tim Murphy\Casper\source\Casper.Data.Git\bin\Release\Casper.Data.Git.dll</HintPath>
+    <Reference Include="Casper.Data.Git, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.3.0\lib\net45\Casper.Data.Git.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Domain">
-      <HintPath>..\..\..\..\Tim Murphy\Casper\source\Casper.Data.Git\bin\Release\Casper.Domain.dll</HintPath>
+    <Reference Include="Casper.Domain, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.3.0\lib\net45\Casper.Domain.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial">
       <HintPath>..\..\packages\CommonServiceLocator.NinjectAdapter.Unofficial.3.2.2.0\lib\Net40\CommonServiceLocator.NinjectAdapter.Unofficial.dll</HintPath>

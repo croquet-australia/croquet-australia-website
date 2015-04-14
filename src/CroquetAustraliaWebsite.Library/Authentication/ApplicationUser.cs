@@ -7,7 +7,6 @@ using Casper.Core;
 using Casper.Domain.Features.Authors;
 using CroquetAustraliaWebsite.Library.Infrastructure;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security.DataHandler.Encoder;
 using NullGuard;
 
 namespace CroquetAustraliaWebsite.Library.Authentication
