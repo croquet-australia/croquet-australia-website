@@ -3,18 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{2D6879B6-7D84-49BE-8179-22B0521BE1B9}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
-		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{45532CF5-8850-4115-83D8-7BEA66614F93}"
-	ProjectSection(SolutionItems) = preProject
-		PublishScripts\Configurations\CroquetAustraliaWebsite-WAWS-dev.json = PublishScripts\Configurations\CroquetAustraliaWebsite-WAWS-dev.json
-		PublishScripts\Configurations\CroquetAustraliaWebsiteApplication-WAWS-dev.json = PublishScripts\Configurations\CroquetAustraliaWebsiteApplication-WAWS-dev.json
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E59B8D30-21B7-454E-888F-3F6C155104E8}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -58,8 +46,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2D6879B6-7D84-49BE-8179-22B0521BE1B9} = {E59B8D30-21B7-454E-888F-3F6C155104E8}
-		{45532CF5-8850-4115-83D8-7BEA66614F93} = {2D6879B6-7D84-49BE-8179-22B0521BE1B9}
 		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3} = {A661C7FB-B35C-4833-8E37-AF18C9530EBB}
 		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC} = {DB0E79D1-F28A-4067-8215-F30505D5BE11}
 		{01024830-82B5-4298-A9B6-8720E4B628EF} = {A661C7FB-B35C-4833-8E37-AF18C9530EBB}
