@@ -145,6 +145,8 @@
     <Compile Include="Authentication\ApplicationSignInManager.cs" />
     <Compile Include="Authentication\ApplicationUser.cs" />
     <Compile Include="Authentication\ApplicationUserManager.cs" />
+    <Compile Include="Authentication\IUserRepository.cs" />
+    <Compile Include="Authentication\UserRepository.cs" />
     <Compile Include="Infrastructure\Base64.cs" />
     <Compile Include="Authentication\UserLoginStore.cs" />
     <Compile Include="Authentication\UserStore.cs" />

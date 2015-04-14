@@ -184,7 +184,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="App\admin\home\Index.cshtml" />
-    <Content Include="App\admin\home\NewPage.cshtml" />
+    <Content Include="App\admin\home\AddPage.cshtml" />
     <Content Include="gulpconfig.js" />
     <Content Include="gulpfile.js" />
     <Content Include="Layouts\Pages\PageLayout.cshtml" />
@@ -223,7 +223,7 @@
     <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
     <Compile Include="App\account\SignInViewModel.cs" />
     <Compile Include="App\admin\home\AddNewsViewModel.cs" />
-    <Compile Include="App\admin\home\NewPageViewModel.cs" />
+    <Compile Include="App\admin\home\AddPageViewModel.cs" />
     <Compile Include="App\admin\home\IndexViewModel.cs" />
     <Compile Include="App\Infrastructure\AdminAuthorizeAttribute.cs" />
     <Compile Include="App\Infrastructure\ApplicationController.cs" />

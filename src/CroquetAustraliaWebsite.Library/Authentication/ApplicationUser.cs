@@ -28,7 +28,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication
             Email = email;
 
             // todo: remove hard coding.
-            IsEditor = new[] { "tim@26tp.com", "croquet.australia@gmail.com" }.Contains(email);
+            IsAuthor = new[] { "tim@26tp.com", "croquet.australia@gmail.com" }.Contains(email);
             Clock = new Clock(TimeSpan.FromHours(10));
 
         }
@@ -40,7 +40,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication
         public string UserName { get; set; }
 
         private IClock Clock { get; set; }
-        private bool IsEditor { get; set; }
+        private bool IsAuthor { get; set; }
 
         public override bool Equals([AllowNull] object obj)
         {
@@ -63,7 +63,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication
                 throw new Exception("Expected user to be authenticated.");
             }
 
-            if (IsEditor)
+            if (IsAuthor)
             {
                 userIdentity.AddClaim(new Claim(ClaimTypes.Role, "Editor"));
             }

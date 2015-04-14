@@ -13,7 +13,7 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
 
             public static string NewPage(string requestedDirectory)
             {
-                return string.Format("~/admin/new-page?directory={0}", requestedDirectory);
+                return string.Format("~/admin/add-page?directory={0}", requestedDirectory);
             }
 
             public static string EditPage(string requestedDirectory, FileSystemInfo file)

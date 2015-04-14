@@ -8,7 +8,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
 {
-    public class NewPageViewModel : AdminViewModel, INewMarkdownPageViewModel
+    public class AddPageViewModel : AdminViewModel, INewMarkdownPageViewModel
     {
         private string _directory;
         private string _gitRepositoryDirectory;
@@ -16,7 +16,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
         private string _content;
         private string _submitButton;
 
-        public NewPageViewModel(string gitRepositoryDirectory, string directory)
+        public AddPageViewModel(string gitRepositoryDirectory, string directory)
         {
             Argument.CannotBeNullOrWhitespace("gitRepositoryDirectory", gitRepositoryDirectory);
             Argument.CannotBeNull("directory", directory);

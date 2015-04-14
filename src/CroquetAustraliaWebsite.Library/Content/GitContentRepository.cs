@@ -1,19 +1,25 @@
 ﻿using System;
 using System.IO;
 using Anotar.LibLog;
+using Casper.Data.Git.Git;
+using Casper.Domain.Features.Authors;
 using CroquetAustraliaWebsite.Library.Settings;
 using LibGit2Sharp;
 using NullGuard;
+using OpenMagic.Extensions;
 
 namespace CroquetAustraliaWebsite.Library.Content
 {
+    // todo: refactor for better integration with Casper's Git repository.
     public class GitContentRepository : IGitContentRepository
     {
         private readonly GitContentRepositorySettings _settings;
+        private readonly Lazy<IGitRepository> _gitRepository;
 
         public GitContentRepository(GitContentRepositorySettings settings)
         {
             _settings = settings;
+            _gitRepository = new Lazy<IGitRepository>(() => new GitRepository(new GitRepositoryOptions(new DirectoryInfo(_settings.Directory), _settings.UserName, _settings.Password)));
         }
 
         public string Directory
@@ -21,21 +27,27 @@ namespace CroquetAustraliaWebsite.Library.Content
             get { return _settings.Directory; }
         }
 
-        public void CommitAndPush(string path)
+        private IGitRepository GitRepository
         {
-            LogTo.Trace("CommitAndPush(path: {0})", path);
-            Commit(path);
+            get { return _gitRepository.Value; }
+        }
+
+        public void CommitAndPush(string relativePath, IAuthor author)
+        {
+            LogTo.Trace("CommitAndPush(relativePath: {0})", relativePath);
+
+            Commit(relativePath, author);
             Push();
         }
 
-        private void Commit(string path)
+        private void Commit(string relativePath, IAuthor author)
         {
-            LogTo.Warn("todo: Commit(path: {0})", path);
+            GitRepository.CommitAsync(GitBranches.Master, relativePath, string.Format("Published page '{0}'.", relativePath.TrimEnd(".md")), author).Wait();
         }
 
         private void Push()
         {
-            LogTo.Warn("todo: push");
+            GitRepository.PushAsync(GitBranches.Master).Wait();
         }
 
         public void Start()

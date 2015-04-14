@@ -1,10 +1,12 @@
-﻿namespace CroquetAustraliaWebsite.Library.Content
+﻿using Casper.Domain.Features.Authors;
+
+namespace CroquetAustraliaWebsite.Library.Content
 {
     public interface IGitContentRepository
     {
         string Directory { get; }
 
         void Start();
-        void CommitAndPush(string path);
+        void CommitAndPush(string relativePath, IAuthor author);
     }
 }

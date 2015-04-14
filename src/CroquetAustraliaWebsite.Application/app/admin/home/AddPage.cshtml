@@ -1,8 +1,8 @@
-﻿@model CroquetAustraliaWebsite.Application.App.admin.home.NewPageViewModel
+﻿@model CroquetAustraliaWebsite.Application.App.admin.home.AddPageViewModel
 
 <h1>New Page in @Model.Directory/</h1>
 
-@using (Html.BeginForm("NewPage"))
+@using (Html.BeginForm("AddPage"))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Directory)

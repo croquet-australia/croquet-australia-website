@@ -58,6 +58,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication
 
             var user = Users.Values.SingleOrDefault(u => u.UserName == userName);
 
+
             LogTo.Debug("FindByNameAsync(userName: {0}) => {1}", userName, user == null ? "not found" : "found");
 
             return Task.FromResult(user);

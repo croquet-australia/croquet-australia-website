@@ -76,19 +76,19 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             return View(viewModel);
         }
 
-        [Route("new-page/{directory?}")]
-        public ViewResult NewPage(string directory = "")
+        [Route("add-page/{directory?}")]
+        public ViewResult AddPage(string directory = "")
         {
-            LogTo.Trace("NewPage(directory: {0})", directory ?? "<null>");
+            LogTo.Trace("AddPage(directory: {0})", directory ?? "<null>");
 
             Argument.CannotBeNull("directory", directory);
 
-            var viewModel = new NewPageViewModel(_gitRepository.Directory, directory);
+            var viewModel = new AddPageViewModel(_gitRepository.Directory, directory);
 
 #if DEBUG
             var now = DateTime.Now.ToString("s");
 
-            viewModel.PageName = "page - title - " + now;
+            viewModel.PageName = "page-name-" + now.Replace(".", "-").Replace(":", "-").Replace(" ", "-");
             viewModel.Content = "page - content - " + now;
 #endif
 
@@ -96,18 +96,22 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
         }
 
         [HttpPost]
-        [Route("new-page")]
+        [Route("add-page")]
         // todo: [ValidateAntiForgeryToken]
-        public ActionResult NewPage(NewPageViewModel viewModel)
+        public async Task<ActionResult> AddPage(AddPageViewModel viewModel)
         {
-            LogTo.Trace("NewPage(viewModel: {0})", viewModel);
+            LogTo.Trace("AddPage(viewModel: {0})", viewModel);
 
             if (ModelState.IsValid)
             {
                 switch (viewModel.SubmitButton)
                 {
                     case "Publish":
-                        MarkdownPage.PublishPage(viewModel.FullDirectoryPath, viewModel.PageName, viewModel.Content, _gitRepository, _publishedRepository);
+
+                        var user = await this.GetApplicationUserAsync();
+                        var author = user.ToAuthor();
+
+                        MarkdownPage.PublishPage(viewModel.FullDirectoryPath, viewModel.PageName, viewModel.Content, _gitRepository, _publishedRepository, author);
                         break;
                         
                     default:
