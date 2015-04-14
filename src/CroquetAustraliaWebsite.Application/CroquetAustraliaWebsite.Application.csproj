@@ -199,6 +199,8 @@
     <Content Include="package.json" />
     <Content Include="App\account\SignIn.cshtml" />
     <Content Include="App\admin\home\AddNews.cshtml" />
+    <Content Include="App\home\Index.cshtml" />
+    <Content Include="App\home\Index-BlogPosts.cshtml" />
     <None Include="Properties\PublishProfiles\CroquetAustraliaWebsite.pubxml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <Content Include="_PageStart.cshtml" />
@@ -225,6 +227,8 @@
     <Compile Include="App\admin\home\AddNewsViewModel.cs" />
     <Compile Include="App\admin\home\AddPageViewModel.cs" />
     <Compile Include="App\admin\home\IndexViewModel.cs" />
+    <Compile Include="App\home\HomeController.cs" />
+    <Compile Include="App\home\IndexViewModel.cs" />
     <Compile Include="App\Infrastructure\AdminAuthorizeAttribute.cs" />
     <Compile Include="App\Infrastructure\ApplicationController.cs" />
     <Compile Include="App\Infrastructure\AdminController.cs" />

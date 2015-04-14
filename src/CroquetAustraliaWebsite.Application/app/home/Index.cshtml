@@ -1,0 +1,5 @@
+﻿@model CroquetAustraliaWebsite.Application.App.home.IndexViewModel
+<h1>Croquet Australia</h1>
+@*todo: configure where partial views are searched for*@
+<h2>Latest News</h2>
+@Html.Partial("~/App/home/Index-BlogPosts.cshtml", Model.BlogPosts)

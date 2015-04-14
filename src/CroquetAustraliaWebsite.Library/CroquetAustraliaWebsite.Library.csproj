@@ -147,6 +147,11 @@
     <Compile Include="Authentication\ApplicationUserManager.cs" />
     <Compile Include="Authentication\IUserRepository.cs" />
     <Compile Include="Authentication\UserRepository.cs" />
+    <Compile Include="Content\IPagination.cs" />
+    <Compile Include="Content\IPublishedBlogPostRepository.cs" />
+    <Compile Include="Content\Pagination.cs" />
+    <Compile Include="Content\PublishedBlogPost.cs" />
+    <Compile Include="Content\PublishedBlogPostRepository.cs" />
     <Compile Include="Infrastructure\Base64.cs" />
     <Compile Include="Authentication\UserLoginStore.cs" />
     <Compile Include="Authentication\UserStore.cs" />

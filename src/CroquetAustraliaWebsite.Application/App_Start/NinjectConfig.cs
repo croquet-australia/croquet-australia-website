@@ -31,6 +31,7 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<GitContentRepositorySettings>().ToMethod(context => context.Kernel.Get<ContentSettings>().Repository);
             kernel.Bind<PublishedContentRepositorySettings>().ToMethod(context => context.Kernel.Get<ContentSettings>().PubishedRepository);
             kernel.Bind<IGitRepositoryOptions>().ToMethod(GitRepositoryOptionsFactory);
+            kernel.Bind<IPublishedBlogPostRepository>().ToMethod(context => new PublishedBlogPostRepository(Path.Combine(context.Kernel.Get<PublishedContentRepositorySettings>().Directory, context.Kernel.Get<ContentSettings>().BlogDirectoryName)));
 
             kernel.Bind<IGitRepository>().To<GitRepository>();
             kernel.Bind<IEventBus>().To<EventBus>();
