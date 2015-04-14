@@ -6,6 +6,11 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
     {
         public static class Admin
         {
+            static Admin()
+            {
+                AddNews = "~/admin/add-news";
+            }
+
             public static string NewPage(string requestedDirectory)
             {
                 return string.Format("~/admin/new-page?directory={0}", requestedDirectory);
@@ -20,6 +25,8 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
             {
                 return string.Format(@"~/admin?directory={0}", Path.Combine(requestedDirectory, directory.Name));
             }
+
+            public static string AddNews { get; private set; }
         }
     }
 }

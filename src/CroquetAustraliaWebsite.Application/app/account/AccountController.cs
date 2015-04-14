@@ -41,7 +41,7 @@ namespace CroquetAustraliaWebsite.Application.App.account
 
         [Route("external-sign-in")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        // todo: [ValidateAntiForgeryToken]
         public ActionResult ExternalSignIn(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider

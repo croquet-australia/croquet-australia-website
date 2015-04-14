@@ -3,6 +3,6 @@
     public interface IPublishedContentRepository
     {
         void Start();
-        void Publish(string path);
+        void Publish(string relativePath);
     }
 }

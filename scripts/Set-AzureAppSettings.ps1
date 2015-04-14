@@ -15,9 +15,9 @@ param(
     [Parameter(Mandatory = $true)] 
     [string] $OAuthGoogleClientSecret,
     [Parameter(Mandatory = $false)] 
-    [string] $WebSiteName = "CroquetAustraliaWebsite",
+    [string] $WebSiteName = "croquet-australia",
     [Parameter(Mandatory = $false)] 
-    [string] $ContentRepositoryUrl = "https://bitbucket.org/croquet-australia/croquet-australia-content.git",
+    [string] $ContentRepositoryUrl = "https://github.com/croquet-australia/website-content.git",
     [Parameter(Mandatory = $false)] 
     [string] $ContentRepositoryFullDirectoryPath = "~/App_Data/Content/Git",
     [Parameter(Mandatory = $false)] 
@@ -34,4 +34,4 @@ $appSettings = @{ `
     "OAuth:Google:ClientSecret" = $OAuthGoogleClientSecret;
 }
 
-Set-AzureWebsite -Name $WebSiteName -AppSettings $appSettings 
+Set-AzureWebsite -Name "$WebSiteName" -AppSettings $appSettings 

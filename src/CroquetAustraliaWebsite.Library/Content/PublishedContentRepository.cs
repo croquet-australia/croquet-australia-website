@@ -1,8 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Anotar.LibLog;
+using CroquetAustraliaWebsite.Library.Infrastructure;
 using CroquetAustraliaWebsite.Library.Settings;
-using Microsoft.VisualBasic.Devices;
+using OpenMagic.Extensions.Collections.Generic;
 
 namespace CroquetAustraliaWebsite.Library.Content
 {
@@ -23,18 +26,22 @@ namespace CroquetAustraliaWebsite.Library.Content
             {
                 return;
             }
-            PublishContent().Wait();
+            PublishContentAsync().Wait();
         }
 
-        public void Publish(string path)
+        public void Publish(string relativePath)
         {
-            LogTo.Trace("Publish(path: {0})", path);
+            LogTo.Trace("Publish(relativePath: {0})", relativePath);
 
-            var fullGitPath = Path.Combine(_gitRepositorySettings.Directory, path);
-            var fullPublishedPath = Path.Combine(_publishedRepositorySettings.Directory, path);
+            var fullGitPath = Path.Combine(_gitRepositorySettings.Directory, relativePath);
+            var fullPublishedPath = Path.Combine(_publishedRepositorySettings.Directory, relativePath);
+            var publishedDirectory = PathExtensions.GetDirectory(fullPublishedPath);
 
-            if (path.EndsWith(".md"))
+            Directory.CreateDirectory(publishedDirectory);
+
+            if (relativePath.EndsWith(".md"))
             {
+                // todo: improve to replace extension.
                 PublishMarkdownFile(fullGitPath, fullPublishedPath.Replace(".md", ".cshtml"));
             }
             else
@@ -42,10 +49,10 @@ namespace CroquetAustraliaWebsite.Library.Content
                 File.Copy(fullGitPath, fullPublishedPath);
             }
 
-            LogTo.Info("Published {0}.", path);
+            LogTo.Info("Published {0}.", relativePath);
         }
 
-        private void PublishMarkdownFile(string fullGitPath, string fullHtmlPath)
+        private static void PublishMarkdownFile(string fullGitPath, string fullHtmlPath)
         {
             var markdown = new MarkdownSharp.Markdown();
             var html = markdown.Transform(File.ReadAllText(fullGitPath));
@@ -53,22 +60,38 @@ namespace CroquetAustraliaWebsite.Library.Content
             File.WriteAllText(fullHtmlPath, html);
         }
 
-        private async Task PublishContent()
+        private async Task PublishContentAsync()
         {
-            await CopyFilesGitRepository();
+            await CopyFilesInGitRepositoryAsync();
             await DeleteFilesNotInGitRepository();
         }
 
-        private Task CopyFilesGitRepository()
+        private Task CopyFilesInGitRepositoryAsync()
         {
-            return Task.Run(() => CopyFilesGitRepositorySync());
+            return Task.Run(() => CopyFilesInGitRepository());
         }
 
-        private void CopyFilesGitRepositorySync()
+        private void CopyFilesInGitRepository()
         {
             // todo: make async
-            var computer = new Computer();
-            computer.FileSystem.CopyDirectory(_gitRepositorySettings.Directory, _publishedRepositorySettings.Directory, true);
+            CopyFilesInGitRepository(_gitRepositorySettings.Directory);
+        }
+
+        private void CopyFilesInGitRepository(string sourceDirectory)
+        {
+            LogTo.Trace("CopyFilesInGitRepository(sourceDirectory: {0})", sourceDirectory);
+
+            Directory.GetFiles(sourceDirectory)
+                .ForEach(sourceFile => { Publish(PathExtensions.GetRelativePath(_gitRepositorySettings.Directory, sourceFile)); });
+
+            Directory.GetDirectories(sourceDirectory)
+                .Where(directory => !IsGitDirectory(directory))
+                .ForEach(CopyFilesInGitRepository);
+        }
+
+        private static bool IsGitDirectory(string directory)
+        {
+            return directory.EndsWith(".git", StringComparison.OrdinalIgnoreCase);
         }
 
         private static Task DeleteFilesNotInGitRepository()

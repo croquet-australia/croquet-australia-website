@@ -25,7 +25,11 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
 
         private static IEnumerable<NavigationItem> GetNavigationItems(string requestedDirectory)
         {
-            return new[] {new NavigationItem("New Page", Urls.Admin.NewPage(requestedDirectory))};
+            return new[]
+            {
+                new NavigationItem("Add Page", Urls.Admin.NewPage(requestedDirectory)),
+                new NavigationItem("Add News", Urls.Admin.AddNews)
+            };
         }
 
         public static Task<IndexViewModel> CreateInstance(string gitDirectory, string requestedDirectory)

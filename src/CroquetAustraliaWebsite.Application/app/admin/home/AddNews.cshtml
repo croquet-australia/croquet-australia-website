@@ -1,0 +1,26 @@
+﻿@model CroquetAustraliaWebsite.Application.App.admin.home.AddNewsViewModel
+
+<h1>Add News</h1>
+
+@using (Html.BeginForm("AddNews"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Title, new { placeholder = "Title", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title)
+    </div>
+    <div class="form-group">
+        @Html.TextAreaFor(m => m.Content, new { placeholder = "Content", @class = "form-control", rows = "20" })
+        @Html.ValidationMessageFor(m => m.Content)
+    </div>
+    <div class="form-group">
+        <input name="SubmitButton" value="Publish" type="submit" class="btn btn-primary">
+    </div>
+}
+
+<h2>todo</h2>
+<ul>
+    <li>Preview</li>
+    <li>Add Save button</li>
+    <li>Add date & time to publish at future time</li>
+</ul>

@@ -3,7 +3,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Anotar.LibLog;
+using Casper.Core;
+using Casper.Domain.Features.Authors;
+using CroquetAustraliaWebsite.Library.Infrastructure;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security.DataHandler.Encoder;
 using NullGuard;
 
 namespace CroquetAustraliaWebsite.Library.Authentication
@@ -20,17 +24,23 @@ namespace CroquetAustraliaWebsite.Library.Authentication
             LogTo.Trace("ctor");
 
             Id = id;
-            UserName = id.Replace("-", "");
+            UserName = Base64.Encode(email);
             Name = name;
             Email = email;
 
+            // todo: remove hard coding.
             IsEditor = new[] { "tim@26tp.com", "croquet.australia@gmail.com" }.Contains(email);
+            Clock = new Clock(TimeSpan.FromHours(10));
+
         }
+
 
         public string Name { get; set; }
         public string Email { get; set; }
         public string Id { get; private set; }
         public string UserName { get; set; }
+
+        private IClock Clock { get; set; }
         private bool IsEditor { get; set; }
 
         public override bool Equals([AllowNull] object obj)
@@ -65,6 +75,11 @@ namespace CroquetAustraliaWebsite.Library.Authentication
         public override int GetHashCode()
         {
             return (Id != null ? Id.GetHashCode() : 0);
+        }
+
+        public IAuthor ToAuthor()
+        {
+            return new Author(Name, Email, Clock);
         }
 
         public override string ToString()
