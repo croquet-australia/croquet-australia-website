@@ -14,6 +14,8 @@ param(
     [string] $OAuthGoogleClientID,
     [Parameter(Mandatory = $true)] 
     [string] $OAuthGoogleClientSecret,
+    [Parameter(Mandatory = $true)] 
+    [string] $ElmahLogId,
     [Parameter(Mandatory = $false)] 
     [string] $WebSiteName = "croquet-australia",
     [Parameter(Mandatory = $false)] 
@@ -23,7 +25,9 @@ param(
     [Parameter(Mandatory = $false)] 
     [string] $ContentPublishedRepositoryFullDirectoryPath = "~/App_Data/Content/Published",
     [Parameter(Mandatory = $false)] 
-    [string] $ContentBlogDirectoryName = "news"
+    [string] $ContentBlogDirectoryName = "news",
+    [Parameter(Mandatory = $false)] 
+    [string] $ElmahErrorLogType = "Elmah.Io"
 )
 
 $appSettings = @{ ` 
@@ -33,6 +37,8 @@ $appSettings = @{ `
     "Content:Repository:UserName" = $ContentRepositoryUserName; `
     "Content:Repository:Password" = $ContentRepositoryPassword; `
     "Content:PublishedRepository:FullDirectoryPath" = $ContentPublishedRepositoryFullDirectoryPath; `
+    "Elmah:ErrorLogType" = $ElmahErrorLogType; `
+    "Elmah:LogId" = $ElmahLogId; `
     "OAuth:Google:ClientId" = $OAuthGoogleClientId; `
     "OAuth:Google:ClientSecret" = $OAuthGoogleClientSecret;
 }

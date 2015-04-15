@@ -124,5 +124,11 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
             return View(viewModel);
         }
+
+        [Route("throw-exception")]
+        public ActionResult ThrowException()
+        {
+            throw new Exception("As requested an exception has been thrown!");
+        }
     }
 }

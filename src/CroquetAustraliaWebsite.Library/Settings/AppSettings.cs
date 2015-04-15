@@ -41,6 +41,14 @@ namespace CroquetAustraliaWebsite.Library.Settings
             throw new Exception(string.Format("AppSettings[{0}] is empty. Maybe you need to create AppSettings.config. See AppSettings.Example.config.", _appSettingsPrefix));
         }
 
+        protected bool GetBoolean(string key)
+        {
+            var stringValue = Get(key);
+            var booleanValue = bool.Parse(stringValue);
+
+            return booleanValue;
+        }
+
         public string GetDirectory(string key, HttpServerUtility server)
         {
             return server.MapPath(Get(key));

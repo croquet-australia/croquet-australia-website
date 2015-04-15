@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -28,19 +30,28 @@ namespace CroquetAustraliaWebsite.Library.Authentication
             Email = email;
 
             // todo: remove hard coding.
-            IsAuthor = new[] { "tim@26tp.com", "croquet.australia@gmail.com" }.Contains(email);
+            Roles = new List<string>();
+
+            if (new[] {"tim@26tp.com", "croquet.australia@gmail.com"}.Contains(email))
+            {
+                Roles.Add("Editor");
+            }
+
+            if (email.Equals("tim@26tp.com"))
+            {
+                Roles.Add("Developer");
+            }
+
             Clock = new Clock(TimeSpan.FromHours(10));
-
         }
-
-
+        
         public string Name { get; set; }
         public string Email { get; set; }
         public string Id { get; private set; }
         public string UserName { get; set; }
 
         private IClock Clock { get; set; }
-        private bool IsAuthor { get; set; }
+        private IList<string> Roles { get; set; }
 
         public override bool Equals([AllowNull] object obj)
         {
@@ -63,9 +74,9 @@ namespace CroquetAustraliaWebsite.Library.Authentication
                 throw new Exception("Expected user to be authenticated.");
             }
 
-            if (IsAuthor)
+            foreach (var role in Roles)
             {
-                userIdentity.AddClaim(new Claim(ClaimTypes.Role, "Editor"));
+                userIdentity.AddClaim(new Claim(ClaimTypes.Role, role));
             }
 
             return userIdentity;
