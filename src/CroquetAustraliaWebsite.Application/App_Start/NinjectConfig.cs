@@ -32,6 +32,7 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<PublishedContentRepositorySettings>().ToMethod(context => context.Kernel.Get<ContentSettings>().PubishedRepository);
             kernel.Bind<IGitRepositoryOptions>().ToMethod(GitRepositoryOptionsFactory);
             kernel.Bind<IPublishedBlogPostRepository>().ToMethod(context => new PublishedBlogPostRepository(Path.Combine(context.Kernel.Get<PublishedContentRepositorySettings>().Directory, context.Kernel.Get<ContentSettings>().BlogDirectoryName)));
+            kernel.Bind<IBlogPostRepository>().ToMethod(context => new BlogPostRepository(context.Kernel.Get<IGitRepository>(), new DirectoryInfo(context.Kernel.Get<PublishedContentRepositorySettings>().Directory), context.Kernel.Get<IMarkdownParser>()));
 
             kernel.Bind<IGitRepository>().To<GitRepository>();
             kernel.Bind<IEventBus>().To<EventBus>();
@@ -39,7 +40,7 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<IGitContentRepository>().To<GitContentRepository>();
             kernel.Bind<IPublishedContentRepository>().To<PublishedContentRepository>();
             kernel.Bind<ISlugFactory>().To<SlugFactory>();
-            kernel.Bind<IBlogPostRepository>().To<BlogPostRepository>();
+            kernel.Bind<IMarkdownParser>().To<MarkdownParser>();
 
             kernel.Bind<ICommandBus>().ToMethod(context =>
             {
