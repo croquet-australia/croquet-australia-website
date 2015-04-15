@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Anotar.LibLog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9d5b24f0733c26f7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Anotar.LibLog.Fody.2.16.3\Lib\Anotar.LibLog.dll</HintPath>
+      <HintPath>..\..\packages\Anotar.LibLog.Fody.2.16.4\Lib\Anotar.LibLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Casper.Core, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -141,7 +141,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Packages\LibLog.3.1\LibLog.cs" />
+    <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
     <Compile Include="Authentication\ApplicationSignInManager.cs" />
     <Compile Include="Authentication\ApplicationUser.cs" />
     <Compile Include="Authentication\ApplicationUserManager.cs" />
