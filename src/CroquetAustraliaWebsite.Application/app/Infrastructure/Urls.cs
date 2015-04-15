@@ -11,6 +11,16 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
                 AddNews = "~/admin/add-news";
             }
 
+            public static string Index()
+            {
+                return Index("");
+            }
+
+            public static string Index(string requestedDirectory)
+            {
+                return string.Format("~/admin?directory={0}", requestedDirectory);
+            }
+
             public static string NewPage(string requestedDirectory)
             {
                 return string.Format("~/admin/add-page?directory={0}", requestedDirectory);

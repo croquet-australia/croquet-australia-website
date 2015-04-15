@@ -69,7 +69,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
 
                 await _commandBus.SendCommandAsync(command);
 
-                return RedirectToAction("index");
+                return Redirect(Urls.Admin.Index());
             }
 
             LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
@@ -118,7 +118,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
                         throw new NotImplementedException(string.Format("'{0}' button has not been implemented.", viewModel.SubmitButton));
                 }
 
-                return RedirectToAction("index", new {directory = viewModel.Directory});
+                return Redirect(Urls.Admin.Index(viewModel.Directory));
             }
 
             LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
