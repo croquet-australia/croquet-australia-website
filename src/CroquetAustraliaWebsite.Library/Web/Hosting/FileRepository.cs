@@ -20,12 +20,22 @@ namespace CroquetAustraliaWebsite.Library.Web.Hosting
             _rootDirectory = rootDirectory;
         }
 
+        public bool DirectoryExists(string path)
+        {
+            var fullPath = GetFullPath(path);
+            var exists = Directory.Exists(fullPath);
+
+            LogTo.Debug("DirectoryExists({0}) => {1}. fullPath: {2}.", path, exists, fullPath);
+
+            return exists;
+        }
+
         public bool FileExists(string path)
         {
             var fullPath = GetFullPath(path);
             var exists = File.Exists(fullPath);
 
-            LogTo.Debug("Exists({0}) => {1}. fullPath: {2}.", path, exists, fullPath);
+            LogTo.Debug("FileExists({0}) => {1}. fullPath: {2}.", path, exists, fullPath);
 
             return exists;
         }

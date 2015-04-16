@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Anotar.NLog;
+using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Settings;
 using Elmah;
 
@@ -16,6 +16,9 @@ namespace CroquetAustraliaWebsite.Application
         protected void Application_Start(object sender, EventArgs e)
         {
             LogTo.Trace("Application_Start");
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine().DisableVbhtml());
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

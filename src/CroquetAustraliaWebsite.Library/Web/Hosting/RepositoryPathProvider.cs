@@ -17,10 +17,26 @@ namespace CroquetAustraliaWebsite.Library.Web.Hosting
             _repository = repository;
         }
 
+        public override bool DirectoryExists(string virtualDir)
+        {
+            LogTo.Trace("DirectoryExists(virtualDir: {0})", virtualDir);
+            return _repository.DirectoryExists(FormatVirtualPathForRepository(virtualDir)) || Previous.DirectoryExists(virtualDir);
+        }
+
         public override bool FileExists(string virtualPath)
         {
-            LogTo.Trace("Exists(virtualPath: {0})", virtualPath);
+            LogTo.Trace("FileExists(virtualPath: {0})", virtualPath);
             return _repository.FileExists(FormatVirtualPathForRepository(virtualPath)) || Previous.FileExists(virtualPath);
+        }
+
+        public override VirtualDirectory GetDirectory(string virtualDir)
+        {
+            LogTo.Trace("GetDirectory(virtualDir: {0})", virtualDir);
+
+            // Surprisingly we have to run Exists again to check it this virtualDirProvider want to get virtualDir.
+            return _repository.DirectoryExists(FormatVirtualPathForRepository(virtualDir))
+                ? new RepositoryVirtualDirectory(virtualDir, _repository.GetFullPath(virtualDir))
+                : Previous.GetDirectory(virtualDir);
         }
 
         public override VirtualFile GetFile(string virtualPath)

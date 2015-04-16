@@ -180,6 +180,7 @@
     <Compile Include="Web\Hosting\FileRepository.cs" />
     <Compile Include="Web\Hosting\IFileRepository.cs" />
     <Compile Include="Web\Hosting\RepositoryPathProvider.cs" />
+    <Compile Include="Web\Hosting\RepositoryVirtualDirectory.cs" />
     <Compile Include="Web\Hosting\RepositoryVirtualFile.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -257,6 +257,7 @@
     <Compile Include="App\Infrastructure\ControllerExtensions.cs" />
     <Compile Include="App\Infrastructure\IViewModel.cs" />
     <Compile Include="App\Infrastructure\NavigationItem.cs" />
+    <Compile Include="App\Infrastructure\RazorViewEngineExtensions.cs" />
     <Compile Include="App\Infrastructure\Urls.cs" />
     <Compile Include="App\Infrastructure\ViewModel.cs" />
     <Compile Include="App_Start\ElmahConfig.cs" />
