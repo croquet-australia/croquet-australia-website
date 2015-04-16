@@ -2,12 +2,12 @@
 
 @foreach (var blogPost in Model)
 {
-    <section class="blog-post">
+    <article class="blog-post">
         <h1>@blogPost.Title</h1>
         <p class="blog-post-published">Posted @blogPost.Published.ToString("D")</p>
         <div class="blog-post-content">
             @blogPost.Content
         </div>
         <hr/>
-    </section>
+    </article>
 }
