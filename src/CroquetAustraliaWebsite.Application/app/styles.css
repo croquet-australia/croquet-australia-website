@@ -1,10 +1,9 @@
-﻿.body-content {
-    margin-top: 70px;
-}
+﻿.body-content { margin-top: 70px; }
 
-/*  ---------------------------------------------------------------------
+/*
     Styles for MVC5 validation helpers 
-    --------------------------------------------------------------------- */
+*/
+
 .field-validation-error,
 .validation-summary-errors {
     color: #b94a48;
@@ -12,13 +11,32 @@
 }
 
 .field-validation-valid,
-.validation-summary-valid {
-    display: none;
-}
+.validation-summary-valid { display: none; }
 
 input.input-validation-error,
 textarea.input-validation-error,
 select.input-validation-error,
-input[type="checkbox"].input-validation-error {
-    border: 1px solid #b94a48;
+input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
+
+/*
+    Error Page
+*/
+.error-page body {
+    background: #000;
+    color: #FFF;
+    font-size: 1.7em;
+}
+
+.error-page img {
+    float: left;
+    margin-bottom: 20px;
+}
+
+.error-page p, .error-page h1 { 
+    width: 300px; 
+    margin-left: 350px;
+}
+
+.error-page h1 {
+    margin-top: 0;
 }
