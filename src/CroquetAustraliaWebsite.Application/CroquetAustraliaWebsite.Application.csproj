@@ -219,6 +219,9 @@
     <Content Include="App\admin\home\AddNews.cshtml" />
     <Content Include="App\home\Index.cshtml" />
     <Content Include="App\home\Index-BlogPosts.cshtml" />
+    <Content Include="Layouts\Shared\_TopNavigationItems.cshtml" />
+    <Content Include="Layouts\Shared\_DropDownMenuNavigationItems.cshtml" />
+    <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
     <None Include="Properties\PublishProfiles\CroquetAustraliaWebsite.pubxml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <Content Include="_PageStart.cshtml" />
@@ -257,6 +260,7 @@
     <Compile Include="App\Infrastructure\ControllerExtensions.cs" />
     <Compile Include="App\Infrastructure\IViewModel.cs" />
     <Compile Include="App\Infrastructure\NavigationItem.cs" />
+    <Compile Include="App\Infrastructure\PublicNavigationBar.cs" />
     <Compile Include="App\Infrastructure\RazorViewEngineExtensions.cs" />
     <Compile Include="App\Infrastructure\Urls.cs" />
     <Compile Include="App\Infrastructure\ViewModel.cs" />
@@ -280,10 +284,7 @@
       <Name>CroquetAustraliaWebsite.Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layouts\Views\Account\" />
-    <Folder Include="Layouts\Views\Home\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

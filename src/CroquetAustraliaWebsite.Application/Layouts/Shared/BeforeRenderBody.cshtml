@@ -1,11 +1,12 @@
-﻿@using System.Diagnostics
+﻿@* ReSharper disable All *@
+@using System.Web.Mvc.Html
 @using CroquetAustraliaWebsite.Application.App.Infrastructure
 @{
-    var model = (IViewModel)PageData["model"];
-    var container = model.ContainerClass;
+    var viewModel = (IViewModel)PageData["model"];
+    var container = viewModel.ContainerClass;
     IHtmlString htmlAttributes = new HtmlString("lang=\"en\"");
 
-    if (model.AddAngularSupport)
+    if (viewModel.AddAngularSupport)
     {
         htmlAttributes = new HtmlString(htmlAttributes + " ng-app");
     }
@@ -21,7 +22,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="~/app/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/bower_components/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" />
+    <link rel="stylesheet" href="~/app/styles.css" />
     @*
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
@@ -45,10 +47,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @foreach (var navigationItem in model.NavigationItems)
-                    {
-                        <li>@navigationItem.RenderHyperlink()</li>
-                    }
+                    @RenderPage("~/Layouts/Shared/_TopNavigationItems.cshtml", new { navigationItems = viewModel.NavigationItems });
                 </ul>
                 @* todo
                     @if (Request.IsAuthenticated)

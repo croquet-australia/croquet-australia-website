@@ -1,4 +1,4 @@
-/// <vs BeforeBuild='wireDependencies' SolutionOpened='watch' />
+/// <vs BeforeBuild='wireDependencies, bower' SolutionOpened='watch' />
 /*jslint node:true*/
 /*global require, pipe */
 'use strict';
@@ -13,6 +13,10 @@ var plugins = require('gulp-load-plugins')();
 ////////////////////////////////////////////////////
 
 // ReSharper disable PossiblyUnassignedProperty
+
+gulp.task('bower', function () {
+    return plugins.bower();
+});
 
 gulp.task('code-quality', function () {
     log('Checking code quality of ' + config.jsFiles + ' files.');

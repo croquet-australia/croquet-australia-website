@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E59B8D30-21B7-454E-888F-3F6C155104E8}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		deploy.cmd = deploy.cmd
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CroquetAustraliaWebsite.Application", "src\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj", "{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}"

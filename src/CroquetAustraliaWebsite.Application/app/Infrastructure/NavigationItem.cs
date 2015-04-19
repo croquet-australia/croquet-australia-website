@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using System.Linq;
 
 namespace CroquetAustraliaWebsite.Application.App.Infrastructure
 {
@@ -8,14 +8,17 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
         {
             Text = text;
             Url = url.TrimStart('~');
+            ChildNavigationItems = Enumerable.Empty<NavigationItem>().ToArray();
+        }
+
+        public NavigationItem(string text, params NavigationItem[] childNavigationItems)
+        {
+            Text = text;
+            ChildNavigationItems = childNavigationItems;
         }
 
         public string Text { get; private set; }
         public string Url { get; private set; }
-
-        public IHtmlString RenderHyperlink()
-        {
-            return new HtmlString(string.Format("<a href=\"{0}\">{1}</a>", Url, Text));
-        }
+        public NavigationItem[] ChildNavigationItems { get; private set; }
     }
 }
