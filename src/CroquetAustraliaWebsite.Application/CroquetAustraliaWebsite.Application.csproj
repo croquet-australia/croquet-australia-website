@@ -47,16 +47,16 @@
       <HintPath>..\..\packages\Anotar.NLog.Fody.2.16.4\Lib\Anotar.NLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Casper.Core, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.20.0\lib\net45\Casper.Core.dll</HintPath>
+    <Reference Include="Casper.Core, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Data.Git, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.20.0\lib\net45\Casper.Data.Git.dll</HintPath>
+    <Reference Include="Casper.Data.Git, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Data.Git.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Domain, Version=0.20.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.20.0\lib\net45\Casper.Domain.dll</HintPath>
+    <Reference Include="Casper.Domain, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial">
@@ -226,6 +226,7 @@
     <Content Include="Layouts\Shared\_TopNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownMenuNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
+    <Content Include="App\admin\home\EditPage.cshtml" />
     <None Include="Properties\PublishProfiles\CroquetAustraliaWebsite.pubxml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <Content Include="_PageStart.cshtml" />
@@ -252,6 +253,7 @@
     <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
     <Compile Include="App\account\SignInViewModel.cs" />
     <Compile Include="App\admin\home\AddNewsViewModel.cs" />
+    <Compile Include="App\admin\home\EditPageViewModel.cs" />
     <Compile Include="App\admin\home\AddPageViewModel.cs" />
     <Compile Include="App\admin\home\IndexViewModel.cs" />
     <Compile Include="App\home\BlogPostViewModel.cs" />

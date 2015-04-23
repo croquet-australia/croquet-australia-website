@@ -28,7 +28,7 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
 
             public static string EditPage(string requestedDirectory, string fileName)
             {
-                return string.Format(@"~/admin/edit?file={0}", Path.Combine(requestedDirectory, fileName));
+                return string.Format(@"~/admin/edit-page?relativeUri={0}", Path.Combine(requestedDirectory, fileName));
             }
 
             public static string ChangeDirectory(string requestedDirectory, string directoryName)

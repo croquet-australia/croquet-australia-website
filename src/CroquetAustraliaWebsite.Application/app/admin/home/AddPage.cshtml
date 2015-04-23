@@ -1,6 +1,6 @@
 ﻿@model CroquetAustraliaWebsite.Application.App.admin.home.AddPageViewModel
 
-<h1>New Page in @Model.Directory/</h1>
+<h1>New Page in @Model.Directory.Replace("\\", "/")/</h1>
 
 @using (Html.BeginForm("AddPage"))
 {

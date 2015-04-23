@@ -13,6 +13,7 @@ using CroquetAustraliaWebsite.Library.Content;
 using CroquetAustraliaWebsite.Library.Infrastructure;
 using CroquetAustraliaWebsite.Library.Repositories;
 using CroquetAustraliaWebsite.Library.Settings;
+using OpenMagic.Extensions;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
 {
@@ -117,6 +118,43 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
                 await _commandBus.SendCommandAsync(command);
 
                 return Redirect(Urls.Admin.Index(viewModel.Directory));
+            }
+
+            LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
+            return View(viewModel);
+        }
+
+        [Route("edit-page/{relativeUri?}")]
+        public async Task<ViewResult> EditPage(string relativeUri)
+        {
+            LogTo.Trace("EditPage(relativeUri: {0})", relativeUri);
+
+            var page = await _pageRepository.GetPublishedPageAsync(relativeUri);
+            var viewModel = new EditPageViewModel(page);
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Route("edit-page")]
+        // todo: [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditPage(EditPageViewModel viewModel)
+        {
+            LogTo.Trace("EditPage(viewModel: {0})", viewModel);
+
+            if (ModelState.IsValid)
+            {
+                var now = DateTime.UtcNow;
+                var user = await this.GetApplicationUserAsync();
+                var author = user.ToAuthor();
+                var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
+                var relativeUri = viewModel.RelativeUri;
+
+                var command = new PublishPage(relativeUri, viewModel.Content.AsMarkdown().GetPageTitle(relativeUri), viewModel.Content, published, author);
+
+                await _commandBus.SendCommandAsync(command);
+
+                return Redirect(Urls.Admin.Index(viewModel.RelativeUri.TextBeforeLast("/")));
             }
 
             LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
