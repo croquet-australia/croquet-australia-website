@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Casper.Domain.Features.BlogPosts;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Content;
 
@@ -8,11 +8,11 @@ namespace CroquetAustraliaWebsite.Application.App.home
 {
     public class IndexViewModel : ViewModel
     {
-        public IndexViewModel(Task<IEnumerable<PublishedBlogPost>> blogPosts)
+        public IndexViewModel(IEnumerable<BlogPost> blogPosts, IMarkdownTransformer markdownTransformer)
         {
-            BlogPosts = blogPosts.Result.ToArray();
+            BlogPosts = blogPosts.Select(b => new BlogPostViewModel(b, markdownTransformer));
         }
 
-        public PublishedBlogPost[] BlogPosts { get; private set; }
+        public IEnumerable<BlogPostViewModel> BlogPosts { get; private set; }
     }
 }

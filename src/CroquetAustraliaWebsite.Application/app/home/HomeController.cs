@@ -1,27 +1,31 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using Casper.Domain.Infrastructure;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Content;
+using CroquetAustraliaWebsite.Library.Repositories;
 
 namespace CroquetAustraliaWebsite.Application.App.home
 {
     [RoutePrefix("")]
     public class HomeController : ApplicationController
     {
-        private readonly IPublishedBlogPostRepository _publishedBlogPostRepository;
+        private readonly IApplicationBlogPostRepository _blogPostRepository;
+        private readonly IMarkdownTransformer _markdownTransformer;
 
-        public HomeController(IPublishedBlogPostRepository publishedBlogPostRepository)
+        public HomeController(IApplicationBlogPostRepository blogPostRepository, IMarkdownTransformer markdownTransformer)
         {
-            _publishedBlogPostRepository = publishedBlogPostRepository;
+            _blogPostRepository = blogPostRepository;
+            _markdownTransformer = markdownTransformer;
         }
 
         [Route("")]
-        public Task<ViewResult> Index()
+        public async Task<ViewResult> Index()
         {
-            var blogPosts = _publishedBlogPostRepository.GetAsync(new Pagination());
-            var viewModel = new IndexViewModel(blogPosts);
+            var blogPosts = await _blogPostRepository.FindPublishedBlogPostsAsync(new Pagination(1, 10));
+            var viewModel = new IndexViewModel(blogPosts, _markdownTransformer);
 
-            return Task.FromResult(View(viewModel));
+            return View(viewModel);
         }
     }
 }

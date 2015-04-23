@@ -42,15 +42,15 @@ namespace CroquetAustraliaWebsite.Library.Authentication
                 Roles.Add("Developer");
             }
 
-            Clock = new Clock(TimeSpan.FromHours(10));
+            TimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
         }
-        
+
         public string Name { get; set; }
         public string Email { get; set; }
         public string Id { get; private set; }
         public string UserName { get; set; }
+        public TimeZoneInfo TimeZoneInfo { get; set; }
 
-        private IClock Clock { get; set; }
         private IList<string> Roles { get; set; }
 
         public override bool Equals([AllowNull] object obj)
@@ -87,9 +87,9 @@ namespace CroquetAustraliaWebsite.Library.Authentication
             return (Id != null ? Id.GetHashCode() : 0);
         }
 
-        public IAuthor ToAuthor()
+        public Author ToAuthor()
         {
-            return new Author(Name, Email, Clock);
+            return new Author(Name, Email, TimeZoneInfo);
         }
 
         public override string ToString()

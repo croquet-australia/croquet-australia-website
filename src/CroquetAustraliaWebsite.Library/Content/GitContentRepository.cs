@@ -19,7 +19,7 @@ namespace CroquetAustraliaWebsite.Library.Content
         public GitContentRepository(GitContentRepositorySettings settings)
         {
             _settings = settings;
-            _gitRepository = new Lazy<IGitRepository>(() => new GitRepository(new GitRepositoryOptions(new DirectoryInfo(_settings.Directory), _settings.UserName, _settings.Password)));
+            _gitRepository = new Lazy<IGitRepository>(() => new GitRepository(new GitRepositorySettings(new DirectoryInfo(_settings.Directory), _settings.UserName, _settings.Password)));
         }
 
         public string Directory
@@ -32,7 +32,7 @@ namespace CroquetAustraliaWebsite.Library.Content
             get { return _gitRepository.Value; }
         }
 
-        public void CommitAndPush(string relativePath, IAuthor author)
+        public void CommitAndPush(string relativePath, Author author)
         {
             LogTo.Trace("CommitAndPush(relativePath: {0})", relativePath);
 
@@ -40,7 +40,7 @@ namespace CroquetAustraliaWebsite.Library.Content
             Push();
         }
 
-        private void Commit(string relativePath, IAuthor author)
+        private void Commit(string relativePath, Author author)
         {
             GitRepository.CommitAsync(GitBranches.Master, relativePath, string.Format("Published page '{0}'.", relativePath.TrimEnd(".md")), author).Wait();
         }

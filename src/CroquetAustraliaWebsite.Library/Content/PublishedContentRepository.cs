@@ -38,26 +38,9 @@ namespace CroquetAustraliaWebsite.Library.Content
             var publishedDirectory = PathExtensions.GetDirectory(fullPublishedPath);
 
             Directory.CreateDirectory(publishedDirectory);
-
-            if (relativePath.EndsWith(".md"))
-            {
-                // todo: improve to replace extension.
-                PublishMarkdownFile(fullGitPath, fullPublishedPath.Replace(".md", ".cshtml"));
-            }
-            else
-            {
-                File.Copy(fullGitPath, fullPublishedPath);
-            }
+            File.Copy(fullGitPath, fullPublishedPath);
 
             LogTo.Info("Published {0}.", relativePath);
-        }
-
-        private static void PublishMarkdownFile(string fullGitPath, string fullHtmlPath)
-        {
-            var markdown = new MarkdownSharp.Markdown();
-            var html = markdown.Transform(File.ReadAllText(fullGitPath));
-
-            File.WriteAllText(fullHtmlPath, html);
         }
 
         private async Task PublishContentAsync()

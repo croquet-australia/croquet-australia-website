@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using Casper.Core;
+using Casper.Domain.Features.Pages;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
 {
     public class IndexViewModel : AdminViewModel
     {
-        private IndexViewModel(string requestedDirectory, IEnumerable<DirectoryInfo> enumerateDirectories, IEnumerable<FileInfo> enumerateFiles)
+        public IndexViewModel(string requestedDirectory, IEnumerable<Directory> directories, IEnumerable<Page> pages)
             : base(GetNavigationItems(requestedDirectory))
         {
             Directory = requestedDirectory;
-            Directories = enumerateDirectories.Select(d => new NavigationItem(d.Name, Urls.Admin.ChangeDirectory(requestedDirectory, d)));
-            Files = enumerateFiles.Select(f => new NavigationItem(f.Name, Urls.Admin.EditPage(requestedDirectory, f)));
+            Directories = directories.Select(d => new NavigationItem(d.Name, Urls.Admin.ChangeDirectory(requestedDirectory, d.Name)));
+            Pages = pages.Select(f => new NavigationItem(f.Name, Urls.Admin.EditPage(requestedDirectory, f.Name)));
 
-            DirectoryHeading = string.IsNullOrWhiteSpace(requestedDirectory) ? "Home" : "todo";
+            DirectoryHeading = string.IsNullOrWhiteSpace(requestedDirectory) ? "Home" : requestedDirectory.ToUnixSlashes();
         }
 
         public IEnumerable<NavigationItem> Directories { get; private set; }
         public string Directory { get; private set; }
         public string DirectoryHeading { get; private set; }
-        public IEnumerable<NavigationItem> Files { get; private set; }
+        public IEnumerable<NavigationItem> Pages { get; private set; }
 
         private static IEnumerable<NavigationItem> GetNavigationItems(string requestedDirectory)
         {
@@ -30,21 +30,6 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
                 new NavigationItem("Add Page", Urls.Admin.NewPage(requestedDirectory)),
                 new NavigationItem("Add News", Urls.Admin.AddNews)
             };
-        }
-
-        public static Task<IndexViewModel> CreateInstance(string gitDirectory, string requestedDirectory)
-        {
-            var fullDirectory = new DirectoryInfo(Path.Combine(gitDirectory, requestedDirectory.TrimStart('\\')));
-
-            return Task.FromResult(new IndexViewModel(
-                requestedDirectory,
-                fullDirectory.EnumerateDirectories().Where(d => IsNotHiddenOrSystem(d.Attributes)),
-                fullDirectory.EnumerateFiles().Where(d => IsNotHiddenOrSystem(d.Attributes))));
-        }
-
-        private static bool IsNotHiddenOrSystem(FileAttributes attributes)
-        {
-            return !attributes.HasFlag(FileAttributes.Hidden) && !attributes.HasFlag(FileAttributes.System);
         }
     }
 }

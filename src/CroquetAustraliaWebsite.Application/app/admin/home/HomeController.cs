@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Anotar.NLog;
+using Casper.Core;
 using Casper.Domain.Features.BlogPosts.Commands;
+using Casper.Domain.Features.Pages.Commands;
 using Casper.Domain.Infrastructure;
 using Casper.Domain.Infrastructure.Messaging;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Content;
 using CroquetAustraliaWebsite.Library.Infrastructure;
+using CroquetAustraliaWebsite.Library.Repositories;
 using CroquetAustraliaWebsite.Library.Settings;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
@@ -15,25 +19,29 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
     [RoutePrefix("admin")]
     public class HomeController : AdminController
     {
-        private readonly IGitContentRepository _gitRepository;
-        private readonly IPublishedContentRepository _publishedRepository;
         private readonly ICommandBus _commandBus;
+        private readonly IApplicationPageRepository _pageRepository;
         private readonly ContentSettings _contentSettings;
+        private readonly IGitContentRepository _gitRepository;
         private readonly ISlugFactory _slugFactory;
 
-        public HomeController(IGitContentRepository gitRepository, IPublishedContentRepository publishedRepository, ICommandBus commandBus, ContentSettings contentSettings, ISlugFactory slugFactory)
+        public HomeController(ContentSettings contentSettings, ICommandBus commandBus, IApplicationPageRepository pageRepository, IGitContentRepository gitRepository, ISlugFactory slugFactory)
         {
-            _gitRepository = gitRepository;
-            _publishedRepository = publishedRepository;
-            _commandBus = commandBus;
             _contentSettings = contentSettings;
+            _commandBus = commandBus;
+            _pageRepository = pageRepository;
+            _gitRepository = gitRepository;
             _slugFactory = slugFactory;
         }
 
         [Route("{directory?}")]
         public async Task<ViewResult> Index(string directory = @"")
         {
-            return View(await IndexViewModel.CreateInstance(_gitRepository.Directory, directory));
+            var directories = await _pageRepository.FindPublishedDirectoriesAsync(directory);
+            var pages = await _pageRepository.FindPublishedPagesAsync(directory);
+            var viewModel = new IndexViewModel(directory, directories, pages);
+
+            return View(viewModel);
         }
 
         [Route("add-news")]
@@ -44,12 +52,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             // ReSharper disable once UseObjectOrCollectionInitializer
             var viewModel = new AddNewsViewModel();
 
-#if DEBUG
-            var now = DateTime.Now.ToString("s");
-
-            viewModel.Title = "news - title - " + now;
-            viewModel.Content = "news - content - " + now;
-#endif
+            AddDebugDefaults(viewModel);
 
             return View(viewModel);
         }
@@ -63,9 +66,13 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
 
             if (ModelState.IsValid)
             {
+                var now = DateTime.UtcNow;
                 var user = await this.GetApplicationUserAsync();
                 var author = user.ToAuthor();
-                var command = new PublishBlogPost(viewModel.Title, viewModel.Content, author.Clock.Now, author, _contentSettings.BlogDirectoryName, _slugFactory);
+                var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
+                var relativeUri = string.Format("{0}/{1}/{2}", _contentSettings.BlogDirectoryName, published.DateTime.ToFolders(), _slugFactory.CreateSlug(viewModel.Title));
+
+                var command = new PublishBlogPost(relativeUri, viewModel.Title, viewModel.Content, published, author);
 
                 await _commandBus.SendCommandAsync(command);
 
@@ -85,12 +92,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
 
             var viewModel = new AddPageViewModel(_gitRepository.Directory, directory);
 
-#if DEBUG
-            var now = DateTime.Now.ToString("s");
-
-            viewModel.PageName = "page-name-" + now.Replace(".", "-").Replace(":", "-").Replace(" ", "-");
-            viewModel.Content = "page - content - " + now;
-#endif
+            AddDebugDefaults(viewModel);
 
             return View(viewModel);
         }
@@ -104,19 +106,15 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
 
             if (ModelState.IsValid)
             {
-                switch (viewModel.SubmitButton)
-                {
-                    case "Publish":
+                var now = DateTime.UtcNow;
+                var user = await this.GetApplicationUserAsync();
+                var author = user.ToAuthor();
+                var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
+                var relativeUri = string.Format("{0}/{1}", viewModel.Directory.TrimSlashes(), _slugFactory.CreateSlug(viewModel.PageName)).TrimSlashes();
 
-                        var user = await this.GetApplicationUserAsync();
-                        var author = user.ToAuthor();
+                var command = new PublishPage(relativeUri, viewModel.Content.AsMarkdown().GetPageTitle(relativeUri), viewModel.Content, published, author);
 
-                        MarkdownPage.PublishPage(viewModel.FullDirectoryPath, viewModel.PageName, viewModel.Content, _gitRepository, _publishedRepository, author);
-                        break;
-                        
-                    default:
-                        throw new NotImplementedException(string.Format("'{0}' button has not been implemented.", viewModel.SubmitButton));
-                }
+                await _commandBus.SendCommandAsync(command);
 
                 return Redirect(Urls.Admin.Index(viewModel.Directory));
             }
@@ -129,6 +127,24 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
         public ActionResult ThrowException()
         {
             throw new Exception("As requested an exception has been thrown!");
+        }
+
+        [Conditional("DEBUG")]
+        private static void AddDebugDefaults(AddNewsViewModel viewModel)
+        {
+            var now = DateTime.Now.ToString("s");
+
+            viewModel.Title = "news - title - " + now;
+            viewModel.Content = "news - content - " + now;
+        }
+
+        [Conditional("DEBUG")]
+        private static void AddDebugDefaults(AddPageViewModel viewModel)
+        {
+            var now = DateTime.Now.ToString("s");
+
+            viewModel.PageName = "page-name-" + now.Replace(".", "-").Replace(":", "-").Replace(" ", "-");
+            viewModel.Content = "page - content - " + now;
         }
     }
 }

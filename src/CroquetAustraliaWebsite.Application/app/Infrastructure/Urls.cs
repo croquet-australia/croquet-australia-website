@@ -26,14 +26,14 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
                 return string.Format("~/admin/add-page?directory={0}", requestedDirectory);
             }
 
-            public static string EditPage(string requestedDirectory, FileSystemInfo file)
+            public static string EditPage(string requestedDirectory, string fileName)
             {
-                return string.Format(@"~/admin/edit?file={0}", Path.Combine(requestedDirectory, file.Name));
+                return string.Format(@"~/admin/edit?file={0}", Path.Combine(requestedDirectory, fileName));
             }
 
-            public static string ChangeDirectory(string requestedDirectory, FileSystemInfo directory)
+            public static string ChangeDirectory(string requestedDirectory, string directoryName)
             {
-                return string.Format(@"~/admin?directory={0}", Path.Combine(requestedDirectory, directory.Name));
+                return string.Format(@"~/admin?directory={0}", Path.Combine(requestedDirectory, directoryName));
             }
 
             public static string AddNews { get; private set; }

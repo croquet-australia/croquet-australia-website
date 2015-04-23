@@ -7,6 +7,6 @@ namespace CroquetAustraliaWebsite.Library.Content
         string Directory { get; }
 
         void Start();
-        void CommitAndPush(string relativePath, IAuthor author);
+        void CommitAndPush(string relativePath, Author author);
     }
 }

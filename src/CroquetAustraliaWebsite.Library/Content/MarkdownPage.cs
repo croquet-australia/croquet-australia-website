@@ -6,7 +6,7 @@ namespace CroquetAustraliaWebsite.Library.Content
 {
     public class MarkdownPage
     {
-        public static void PublishPage(string fullDirectoryPath, string pageName, string content, IGitContentRepository gitRepository, IPublishedContentRepository publishedRepository, IAuthor author)
+        public static void PublishPage(string fullDirectoryPath, string pageName, string content, IGitContentRepository gitRepository, IPublishedContentRepository publishedRepository, Author author)
         {
             LogTo.Trace("PublishPage(fullDirectoryPath: {0}, pageName: {1}, content: {2}, gitRepository: {3})", fullDirectoryPath, pageName, content, gitRepository);
 
