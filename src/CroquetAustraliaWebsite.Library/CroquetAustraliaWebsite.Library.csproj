@@ -189,6 +189,8 @@
     <Compile Include="Web\Hosting\RepositoryPathProvider.cs" />
     <Compile Include="Web\Hosting\RepositoryVirtualDirectory.cs" />
     <Compile Include="Web\Hosting\RepositoryVirtualFile.cs" />
+    <Compile Include="Web\WebPages\MarkdownVirtualPathFactory.cs" />
+    <Compile Include="Web\WebPages\MarkdownWebPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

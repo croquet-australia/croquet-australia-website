@@ -23,8 +23,10 @@ namespace CroquetAustraliaWebsite.Application
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            DependencyResolver.Current.GetService<AppData>().Start();
-            DependencyResolver.Current.GetService<PublishedContentProviderConfig>().RegisterProviders();
+            var dependencyResolver = DependencyResolver.Current;
+
+            dependencyResolver.GetService<AppData>().Start();
+            dependencyResolver.GetService<PublishedContentProviderConfig>().RegisterProviders();
 
             _filterErrorMessages = new ElmahSettings().FilterErrorMessages;
 
