@@ -1,5 +1,11 @@
 ﻿@model CroquetAustraliaWebsite.Application.App.home.IndexViewModel
 <h1>Croquet Australia</h1>
+<div class="alert alert-info" role="alert">
+    <p>
+        This is a <strong>very early version</strong> of the new Croquet Australia Website.
+        We are publishing the site today to allow important information to be publicly available as it comes to hand.
+    </p>
+</div>
 @*todo: configure where partial views are searched for*@
 <h2>Latest News</h2>
 @Html.Partial("~/App/home/Index-BlogPosts.cshtml", Model.BlogPosts)
