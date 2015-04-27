@@ -45,5 +45,27 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     Blog Posts
 */
 .blog-post img {
-    max-width: 100%;]
+    max-width: 100%;
+}
+
+.blog-post h1 {
+    font-size: 25px;
+    border-bottom: 1px solid gray;
+    margin-bottom: 4px;
+}
+
+.blog-post h2 {
+    font-size: 20px;
+    text-decoration: underline gray;
+}
+
+.blog-post h3 {
+    font-size: 17px;
+    text-decoration: underline gray;
+}
+
+.blog-post-published {
+    font-size: small;
+    color: gray;
+    font-style: italic;
 }
