@@ -1,5 +1,5 @@
 using System.Web;
-using MarkdownSharp;
+using MarkdownDeep;
 
 namespace CroquetAustraliaWebsite.Library.Content
 {
@@ -7,7 +7,12 @@ namespace CroquetAustraliaWebsite.Library.Content
     {
         public IHtmlString MarkdownToHtml(string content)
         {
-            var markdown = new Markdown();
+            var markdown = new Markdown
+            {
+                // ExtraMode is required to support tables.
+                ExtraMode = true
+            };
+
             var html = markdown.Transform(content);
 
             return new HtmlString(html);
