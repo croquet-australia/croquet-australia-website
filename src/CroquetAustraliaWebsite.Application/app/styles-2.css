@@ -1,5 +1,10 @@
 ﻿.body-content { margin-top: 70px; }
 
+td {
+    padding: 4px;
+    border: 1px solid lightgray;
+}
+
 /*
     Styles for MVC5 validation helpers 
 */

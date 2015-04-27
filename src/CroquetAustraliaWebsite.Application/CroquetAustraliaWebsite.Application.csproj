@@ -197,7 +197,7 @@
     <Content Include="500.aspx" />
     <Content Include="500.html" />
     <Content Include="500.jpg" />
-    <Content Include="App\styles-1.css" />
+    <Content Include="App\styles-2.css" />
     <Content Include="App\_ViewStart.cshtml" />
     <None Include="AppSettings.config">
       <SubType>Designer</SubType>
