@@ -27,7 +27,11 @@ param(
     [Parameter(Mandatory = $false)] 
     [string] $ContentBlogDirectoryName = "news",
     [Parameter(Mandatory = $false)] 
-    [string] $ElmahErrorLogType = "Elmah.Io"
+    [string] $ElmahErrorLogType = "Elmah.Io",
+    [Parameter(Mandatory = $false)] 
+    [string] $SupportEmail = "tim@26tp.com",
+    [Parameter(Mandatory = $false)] 
+    [string] $SupportName = "Tim Murphy"
 )
 
 $appSettings = @{ ` 
@@ -40,7 +44,9 @@ $appSettings = @{ `
     "Elmah:ErrorLogType" = $ElmahErrorLogType; `
     "Elmah:LogId" = $ElmahLogId; `
     "OAuth:Google:ClientId" = $OAuthGoogleClientId; `
-    "OAuth:Google:ClientSecret" = $OAuthGoogleClientSecret;
+    "OAuth:Google:ClientSecret" = $OAuthGoogleClientSecret; `
+    "Support:Email" = $SupportEmail; `
+    "Support:Name" = $SupportName;
 }
 
 Set-AzureWebsite -Name "$WebSiteName" -AppSettings $appSettings 

@@ -1,4 +1,6 @@
-﻿.body-content { margin-top: 70px; }
+﻿.body-content {
+    margin-top: 70px;
+}
 
 td {
     padding: 4px;
@@ -16,12 +18,16 @@ td {
 }
 
 .field-validation-valid,
-.validation-summary-valid { display: none; }
+.validation-summary-valid {
+    display: none;
+}
 
 input.input-validation-error,
 textarea.input-validation-error,
 select.input-validation-error,
-input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
+input[type="checkbox"].input-validation-error {
+    border: 1px solid #b94a48;
+}
 
 /*
     Error Page
@@ -33,13 +39,38 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
 }
 
 .error-page img {
-    float: left;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
-.error-page p, .error-page h1 { 
-    width: 300px; 
-    margin-left: 350px;
+.error-page .creative-commons {
+    float: none;
+}
+
+.error-page figure {
+    margin-bottom: 20px;
+    font-size: x-small;
+    float: left;
+}
+
+    .error-page figure figcaption {
+        text-align: center;
+        color: darkgray;
+    }
+
+    .error-page figure a {
+        color: darkgray;
+    }
+
+    .error-page p {
+        float: left;
+        width: 300px;
+    }
+
+@media (min-width: 700px) {
+    .error-page p, .error-page h1 {
+        float: none;
+        margin-left: 350px;
+    }
 }
 
 .error-page h1 {

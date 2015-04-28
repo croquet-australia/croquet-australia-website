@@ -167,6 +167,7 @@
     <Compile Include="Content\IPublishedContentRepository.cs" />
     <Compile Include="Infrastructure\IMarkdownString.cs" />
     <Compile Include="Infrastructure\IMarkdownStringExtensions.cs" />
+    <Compile Include="Infrastructure\JsonConvertExtensions.cs" />
     <Compile Include="Infrastructure\MarkdownString.cs" />
     <Compile Include="Infrastructure\ModelStateExtensions.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Repositories\IApplicationPageRepository.cs" />
     <Compile Include="Repositories\IApplicationBlogPostRepository.cs" />
     <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Settings\SupportSettings.cs" />
     <Compile Include="Settings\ElmahSettings.cs" />
     <Compile Include="Settings\PublishedContentRepositorySettings.cs" />
     <Compile Include="Settings\ContentSettings.cs" />

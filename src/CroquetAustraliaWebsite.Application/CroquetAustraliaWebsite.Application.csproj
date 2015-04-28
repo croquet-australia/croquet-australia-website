@@ -191,13 +191,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="401.aspx" />
+    <Content Include="401.html" />
     <Content Include="404.aspx" />
     <Content Include="404.html" />
     <Content Include="404.jpg" />
     <Content Include="500.aspx" />
     <Content Include="500.html" />
     <Content Include="500.jpg" />
-    <Content Include="App\styles-2.css" />
+    <Content Include="401.jpg" />
+    <Content Include="App\styles-3.css" />
     <Content Include="App\_ViewStart.cshtml" />
     <None Include="AppSettings.config">
       <SubType>Designer</SubType>
