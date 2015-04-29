@@ -16,6 +16,7 @@ using Microsoft.Owin.Security;
 
 namespace CroquetAustraliaWebsite.Application.App.account
 {
+    [RequireHttps]
     [RoutePrefix("")]
     public class AccountController : ApplicationController
     {
