@@ -3,6 +3,7 @@
 namespace CroquetAustraliaWebsite.Application.App.Infrastructure
 {
     [AdminAuthorize]
+    [RequireHttps]
     public abstract class AdminController : ApplicationController
     {
         protected override IViewModel CreateDefaultViewModel()

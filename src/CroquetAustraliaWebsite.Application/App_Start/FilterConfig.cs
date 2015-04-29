@@ -8,7 +8,7 @@ namespace CroquetAustraliaWebsite.Application
         {
             // The default 'filters.Add(new HandleErrorAttribute());' is not so ELMAH can catch all errors.
 
-            filters.Add(new RequireHttpsAttribute());
+            // todo: resinstate - lters.Add(new RequireHttpsAttribute());
         }
     }
 }
