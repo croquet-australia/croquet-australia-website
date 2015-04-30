@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Web;
 using Anotar.NLog;
@@ -11,10 +12,14 @@ using Casper.Domain.Features.Pages;
 using Casper.Domain.Infrastructure;
 using Casper.Domain.Infrastructure.Messaging;
 using CommonServiceLocator.NinjectAdapter.Unofficial;
+using CroquetAustraliaWebsite.Library.Authentication.DAL;
+using CroquetAustraliaWebsite.Library.Authentication.Domain;
+using CroquetAustraliaWebsite.Library.Authentication.Identity;
 using CroquetAustraliaWebsite.Library.Content;
 using CroquetAustraliaWebsite.Library.IO;
-using CroquetAustraliaWebsite.Library.Repositories;
 using CroquetAustraliaWebsite.Library.Settings;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using Ninject.Activation;
@@ -29,6 +34,8 @@ namespace CroquetAustraliaWebsite.Application
 
             ServiceLocator.SetLocatorProvider(() => new NinjectServiceLocator(kernel));
 
+            // todo: research scopes. e.g. InRequestScope().
+
             // Bind to methods
             kernel.Bind<ContentSettings>().ToMethod(context => new ContentSettings(HttpContext.Current.Server));
             kernel.Bind<GitContentRepositorySettings>().ToMethod(context => context.Kernel.Get<ContentSettings>().Repository);
@@ -36,12 +43,12 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<IGitRepositorySettings>().ToMethod(GitRepositorySettings);
             kernel.Bind<IBlogPostRepositorySettings>().ToMethod(BlogPostRepositorySettings);
             kernel.Bind<IPageRepositorySettings>().ToMethod(PageRepositorySettings);
+            kernel.Bind<SignInManager>().ToMethod(SignInManagerFactory);
+            kernel.Bind<ICommandBus>().ToMethod(CommandBusFactory);
 
-            // Bind to classes.
-            kernel.Bind<IBlogPostRepository>().To<ApplicationBlogPostRepository>();
-            kernel.Bind<IApplicationBlogPostRepository>().To<ApplicationBlogPostRepository>();
-            kernel.Bind<IPageRepository>().To<ApplicationPageRepository>();
-            kernel.Bind<IApplicationPageRepository>().To<ApplicationPageRepository>();
+            // Bind to classes
+            kernel.Bind<IBlogPostRepository>().To<BlogPostRepository>();
+            kernel.Bind<IPageRepository>().To<PageRepository>();
             kernel.Bind<IGitRepository>().To<GitRepository>();
             kernel.Bind<IEventBus>().To<EventBus>();
             kernel.Bind<IFileOperations>().To<FileOperations>();
@@ -51,17 +58,30 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<IYamlMarkdown>().To<YamlMarkdown>();
             kernel.Bind<IClock>().To<Clock>();
             kernel.Bind<IMarkdownTransformer>().To<MarkdownTransformer>();
+            kernel.Bind<IUserStore<IdentityUser, Guid>>().To<InMemoryUserStore>();
+            kernel.Bind<IUserRepository>().To<InMemoryUserRepository>();
+        }
 
-            kernel.Bind<ICommandBus>().ToMethod(context =>
-            {
-                var commandBus = new CommandBus(kernel.Get<IEventBus>());
-                var blogPostRepository = kernel.Get<IBlogPostRepository>();
-                var pageRepository = kernel.Get<IPageRepository>();
+        private static ICommandBus CommandBusFactory(IContext context)
+        {
+            var kernel = context.Kernel;
+            var commandBus = new CommandBus(kernel.Get<IEventBus>());
+            var blogPostRepository = kernel.Get<IBlogPostRepository>();
+            var pageRepository = kernel.Get<IPageRepository>();
 
-                Configuration.Configure(commandBus, blogPostRepository, pageRepository);
+            Configuration.Configure(commandBus, blogPostRepository, pageRepository);
 
-                return commandBus;
-            });
+            return commandBus;
+        }
+
+        private static SignInManager SignInManagerFactory(IContext context)
+        {
+            var kernel = context.Kernel;
+            var userManager = kernel.Get<UserManager>();
+            var owinContext = HttpContext.Current.GetOwinContext();
+            var authentication = owinContext.Authentication;
+
+            return new SignInManager(userManager, authentication);
         }
 
         private static IBlogPostRepositorySettings BlogPostRepositorySettings(IContext context)

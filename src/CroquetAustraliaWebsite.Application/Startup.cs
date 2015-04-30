@@ -1,10 +1,11 @@
 ﻿using System.Web.Configuration;
 using CroquetAustraliaWebsite.Application;
-using CroquetAustraliaWebsite.Library.Authentication;
+using CroquetAustraliaWebsite.Library.Authentication.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Practices.ServiceLocation;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
@@ -19,9 +20,10 @@ namespace CroquetAustraliaWebsite.Application
 
         private static void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the user manager and sign in manager to use a single instance per request
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            // todo?: app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+
+            app.CreatePerOwinContext(() => ServiceLocator.Current.GetInstance<UserManager>());
+            app.CreatePerOwinContext(() => ServiceLocator.Current.GetInstance<SignInManager>());
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {

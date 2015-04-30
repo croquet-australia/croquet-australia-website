@@ -7,9 +7,10 @@ using System.Web.Mvc;
 using Anotar.NLog;
 using CroquetAustraliaWebsite.Application.App.account.Infrastructure;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
-using CroquetAustraliaWebsite.Library.Authentication;
+using CroquetAustraliaWebsite.Library.Authentication.Domain;
+using CroquetAustraliaWebsite.Library.Authentication.Identity;
 using CroquetAustraliaWebsite.Library.Infrastructure;
-using CroquetAustraliaWebsite.Library.Settings;
+using CroquetAustraliaWebsite.Library.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -20,26 +21,11 @@ namespace CroquetAustraliaWebsite.Application.App.account
     [RoutePrefix("")]
     public class AccountController : ApplicationController
     {
-        private readonly SupportSettings _supportSettings;
+        private readonly IUserRepository _userRepository;
 
-        public AccountController(SupportSettings supportSettings)
+        public AccountController(IUserRepository userRepository)
         {
-            _supportSettings = supportSettings;
-        }
-
-        private ApplicationSignInManager SignInManager
-        {
-            get { return HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
-        }
-
-        private ApplicationUserManager UserManager
-        {
-            get { return HttpContext.GetOwinContext().Get<ApplicationUserManager>(); }
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get { return HttpContext.GetOwinContext().Authentication; }
+            _userRepository = userRepository;
         }
 
         [Route("external-sign-in")]
@@ -56,44 +42,28 @@ namespace CroquetAustraliaWebsite.Application.App.account
         {
             LogTo.Trace("ExternalSignInCallback(returnUrl: {0})", returnUrl);
 
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            var loginInfo = await GetExternalLoginInfoAsync();
+            await TryRegisterExternalLogin(loginInfo.Login, loginInfo.Email);
+            var signInStatus = await this.GetSignInManager().ExternalSignInAsync(loginInfo, false);
 
-            if (loginInfo == null)
-            {
-                LogTo.Warn("ExternalSignInCallBack(returnUrl: {0}) but AuthenticationManager.GetExternalLoginInfoAsync returned null.", returnUrl);
-                return RedirectToAction("SignIn");
-            }
+            LogTo.Debug("ExternalSignInCallback(returnUrl: {0}) - signInStatus: {1}", returnUrl, signInStatus);
 
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, false);
-
-            switch (result)
+            switch (signInStatus)
             {
                 case SignInStatus.Success:
-
-                    return RedirectToLocal(returnUrl);
+                    return HandleExternalSignInSuccess(returnUrl);
 
                 case SignInStatus.LockedOut:
-
-                    LogTo.Warn("SigninStatus.LockedOut. {0}.", JsonHelper.TrySerialize(new {returnUrl, loginInfo}));
-                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Account has been locked out.");
+                    return HandleExternalSignInLockedOut();
 
                 case SignInStatus.RequiresVerification:
-
-                    // todo
-                    throw new NotImplementedException("SignInStatus.RequiresVerification");
-                //return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                    return HandleExternalSignInRequiresVerification();
 
                 case SignInStatus.Failure:
-
-                    // If the user does not yet exist in UserLoginStore then sign in status is failure. Ridiculous but true.
-                    var user = await AddExternalUserToUserStore(loginInfo, returnUrl);
-                    await SignInManager.SignInAsync(user, false, false);
-                    return RedirectToLocal(returnUrl);
+                    return HandleExternalSignInFailureAsync();
 
                 default:
-
-                    throw new NotSupportedException(string.Format("SignInStatus '{0}' is not supported. It did not exist at time of writing code.", result));
+                    throw new NotSupportedException(string.Format("SignInStatus '{0}' is not supported. It did not exist at time of writing code.", signInStatus));
             }
         }
 
@@ -105,29 +75,36 @@ namespace CroquetAustraliaWebsite.Application.App.account
             return View(new SignInViewModel(returnUrl, authenticationTypes));
         }
 
-        private async Task<ApplicationUser> AddExternalUserToUserStore(ExternalLoginInfo loginInfo, string returnUrl)
+        private async Task<ExternalLoginInfo> GetExternalLoginInfoAsync()
         {
-            var user = new ApplicationUser(loginInfo.ExternalIdentity.Name, loginInfo.Email);
-            var result = await UserManager.CreateAsync(user);
+            var loginInfo = await this.GetAuthenticationManager().GetExternalLoginInfoAsync();
 
-            if (!result.Succeeded)
+            if (loginInfo == null)
             {
-                throw CreateUserException(result);
+                throw new Exception("Expected AuthenticationManager.GetExternalLoginInfoAsync() to return a value, not null.");
             }
 
-            result = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
-
-            if (!result.Succeeded)
-            {
-                throw CreateUserException(result);
-            }
-
-            return user;
+            return loginInfo;
         }
 
-        private static Exception CreateUserException(IdentityResult result)
+        private ActionResult HandleExternalSignInFailureAsync()
         {
-            return new Exception(string.Format("UserManager.CreateAsync(user) failed.{0}{1}", Environment.NewLine, string.Join(Environment.NewLine, result.Errors)));
+            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Sign in failure.");
+        }
+
+        private static ActionResult HandleExternalSignInLockedOut()
+        {
+            return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Account has been locked out.");
+        }
+
+        private static ActionResult HandleExternalSignInRequiresVerification()
+        {
+            throw new NotSupportedException();
+        }
+
+        private ActionResult HandleExternalSignInSuccess(string returnUrl)
+        {
+            return RedirectToLocal(returnUrl);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
@@ -137,6 +114,35 @@ namespace CroquetAustraliaWebsite.Application.App.account
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private async Task TryRegisterExternalLogin(UserLoginInfo login, string email)
+        {
+            LogTo.Trace("TryRegisterExternalLogin(login: {0})", login.ToLogString());
+
+            var userManager = this.GetUserManager();
+            var isRegistered = await userManager.IsRegisteredAsync(login);
+
+            if (isRegistered)
+            {
+                LogTo.Debug("External login '{0}' is registered.", email);
+                return;
+            }
+
+            var domainUser = await _userRepository.FindByEmailAsync(email);
+            var isDomainUser = domainUser != null;
+
+            if (!isDomainUser)
+            {
+                LogTo.Debug("External login '{0}' is not a recognized user.", email);
+                return;
+            }
+
+            var identityUser = new IdentityUser(domainUser);
+            await userManager.CreateAsync(identityUser);
+            await userManager.AddLoginAsync(identityUser.Id, login);
+
+            LogTo.Debug("Registered external login '{0}'.", email);
         }
     }
 }

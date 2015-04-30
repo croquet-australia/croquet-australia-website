@@ -5,14 +5,16 @@ using System.Web.Mvc;
 using Anotar.NLog;
 using Casper.Core;
 using Casper.Domain.Features.BlogPosts.Commands;
+using Casper.Domain.Features.Pages;
 using Casper.Domain.Features.Pages.Commands;
 using Casper.Domain.Infrastructure;
 using Casper.Domain.Infrastructure.Messaging;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
+using CroquetAustraliaWebsite.Library.Authentication.Domain;
 using CroquetAustraliaWebsite.Library.Content;
 using CroquetAustraliaWebsite.Library.Infrastructure;
-using CroquetAustraliaWebsite.Library.Repositories;
 using CroquetAustraliaWebsite.Library.Settings;
+using CroquetAustraliaWebsite.Library.Web.Mvc;
 using OpenMagic.Extensions;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
@@ -21,18 +23,20 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
     public class HomeController : AdminController
     {
         private readonly ICommandBus _commandBus;
-        private readonly IApplicationPageRepository _pageRepository;
+        private readonly IPageRepository _pageRepository;
         private readonly ContentSettings _contentSettings;
         private readonly IGitContentRepository _gitRepository;
         private readonly ISlugFactory _slugFactory;
+        private readonly IUserRepository _userRepository;
 
-        public HomeController(ContentSettings contentSettings, ICommandBus commandBus, IApplicationPageRepository pageRepository, IGitContentRepository gitRepository, ISlugFactory slugFactory)
+        public HomeController(ContentSettings contentSettings, ICommandBus commandBus, IPageRepository pageRepository, IGitContentRepository gitRepository, ISlugFactory slugFactory, IUserRepository userRepository)
         {
             _contentSettings = contentSettings;
             _commandBus = commandBus;
             _pageRepository = pageRepository;
             _gitRepository = gitRepository;
             _slugFactory = slugFactory;
+            _userRepository = userRepository;
         }
 
         [Route("{directory?}")]
@@ -68,7 +72,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             if (ModelState.IsValid)
             {
                 var now = DateTime.UtcNow;
-                var user = await this.GetApplicationUserAsync();
+                var user = await this.GetDomainUserAsync(_userRepository);
                 var author = user.ToAuthor();
                 var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
                 var relativeUri = string.Format("{0}/{1}/{2}", _contentSettings.BlogDirectoryName, published.DateTime.ToFolders(), _slugFactory.CreateSlug(viewModel.Title));
@@ -108,7 +112,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             if (ModelState.IsValid)
             {
                 var now = DateTime.UtcNow;
-                var user = await this.GetApplicationUserAsync();
+                var user = await this.GetDomainUserAsync(_userRepository);
                 var author = user.ToAuthor();
                 var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
                 var relativeUri = string.Format("{0}/{1}", viewModel.Directory.TrimSlashes(), _slugFactory.CreateSlug(viewModel.PageName)).TrimSlashes();
@@ -145,7 +149,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             if (ModelState.IsValid)
             {
                 var now = DateTime.UtcNow;
-                var user = await this.GetApplicationUserAsync();
+                var user = await this.GetDomainUserAsync(_userRepository);
                 var author = user.ToAuthor();
                 var published = user.TimeZoneInfo.ConvertTimeFromUtc(now);
                 var relativeUri = viewModel.RelativeUri;

@@ -1,19 +1,19 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
+using Casper.Domain.Features.BlogPosts;
 using Casper.Domain.Infrastructure;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Content;
-using CroquetAustraliaWebsite.Library.Repositories;
 
 namespace CroquetAustraliaWebsite.Application.App.home
 {
     [RoutePrefix("")]
     public class HomeController : ApplicationController
     {
-        private readonly IApplicationBlogPostRepository _blogPostRepository;
+        private readonly IBlogPostRepository _blogPostRepository;
         private readonly IMarkdownTransformer _markdownTransformer;
 
-        public HomeController(IApplicationBlogPostRepository blogPostRepository, IMarkdownTransformer markdownTransformer)
+        public HomeController(IBlogPostRepository blogPostRepository, IMarkdownTransformer markdownTransformer)
         {
             _blogPostRepository = blogPostRepository;
             _markdownTransformer = markdownTransformer;
