@@ -19,7 +19,6 @@ using CroquetAustraliaWebsite.Library.Content;
 using CroquetAustraliaWebsite.Library.IO;
 using CroquetAustraliaWebsite.Library.Settings;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using Ninject.Activation;
@@ -62,6 +61,15 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<IUserRepository>().To<InMemoryUserRepository>();
         }
 
+        private static IBlogPostRepositorySettings BlogPostRepositorySettings(IContext context)
+        {
+            var contentSettings = context.Kernel.Get<ContentSettings>();
+            var publishedContentRepositorySettings = context.Kernel.Get<PublishedContentRepositorySettings>();
+            var options = new BlogPostRepositorySettings(new DirectoryInfo(publishedContentRepositorySettings.Directory), contentSettings.BlogDirectoryName);
+
+            return options;
+        }
+
         private static ICommandBus CommandBusFactory(IContext context)
         {
             var kernel = context.Kernel;
@@ -74,21 +82,13 @@ namespace CroquetAustraliaWebsite.Application
             return commandBus;
         }
 
-        private static SignInManager SignInManagerFactory(IContext context)
+        private static IGitRepositorySettings GitRepositorySettings(IContext context)
         {
-            var kernel = context.Kernel;
-            var userManager = kernel.Get<UserManager>();
-            var owinContext = HttpContext.Current.GetOwinContext();
-            var authentication = owinContext.Authentication;
-
-            return new SignInManager(userManager, authentication);
-        }
-
-        private static IBlogPostRepositorySettings BlogPostRepositorySettings(IContext context)
-        {
-            var contentSettings = context.Kernel.Get<ContentSettings>();
-            var publishedContentRepositorySettings = context.Kernel.Get<PublishedContentRepositorySettings>();
-            var options = new BlogPostRepositorySettings(new DirectoryInfo(publishedContentRepositorySettings.Directory), contentSettings.BlogDirectoryName);
+            var settings = context.Kernel.Get<GitContentRepositorySettings>();
+            var options = new GitRepositorySettings(
+                new DirectoryInfo(settings.Directory),
+                settings.UserName,
+                settings.Password);
 
             return options;
         }
@@ -101,15 +101,14 @@ namespace CroquetAustraliaWebsite.Application
             return options;
         }
 
-        private static IGitRepositorySettings GitRepositorySettings(IContext context)
+        private static SignInManager SignInManagerFactory(IContext context)
         {
-            var settings = context.Kernel.Get<GitContentRepositorySettings>();
-            var options = new GitRepositorySettings(
-                new DirectoryInfo(settings.Directory),
-                settings.UserName,
-                settings.Password);
+            var kernel = context.Kernel;
+            var userManager = kernel.Get<UserManager>();
+            var owinContext = HttpContext.Current.GetOwinContext();
+            var authentication = owinContext.Authentication;
 
-            return options;
+            return new SignInManager(userManager, authentication);
         }
     }
 }

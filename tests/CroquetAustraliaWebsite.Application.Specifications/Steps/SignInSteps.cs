@@ -13,14 +13,12 @@ namespace CroquetAustraliaWebsite.Application.Specifications.Steps
         private readonly WebApplication _webApplication;
         private readonly IWebDriver _webDriver;
         private readonly GivenData _given;
-        private readonly ActualData _actual;
 
-        public SignInSteps(WebApplication webApplication, IWebDriver webDriver, GivenData given, ActualData actual)
+        public SignInSteps(WebApplication webApplication, IWebDriver webDriver, GivenData given)
         {
             _webApplication = webApplication;
             _webDriver = webDriver;
             _given = given;
-            _actual = actual;
         }
 
         [Given(@"the website is running")]

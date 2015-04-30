@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Web.Hosting;
 using System.Web.WebPages;
-using Anotar.LibLog;
 using Casper.Data.Git.Infrastructure;
 using Casper.Data.Git.Infrastructure.Metadata;
 using CroquetAustraliaWebsite.Library.Content;

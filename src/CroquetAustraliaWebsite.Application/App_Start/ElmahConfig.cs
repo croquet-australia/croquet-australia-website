@@ -5,7 +5,6 @@ using Anotar.NLog;
 using CroquetAustraliaWebsite.Application;
 using CroquetAustraliaWebsite.Library.Settings;
 using Elmah;
-using Elmah.Io.Client;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof (ElmahConfig), "Start")]
@@ -44,7 +43,7 @@ namespace CroquetAustraliaWebsite.Application
                     var container = new ServiceContainer(sp(context));
                     var elmahSettings = new ElmahSettings();
 
-                    container.AddService(typeof(ErrorLog), GetErrorLog(elmahSettings));
+                    container.AddService(typeof (ErrorLog), GetErrorLog(elmahSettings));
 
                     return container;
                 }
@@ -53,6 +52,14 @@ namespace CroquetAustraliaWebsite.Application
                     LogTo.ErrorException("Could not configure Elmah.ErrorLog.", exception);
                     throw;
                 }
+            };
+        }
+
+        private static Dictionary<string, string> GetElmahIoConfig(string logId)
+        {
+            return new Dictionary<string, string>
+            {
+                {"LogId", logId}
             };
         }
 
@@ -74,14 +81,6 @@ namespace CroquetAustraliaWebsite.Application
                 default:
                     throw new NotSupportedException(string.Format("ErrorLogType '{0}' is not supported.", errorLogType));
             }
-        }
-
-        private static Dictionary<string, string> GetElmahIoConfig(string logId)
-        {
-            return new Dictionary<string, string>
-            {
-                {"LogId", logId}
-            };
         }
     }
 }

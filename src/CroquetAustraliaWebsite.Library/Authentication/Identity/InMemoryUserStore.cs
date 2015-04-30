@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Anotar.LibLog;
-using CroquetAustraliaWebsite.Library.Authentication.Domain;
 using CroquetAustraliaWebsite.Library.Infrastructure;
 using Microsoft.AspNet.Identity;
 
@@ -62,6 +61,7 @@ namespace CroquetAustraliaWebsite.Library.Authentication.Identity
         }
 
         [Conditional("DEBUG")]
+        // ReSharper disable once UnusedMember.Local
         private void LogAllUsersAndLogins()
         {
             LogTo.Debug("====== Start All Users & Logins =====");

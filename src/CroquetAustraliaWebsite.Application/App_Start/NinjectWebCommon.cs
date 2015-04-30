@@ -1,6 +1,8 @@
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(CroquetAustraliaWebsite.Application.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(CroquetAustraliaWebsite.Application.App_Start.NinjectWebCommon), "Stop")]
 
+// ReSharper disable All
+
 namespace CroquetAustraliaWebsite.Application.App_Start
 {
     using System;

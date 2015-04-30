@@ -1,14 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
 
 namespace CroquetAustraliaWebsite.Application.App.Infrastructure
 {
     public class ViewModel : IViewModel
     {
-        private const string DownArrowHtml = ""; // @"<span class=""caret""></span>";
-
         public ViewModel()
             : this(PublicNavigationBar.GetNavigationItems())
         {
@@ -28,5 +23,5 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
         public bool AddAngularSupport { get; protected set; }
         public string ContainerClass { get; protected set; }
         public IEnumerable<NavigationItem> NavigationItems { get; set; }
-   }
+    }
 }

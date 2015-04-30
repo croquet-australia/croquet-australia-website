@@ -1,5 +1,4 @@
-﻿using System;
-using CroquetAustraliaWebsite.Application.Specifications.Pages.Infrastructure;
+﻿using CroquetAustraliaWebsite.Application.Specifications.Pages.Infrastructure;
 using OpenQA.Selenium;
 
 namespace CroquetAustraliaWebsite.Application.Specifications.Helpers
