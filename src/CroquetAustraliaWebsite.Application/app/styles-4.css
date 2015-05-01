@@ -105,3 +105,10 @@ input[type="checkbox"].input-validation-error {
     color: gray;
     font-style: italic;
 }
+
+/*
+    Bootstrap Alerts
+*/
+.alert a {
+    color: orangered;
+}

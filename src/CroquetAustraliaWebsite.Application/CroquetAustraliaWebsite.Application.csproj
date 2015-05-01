@@ -200,7 +200,7 @@
     <Content Include="500.html" />
     <Content Include="500.jpg" />
     <Content Include="401.jpg" />
-    <Content Include="App\styles-3.css" />
+    <Content Include="App\styles-4.css" />
     <Content Include="App\_ViewStart.cshtml" />
     <None Include="AppSettings.config">
       <SubType>Designer</SubType>
