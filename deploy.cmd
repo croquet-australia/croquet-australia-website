@@ -86,7 +86,7 @@ IF /I "CroquetAustraliaWebsite.sln" NEQ "" (
 :: 2. Custom run Gulp task.
 echo Running custom deployment section.
 
-pushd "%DEPLOYMENT_SOURCE%\src\CroquetAustraliaWebsite.Application\"
+pushd "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\"
 
 echo Running npm install
 call :ExecuteCmd call npm install
@@ -100,9 +100,9 @@ popd
 
 :: 3. Build to the temporary path
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\src\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
 ) ELSE (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\src\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
 )
 IF !ERRORLEVEL! NEQ 0 goto error
 
@@ -114,7 +114,7 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 :: 5. Custom post development task.
 echo Copying bower_components directory to the deployment path
-call :ExecuteCmd xcopy /y /s "%DEPLOYMENT_SOURCE%\src\CroquetAustraliaWebsite.Application\bower_components\*.*" "%DEPLOYMENT_TARGET%\bower_components\*.*"
+call :ExecuteCmd xcopy /y /s "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\bower_components\*.*" "%DEPLOYMENT_TARGET%\bower_components\*.*"
 IF !ERRORLEVEL! NEQ 0 goto error
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

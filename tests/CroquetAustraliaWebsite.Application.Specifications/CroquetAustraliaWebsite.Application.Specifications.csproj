@@ -65,7 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\src\CroquetAustraliaWebsite.Library\Properties\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\source\CroquetAustraliaWebsite.Library\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
@@ -99,7 +99,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CroquetAustraliaWebsite.Library\CroquetAustraliaWebsite.Library.csproj">
+    <ProjectReference Include="..\..\source\CroquetAustraliaWebsite.Library\CroquetAustraliaWebsite.Library.csproj">
       <Project>{437fdb12-8311-41ba-9777-e7f7e8dfa5ac}</Project>
       <Name>CroquetAustraliaWebsite.Library</Name>
     </ProjectReference>
