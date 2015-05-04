@@ -11,6 +11,7 @@ npm-debug.log
 # Visual Studio
 ###########################################################
 
+.vs
 App_Data/
 [Aa]rtifacts/
 [Bb]in/
