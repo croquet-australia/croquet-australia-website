@@ -4,15 +4,9 @@
 @{
     var viewModel = (IViewModel)PageData["model"];
     var container = viewModel.ContainerClass;
-    IHtmlString htmlAttributes = new HtmlString("lang=\"en\"");
-
-    if (viewModel.AddAngularSupport)
-    {
-        htmlAttributes = new HtmlString(htmlAttributes + " ng-app");
-    }
 }
 <!DOCTYPE html>
-<html @htmlAttributes>
+<html lang="en" ng-app="app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

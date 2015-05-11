@@ -7,7 +7,6 @@ using Casper.Core;
 using Casper.Domain.Features.BlogPosts.Commands;
 using Casper.Domain.Features.Pages;
 using Casper.Domain.Features.Pages.Commands;
-using Casper.Domain.Infrastructure;
 using Casper.Domain.Infrastructure.Messaging;
 using CroquetAustraliaWebsite.Application.App.Infrastructure;
 using CroquetAustraliaWebsite.Library.Authentication.Domain;
@@ -23,13 +22,13 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
     public class HomeController : AdminController
     {
         private readonly ICommandBus _commandBus;
-        private readonly IPageRepository _pageRepository;
         private readonly ContentSettings _contentSettings;
         private readonly IGitContentRepository _gitRepository;
+        private readonly IPageRepository _pageRepository;
         private readonly ISlugFactory _slugFactory;
         private readonly IUserRepository _userRepository;
 
-        public HomeController(ContentSettings contentSettings, ICommandBus commandBus, IPageRepository pageRepository, IGitContentRepository gitRepository, ISlugFactory slugFactory, IUserRepository userRepository)
+        public HomeController(ContentSettings contentSettings, ICommandBus commandBus, IPageRepository pageRepository, IGitContentRepository gitRepository, IUserRepository userRepository, ISlugFactory slugFactory)
         {
             _contentSettings = contentSettings;
             _commandBus = commandBus;
@@ -37,16 +36,6 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             _gitRepository = gitRepository;
             _slugFactory = slugFactory;
             _userRepository = userRepository;
-        }
-
-        [Route("{directory?}")]
-        public async Task<ViewResult> Index(string directory = @"")
-        {
-            var directories = await _pageRepository.FindPublishedDirectoriesAsync(directory);
-            var pages = await _pageRepository.FindPublishedPagesAsync(directory);
-            var viewModel = new IndexViewModel(directory, directories, pages);
-
-            return View(viewModel);
         }
 
         [Route("add-news")]
@@ -162,6 +151,16 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             }
 
             LogTo.Debug("Model is invalid.{0}{1}", Environment.NewLine, ModelState.ErrorsAsLoggingString());
+            return View(viewModel);
+        }
+
+        [Route("{directory?}")]
+        public async Task<ViewResult> Index(string directory = @"")
+        {
+            var directories = await _pageRepository.FindPublishedDirectoriesAsync(directory);
+            var pages = await _pageRepository.FindPublishedPagesAsync(directory);
+            var viewModel = new IndexViewModel(directory, directories, pages);
+
             return View(viewModel);
         }
 

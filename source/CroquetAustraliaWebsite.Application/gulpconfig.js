@@ -5,7 +5,7 @@ module.exports = function () {
 
     var clientDirectory = '.';
 
-    var appJsFiles = './app/**/*.js';
+    var appJsFiles = ['./app/**/*.js', '!./app/_references.js'];
     var layoutDirectory = './Layouts/Shared';
     // todo: var cssDirectory = './app/css';
     // todo: var lessDirectory = './app/less';
@@ -14,8 +14,8 @@ module.exports = function () {
 
         // Files
         // files are arrays for possible future use.
-        appJsFiles: [appJsFiles],
-        jsFiles: ['./*.js', appJsFiles],
+        appJsFiles: appJsFiles,
+        jsFiles: ['./*.js'].concat(appJsFiles),
         javaScriptLayoutFile: layoutDirectory + '/AfterRenderBody.cshtml',
 
         // Directories

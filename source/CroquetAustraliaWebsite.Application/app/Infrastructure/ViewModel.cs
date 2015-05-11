@@ -20,7 +20,6 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
             NavigationItems = navigationItems;
         }
 
-        public bool AddAngularSupport { get; protected set; }
         public string ContainerClass { get; protected set; }
         public IEnumerable<NavigationItem> NavigationItems { get; set; }
     }

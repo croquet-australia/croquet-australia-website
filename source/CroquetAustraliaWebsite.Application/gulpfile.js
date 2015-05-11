@@ -1,5 +1,5 @@
+/// <binding ProjectOpened='wireDependencies, watch' />
 /// <vs BeforeBuild='wireDependencies, bower' SolutionOpened='watch' />
-/*jslint node:true*/
 /*global require, pipe */
 'use strict';
 
@@ -14,29 +14,29 @@ var plugins = require('gulp-load-plugins')();
 
 // ReSharper disable PossiblyUnassignedProperty
 
-gulp.task('bower', function () {
+gulp.task('bower', function() {
     return plugins.bower();
 });
 
-gulp.task('code-quality', function () {
-    log('Checking code quality of ' + config.jsFiles + ' files.');
+gulp.task('code-quality', function() {
+    log('Analyzing source with JSHint and JSCS');
 
     return gulp
         .src(config.jsFiles)
-        .pipe(plugins.jscs())
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('jshint-stylish', {verbose: true}))
-        .pipe(plugins.jshint.reporter('fail'));
+        .pipe(plugins.jshint.reporter('fail'))
+        .pipe(plugins.jscs());
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', function() {
     // todo: is it ok for this function to not return a value.
     watch(config.jsFiles, 'code-quality');
 });
 
 gulp.task('wireDependencies', ['wireJavaScriptDependencies']);
 
-gulp.task('wireJavaScriptDependencies', function () {
+gulp.task('wireJavaScriptDependencies', function() {
     log('Wiring the JavaScript dependencies into layout file.');
 
     var wiredep = require('wiredep').stream;

@@ -22,13 +22,14 @@
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>46f62a69</NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -47,16 +48,16 @@
       <HintPath>..\..\packages\Anotar.NLog.Fody.2.16.4\Lib\Anotar.NLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Casper.Core, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Core.dll</HintPath>
+    <Reference Include="Casper.Core, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Data.Git, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Data.Git.dll</HintPath>
+    <Reference Include="Casper.Data.Git, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Data.Git.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Domain, Version=0.21.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.21.0\lib\net45\Casper.Domain.dll</HintPath>
+    <Reference Include="Casper.Domain, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial">
@@ -200,6 +201,8 @@
     <Content Include="500.html" />
     <Content Include="500.jpg" />
     <Content Include="401.jpg" />
+    <Content Include="App\admin\files\FileUploadModule.js" />
+    <Content Include="App\app.js" />
     <Content Include="App\styles-4.css" />
     <Content Include="App\_ViewStart.cshtml" />
     <None Include="AppSettings.config">
@@ -213,14 +216,15 @@
     <Content Include="gulpconfig.js" />
     <Content Include="gulpfile.js" />
     <Content Include="Layouts\Pages\PageLayout.cshtml" />
-    <Content Include="App\Web.config" />
+    <Content Include="App\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Layouts\Views\Web.config" />
     <Content Include="Layouts\Shared\BeforeRenderBody.cshtml" />
     <Content Include="Layouts\Shared\AfterRenderBody.cshtml" />
     <Content Include="Layouts\Shared\AfterRenderScripts.cshtml" />
     <Content Include="packages.config" />
     <Content Include="bower.json" />
-    <Content Include=".bowerrc" />
     <Content Include="package.json" />
     <Content Include="App\account\SignIn.cshtml" />
     <Content Include="App\admin\home\AddNews.cshtml" />
@@ -232,6 +236,7 @@
     <Content Include="App\admin\home\EditPage.cshtml" />
     <None Include="Properties\PublishProfiles\CroquetAustraliaWebsite.pubxml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
+    <None Include="App\_references.js" />
     <Content Include="_PageStart.cshtml" />
     <Content Include="README.md" />
     <None Include="Web.Debug.config">
@@ -255,6 +260,7 @@
     <Compile Include="App\account\AccountController.cs" />
     <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
     <Compile Include="App\account\SignInViewModel.cs" />
+    <Compile Include="App\admin\files\FilesController.cs" />
     <Compile Include="App\admin\home\AddNewsViewModel.cs" />
     <Compile Include="App\admin\home\EditPageViewModel.cs" />
     <Compile Include="App\admin\home\AddPageViewModel.cs" />

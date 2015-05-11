@@ -13,7 +13,6 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
         public AdminViewModel(IEnumerable<NavigationItem> navigationItems)
             : base("container-fluid", navigationItems)
         {
-            AddAngularSupport = true;
         }
 
         private static IEnumerable<NavigationItem> GetNavigationItems()

@@ -8,8 +8,8 @@ using Casper.Data.Git.Infrastructure;
 using Casper.Data.Git.Repositories;
 using Casper.Domain;
 using Casper.Domain.Features.BlogPosts;
+using Casper.Domain.Features.Files;
 using Casper.Domain.Features.Pages;
-using Casper.Domain.Infrastructure;
 using Casper.Domain.Infrastructure.Messaging;
 using CommonServiceLocator.NinjectAdapter.Unofficial;
 using CroquetAustraliaWebsite.Library.Authentication.DAL;
@@ -42,12 +42,14 @@ namespace CroquetAustraliaWebsite.Application
             kernel.Bind<IGitRepositorySettings>().ToMethod(GitRepositorySettings);
             kernel.Bind<IBlogPostRepositorySettings>().ToMethod(BlogPostRepositorySettings);
             kernel.Bind<IPageRepositorySettings>().ToMethod(PageRepositorySettings);
+            kernel.Bind<IFileRepositorySettings>().ToMethod(FileRepositorySettings);
             kernel.Bind<SignInManager>().ToMethod(SignInManagerFactory);
             kernel.Bind<ICommandBus>().ToMethod(CommandBusFactory);
 
             // Bind to classes
             kernel.Bind<IBlogPostRepository>().To<BlogPostRepository>();
             kernel.Bind<IPageRepository>().To<PageRepository>();
+            kernel.Bind<IFileRepository>().To<FileRepository>();
             kernel.Bind<IGitRepository>().To<GitRepository>();
             kernel.Bind<IEventBus>().To<EventBus>();
             kernel.Bind<IFileOperations>().To<FileOperations>();
@@ -76,10 +78,19 @@ namespace CroquetAustraliaWebsite.Application
             var commandBus = new CommandBus(kernel.Get<IEventBus>());
             var blogPostRepository = kernel.Get<IBlogPostRepository>();
             var pageRepository = kernel.Get<IPageRepository>();
+            var fileRepository = kernel.Get<IFileRepository>();
 
-            Configuration.Configure(commandBus, blogPostRepository, pageRepository);
+            Configuration.Configure(commandBus, blogPostRepository, pageRepository, fileRepository);
 
             return commandBus;
+        }
+
+        private static IFileRepositorySettings FileRepositorySettings(IContext context)
+        {
+            var settings = context.Kernel.Get<PublishedContentRepositorySettings>();
+            var options = new FileRepositorySettings(new DirectoryInfo(settings.Directory));
+
+            return options;
         }
 
         private static IGitRepositorySettings GitRepositorySettings(IContext context)

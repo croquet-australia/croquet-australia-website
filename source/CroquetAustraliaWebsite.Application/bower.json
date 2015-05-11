@@ -12,6 +12,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "bootstrap-submenu": "~1.2.11"
+    "bootstrap-submenu": "~1.2.11",
+    "ng-file-upload": "~4.1.3"
   }
 }
