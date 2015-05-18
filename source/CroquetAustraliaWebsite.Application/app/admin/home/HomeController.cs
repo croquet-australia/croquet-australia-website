@@ -51,7 +51,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [Route("add-news")]
         // todo: [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddNews(AddNewsViewModel viewModel)
@@ -91,7 +91,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [Route("add-page")]
         // todo: [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPage(AddPageViewModel viewModel)
@@ -128,7 +128,7 @@ namespace CroquetAustraliaWebsite.Application.App.admin.home
             return View(viewModel);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [Route("edit-page")]
         // todo: [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditPage(EditPageViewModel viewModel)
