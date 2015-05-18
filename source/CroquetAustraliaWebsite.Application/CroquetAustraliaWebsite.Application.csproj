@@ -234,17 +234,18 @@
     <Content Include="Layouts\Shared\_DropDownMenuNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
     <Content Include="App\admin\home\EditPage.cshtml" />
-      <Content Include="bower_components\bootstrap-submenu\dist\css\bootstrap-submenu.min.css" />
-      <Content Include="bower_components\bootstrap-submenu\js\bootstrap-submenu.js" />
-      <Content Include="bower_components\jquery\dist\jquery.js" />
-      <Content Include="bower_components\bootstrap-submenu\dist\js\bootstrap-submenu.js" />
-      <Content Include="bower_components\ng-file-upload\ng-file-upload.js" />
-      <None Include="Properties\PublishProfiles\croquet-australia_staging.pubxml" />
-    <None Include="Properties\PublishProfiles\CroquetAustraliaWebsite.pubxml" />
+    <Content Include="bower_components\bootstrap-submenu\dist\css\bootstrap-submenu.min.css" />
+    <Content Include="bower_components\bootstrap-submenu\js\bootstrap-submenu.js" />
+    <Content Include="bower_components\jquery\dist\jquery.js" />
+    <Content Include="bower_components\bootstrap-submenu\dist\js\bootstrap-submenu.js" />
+    <Content Include="bower_components\ng-file-upload\ng-file-upload.js" />
+    <None Include="Properties\PublishProfiles\croquet-australia_staging.pubxml" />
+    <None Include="Properties\PublishProfiles\croquet-australia_debug.pubxml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <None Include="App\_references.js" />
     <Content Include="_PageStart.cshtml" />
     <Content Include="README.md" />
+    <None Include="Properties\PublishProfiles\croquet-australia__staging.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
