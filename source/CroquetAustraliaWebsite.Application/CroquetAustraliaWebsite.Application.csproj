@@ -201,8 +201,10 @@
     <Content Include="500.html" />
     <Content Include="500.jpg" />
     <Content Include="401.jpg" />
-    <Content Include="App\admin\files\FileUploadModule.js" />
-    <Content Include="App\admin\home\AddPageModule.js" />
+    <Content Include="App\admin\files\FileUpload.js" />
+    <Content Include="App\admin\files\FileUpload.Module.js" />
+    <Content Include="App\admin\home\AddPage.js" />
+    <Content Include="App\admin\home\AddPage.Module.js" />
     <Content Include="App\app.js" />
     <Content Include="App\styles-4.css" />
     <Content Include="App\_ViewStart.cshtml" />
@@ -214,6 +216,7 @@
     </None>
     <Content Include="App\admin\home\Index.cshtml" />
     <Content Include="App\admin\home\AddPage.cshtml" />
+    <None Include="bowerComments.md" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\bootstrap-markdown.js" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\bootstrap-markdown.min.css" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\markdown-editpreview-ng.js" />
