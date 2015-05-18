@@ -19,7 +19,13 @@
     </div>
 }
 
-<div ng-app="fileUpload" ng-controller="FileUploadCtrl">
+<div ng-controller="AddPageCtrl">
+    <h1>Markdown Live Edit / Preview Example</h1>
+    <textarea ng-model="liveedit" markdownedit markdown-hidden-buttons="cmdQuote"></textarea>
+    <markdown bind-from="liveedit"></markdown>
+</div>
+
+<div ng-controller="FileUploadCtrl">
     <button class="btn btn-default" ngf-select ng-model="files" ngf-multiple="true">
         Upload Files
     </button>
