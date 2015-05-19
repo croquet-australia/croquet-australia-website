@@ -1,5 +1,7 @@
 ﻿using System.Web.Configuration;
+using System.Web.Http;
 using CroquetAustraliaWebsite.Application;
+using CroquetAustraliaWebsite.Application.App_Start;
 using CroquetAustraliaWebsite.Library.Authentication.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
@@ -16,6 +18,21 @@ namespace CroquetAustraliaWebsite.Application
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigureWebApi(app);
+        }
+
+        private void ConfigureWebApi(IAppBuilder app)
+        {
+            var config = new HttpConfiguration();
+
+            // config.MapHttpAttributeRoutes();
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional, controller = "values" });
+
+            //app.UseNinjectMiddleware(NinjectWebCommon.bootstrapper.Kernel).UseNinjectWebApi(config);
         }
 
         private static void ConfigureAuth(IAppBuilder app)
