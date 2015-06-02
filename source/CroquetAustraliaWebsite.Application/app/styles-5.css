@@ -1,4 +1,6 @@
-﻿.body-content { margin-top: 70px; }
+﻿.body-content {
+    margin-top: 70px;
+}
 
 td {
     border: 1px solid lightgray;
@@ -16,12 +18,16 @@ td {
 }
 
 .field-validation-valid,
-.validation-summary-valid { display: none; }
+.validation-summary-valid {
+    display: none;
+}
 
 input.input-validation-error,
 textarea.input-validation-error,
 select.input-validation-error,
-input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
+input[type="checkbox"].input-validation-error {
+    border: 1px solid #b94a48;
+}
 
 /*
     Error Page
@@ -33,9 +39,13 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     font-size: 1.7em;
 }
 
-.error-page img { margin-bottom: 5px; }
+.error-page img {
+    margin-bottom: 5px;
+}
 
-.error-page .creative-commons { float: none; }
+.error-page .creative-commons {
+    float: none;
+}
 
 .error-page figure {
     float: left;
@@ -43,12 +53,14 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     margin-bottom: 20px;
 }
 
-.error-page figure figcaption {
-    color: darkgray;
-    text-align: center;
-}
+    .error-page figure figcaption {
+        color: darkgray;
+        text-align: center;
+    }
 
-.error-page figure a { color: darkgray; }
+    .error-page figure a {
+        color: darkgray;
+    }
 
 .error-page p {
     float: left;
@@ -62,13 +74,17 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     }
 }
 
-.error-page h1 { margin-top: 0; }
+.error-page h1 {
+    margin-top: 0;
+}
 
 /* 
     Blog Posts
 */
 
-.blog-post img { max-width: 100%; }
+.blog-post img {
+    max-width: 100%;
+}
 
 .blog-post h1 {
     border-bottom: 1px solid gray;
@@ -96,7 +112,9 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     Bootstrap Alerts
 */
 
-.alert a { color: orangered; }
+.alert a {
+    color: orangered;
+}
 
 
 
@@ -128,10 +146,23 @@ input[type="checkbox"].input-validation-error { border: 1px solid #b94a48; }
     border: 5px dashed green;
 }
 
-/*
+    /*
     todo: Mouse cursor does not change in Chrome.
     reference: http://stackoverflow.com/questions/4945874/change-cursor-over-html5-canvas-when-dragging-the-mouse
 */
-.dragover:active {
-    cursor: move;
+    .dragover:active {
+        cursor: move;
+    }
+
+/*
+    Markdown editor
+*/
+.md-editor > textarea {
+    padding: 10px;
+    background-color: white;
+}
+
+.md-preview {
+    padding: 10px 10px 0;
+    border: 1px solid lightgray;
 }
