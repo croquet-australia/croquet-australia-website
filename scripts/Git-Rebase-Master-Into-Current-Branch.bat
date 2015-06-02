@@ -5,24 +5,32 @@ git status
 
 rem Confirm continue with rebase.
 echo.
-choice Are you sure you want to rebase master into the current branch?
+choice /m "Are you sure you want to rebase master into the current branch?"
 if "%errorlevel%" neq "1" goto exit
 
-rem Changes to master branch
+echo.
+echo Checking out master branch...
+echo.
 git checkout master
-if "%errorlevel%" neq "0" goto error
+if not "%errorlevel%" == "0" goto error
 
-rem Update master branch with changes on origin
+echo.
+echo Pulling master origin changes...
+echo.
 git pull
-if "%errorlevel%" neq "0" goto error
+if not "%errorlevel%" == "0" goto error
 
-rem Change back to the feature branch
+echo.
+echo Changing back to the feature branch...
+echo.
 git checkout -
-if "%errorlevel%" neq "0" goto error
+if not "%errorlevel%" == "0" goto error
 
-rem Rebase master into feature branch
+echo.
+echo Rebasing master into feature branch...
+echo.
 git rebase master
-if "%errorlevel%" neq "0" goto error
+if not "%errorlevel%" == "0" goto error
 
 goto exit
 
