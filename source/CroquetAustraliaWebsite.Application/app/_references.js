@@ -14,5 +14,6 @@
 /// <reference path="admin/home/addpage.js" />
 /// <reference path="admin/home/addpage.module.js" />
 /// <reference path="admin/files/fileupload.module.js" />
+/// <reference path="../bower_components/angular/angular.js" />
 // global variables.
 var angular;
