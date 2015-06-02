@@ -243,7 +243,7 @@
     <Content Include="App\admin\home\AddPage.js" />
     <Content Include="App\admin\home\AddPage.Module.js" />
     <Content Include="App\app.js" />
-    <Content Include="App\styles-4.css" />
+    <Content Include="App\styles-5.css" />
     <Content Include="App\_ViewStart.cshtml" />
     <None Include="AppSettings.config">
       <SubType>Designer</SubType>
