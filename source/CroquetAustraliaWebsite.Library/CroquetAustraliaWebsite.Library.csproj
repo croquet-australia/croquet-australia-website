@@ -36,8 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Anotar.LibLog, Version=0.0.0.0, Culture=neutral, PublicKeyToken=9d5b24f0733c26f7, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Anotar.LibLog.Fody.2.16.4\Lib\Anotar.LibLog.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\packages\Anotar.LibLog.Fody.2.17.0\Lib\Anotar.LibLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Casper.Core, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Core.dll</HintPath>
