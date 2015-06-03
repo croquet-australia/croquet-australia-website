@@ -9,6 +9,6 @@
 
         var vm = this;
 
-        vm.content = 'The **quick** brown fox';
+        vm.content = '';
     }
 })();

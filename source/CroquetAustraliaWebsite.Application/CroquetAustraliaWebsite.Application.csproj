@@ -254,6 +254,7 @@
     <Content Include="App\admin\home\Index.cshtml" />
     <Content Include="App\admin\home\AddPage.cshtml" />
     <None Include="bowerComments.md" />
+    <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\bootstrap-markdown.js" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\bootstrap-markdown.min.css" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\markdown-editpreview-ng.js" />
