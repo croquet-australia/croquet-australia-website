@@ -8,6 +8,7 @@
         'ngFileUpload',
 
         // Application Features
+        'app.AddNews',
         'app.AddPage',
         'app.FileUpload'
     ]);
