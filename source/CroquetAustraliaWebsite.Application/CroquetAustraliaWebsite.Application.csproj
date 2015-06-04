@@ -240,7 +240,9 @@
     <Content Include="401.jpg" />
     <Content Include="App\admin\files\FileUpload.js" />
     <Content Include="App\admin\files\FileUpload.Module.js" />
+    <Content Include="App\admin\home\AddNews.js" />
     <Content Include="App\admin\home\AddPage.js" />
+    <Content Include="App\admin\home\AddNews.Module.js" />
     <Content Include="App\admin\home\AddPage.Module.js" />
     <Content Include="App\app.js" />
     <Content Include="App\styles-5.css" />

@@ -11,9 +11,11 @@
 /// <reference path="../bower_components/markdown-editpreview-ng/lib/codemwnci/markdown.converter.js" />
 /// <reference path="../bower_components/markdown-editpreview-ng/lib/codemwnci/markdown.sanitizer.js" />
 /// <reference path="admin/files/fileupload.js" />
-/// <reference path="admin/home/addpage.js" />
-/// <reference path="admin/home/addpage.module.js" />
 /// <reference path="admin/files/fileupload.module.js" />
 /// <reference path="../bower_components/angular/angular.js" />
+/// <reference path="admin/home/addnews.js" />
+/// <reference path="admin/home/addnews.module.js" />
+/// <reference path="admin/home/addpage.js" />
+/// <reference path="admin/home/addpage.module.js" />
 // global variables.
 var angular;
