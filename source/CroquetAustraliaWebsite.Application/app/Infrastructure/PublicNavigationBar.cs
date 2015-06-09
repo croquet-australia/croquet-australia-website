@@ -18,7 +18,8 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
                     new NavigationItem("Constitution, Regulations & Policies", "~/governance/constitution-regulations-and-policies")),
                 new NavigationItem("Disciplines",
                     new NavigationItem("Golf Croquet",
-                        new NavigationItem("Refereeing", "~/disciplines/golf-croquet/refereeing")))
+                        new NavigationItem("Refereeing", "~/disciplines/golf-croquet/refereeing"),
+                        new NavigationItem("Resources", "~/disciplines-golf-croquet-resources")))
             };
         }
     }
