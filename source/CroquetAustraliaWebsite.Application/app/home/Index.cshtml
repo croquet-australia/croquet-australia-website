@@ -1,15 +1,5 @@
 ﻿@model CroquetAustraliaWebsite.Application.App.home.IndexViewModel
 <h1>Croquet Australia</h1>
-<div class="alert alert-info" role="alert">
-    <p>
-        Please note this is a <strong>very early version</strong> of the new Croquet Australia website. More detail will be added
-        regarding where to play, links to State Associations, governance documents, contacts, coaching and refereeing etc over
-        the coming weeks but information on Latest News will be regularly updated.
-    </p>
-    <p>
-        During the transition the "<a href="https://old-croquet-australia.azurewebsites.net">old website</a>" is available <a href="https://old-croquet-australia.azurewebsites.net">here</a>.
-    </p>
-</div>
 @*todo: configure where partial views are searched for*@
 <h2>Latest News</h2>
 @Html.Partial("~/App/home/Index-BlogPosts.cshtml", Model.BlogPosts)
