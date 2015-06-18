@@ -16,6 +16,7 @@ namespace CroquetAustraliaWebsite.Application.App.Infrastructure
                 new NavigationItem("Governance",
                     new NavigationItem("Background", "~/governance/background"),
                     new NavigationItem("Constitution, Regulations & Policies", "~/governance/constitution-regulations-and-policies")),
+                new NavigationItem("Tournaments", "~/tournaments"),
                 new NavigationItem("Disciplines",
                     new NavigationItem("Golf Croquet",
                         new NavigationItem("Refereeing", "~/disciplines/golf-croquet/refereeing"),
