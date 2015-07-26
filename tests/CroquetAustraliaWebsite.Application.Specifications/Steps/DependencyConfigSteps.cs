@@ -30,7 +30,7 @@ namespace CroquetAustraliaWebsite.Application.Specifications.Steps
         {
             var solutionDirectory = GetSolutionDirectory();
             const string webApplicationProjectName = "CroquetAustraliaWebsite.Application";
-            var projectFile = string.Format(@"{0}\src\{1}\{1}.csproj", solutionDirectory, webApplicationProjectName);
+            var projectFile = string.Format(@"{0}\source\{1}\{1}.csproj", solutionDirectory, webApplicationProjectName);
 
             return new FileInfo(projectFile);
         }
