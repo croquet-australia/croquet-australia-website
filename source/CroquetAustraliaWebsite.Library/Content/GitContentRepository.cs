@@ -77,13 +77,21 @@ namespace CroquetAustraliaWebsite.Library.Content
                     Checkout = true
                 };
 
+                LogTo.Debug($"Cloning '{options.BranchName}' branch of '{_settings.Url}' to '{_settings.Directory}'...");
                 clonedToDirectory = Repository.Clone(_settings.Url, _settings.Directory, options);
             }
-            catch (Exception exception)
+            catch
             {
-                LogTo.FatalException(string.Format("Error while cloning content directory to '{0}'.", _settings.Directory), exception);
-                System.IO.Directory.Delete(_settings.Directory, true);
-                LogTo.Info("Successfully deleted '{0}' directory after clone failed.", _settings.Directory);
+                try
+                {
+                    LogTo.Info($"Deleting '{_settings.Directory}' directory after clone failed...");
+                    System.IO.Directory.Delete(_settings.Directory, true);
+                    LogTo.Info($"Successfully deleted '{_settings.Directory}' directory after clone failed.");
+                }
+                catch (Exception deleteException)
+                {
+                    LogTo.FatalException($"Error while deleting '{_settings.Directory}' after clone failed.", deleteException);
+                }
                 throw;
             }
 
@@ -114,6 +122,8 @@ namespace CroquetAustraliaWebsite.Library.Content
         /// </remarks>
         private void EnsureParentDirectoryExists()
         {
+            LogTo.Trace("EnsureParentDirectoryExists()");
+
             var directory = new DirectoryInfo(_settings.Directory);
 
             // ReSharper disable once PossibleNullReferenceException
