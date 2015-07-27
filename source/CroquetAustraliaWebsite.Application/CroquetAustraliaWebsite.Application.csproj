@@ -255,8 +255,10 @@
     <None Include="AppSettings.Example.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="App\admin\home\Index.cshtml" />
+    <Content Include="App\admin\home\Pages.cshtml" />
     <Content Include="App\admin\home\AddPage.cshtml" />
+    <Content Include="App\admin\home\News.cshtml" />
+    <Content Include="App\admin\home\EditNews.cshtml" />
     <None Include="bowerComments.md" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\markdown-editpreview-ng\lib\codemwnci\bootstrap-markdown.js" />
@@ -320,10 +322,12 @@
     <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
     <Compile Include="App\account\SignInViewModel.cs" />
     <Compile Include="App\admin\files\FilesController.cs" />
+    <Compile Include="App\admin\home\EditNewsViewModel.cs" />
     <Compile Include="App\admin\home\AddNewsViewModel.cs" />
+    <Compile Include="App\admin\home\NewsViewModel.cs" />
     <Compile Include="App\admin\home\EditPageViewModel.cs" />
     <Compile Include="App\admin\home\AddPageViewModel.cs" />
-    <Compile Include="App\admin\home\IndexViewModel.cs" />
+    <Compile Include="App\admin\home\PagesViewModel.cs" />
     <Compile Include="App\home\BlogPostViewModel.cs" />
     <Compile Include="App\home\HomeController.cs" />
     <Compile Include="App\home\IndexViewModel.cs" />

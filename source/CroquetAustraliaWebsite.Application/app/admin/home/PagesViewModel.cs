@@ -6,9 +6,9 @@ using CroquetAustraliaWebsite.Application.App.Infrastructure;
 
 namespace CroquetAustraliaWebsite.Application.App.admin.home
 {
-    public class IndexViewModel : AdminViewModel
+    public class PagesViewModel : AdminViewModel
     {
-        public IndexViewModel(string requestedDirectory, IEnumerable<Directory> directories, IEnumerable<Page> pages)
+        public PagesViewModel(string requestedDirectory, IEnumerable<Directory> directories, IEnumerable<Page> pages)
             : base(GetNavigationItems(requestedDirectory))
         {
             Directory = requestedDirectory;
