@@ -10,7 +10,9 @@ namespace CroquetAustraliaWebsite.Application.App.home
     {
         public IndexViewModel(IEnumerable<BlogPost> blogPosts, IMarkdownTransformer markdownTransformer)
         {
-            BlogPosts = blogPosts.Select(b => new BlogPostViewModel(b, markdownTransformer));
+            BlogPosts = blogPosts
+                .OrderByDescending(b => b.Published)
+                .Select(b => new BlogPostViewModel(b, markdownTransformer));
         }
 
         public IEnumerable<BlogPostViewModel> BlogPosts { get; private set; }
