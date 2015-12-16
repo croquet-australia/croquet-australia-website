@@ -68,25 +68,30 @@ namespace CroquetAustraliaWebsite.Library.Content
 
             string clonedToDirectory;
 
+            var options = new CloneOptions()
+            {
+                BranchName = "master",
+                CredentialsProvider = GitCredentials,
+                Checkout = true
+            };
+
             try
             {
-                var options = new CloneOptions()
-                {
-                    BranchName = "master",
-                    CredentialsProvider = GitCredentials,
-                    Checkout = true
-                };
-
                 LogTo.Debug($"Cloning '{options.BranchName}' branch of '{_settings.Url}' to '{_settings.Directory}'...");
                 clonedToDirectory = Repository.Clone(_settings.Url, _settings.Directory, options);
             }
-            catch
+            catch (Exception cloneException)
             {
                 try
                 {
-                    LogTo.Info($"Deleting '{_settings.Directory}' directory after clone failed...");
-                    System.IO.Directory.Delete(_settings.Directory, true);
-                    LogTo.Info($"Successfully deleted '{_settings.Directory}' directory after clone failed.");
+                    LogTo.ErrorException($"Cloning '{options.BranchName}' branch of '{_settings.Url}' to '{_settings.Directory}'...", cloneException);
+
+                    if (System.IO.Directory.Exists(_settings.Directory))
+                    {
+                        LogTo.Info($"Deleting '{_settings.Directory}' directory after clone failed...");
+                        System.IO.Directory.Delete(_settings.Directory, true);
+                        LogTo.Info($"Successfully deleted '{_settings.Directory}' directory after clone failed.");
+                    }
                 }
                 catch (Exception deleteException)
                 {
