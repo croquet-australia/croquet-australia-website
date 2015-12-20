@@ -8,12 +8,10 @@ namespace CroquetAustralia.Library.Settings
             : base("Elmah")
         {
             ErrorLogType = Get("ErrorLogType");
-            FilterErrorMessages = ErrorLogType.Equals("Elmah.Io", StringComparison.OrdinalIgnoreCase);
-            LogId = Get("LogId");
+            FilterErrorMessages = false;
         }
 
         public string ErrorLogType { get; private set; }
         public bool FilterErrorMessages { get; private set; }
-        public string LogId { get; private set; }
     }
 }

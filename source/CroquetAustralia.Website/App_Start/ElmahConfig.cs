@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Design;
 using Anotar.NLog;
 using CroquetAustralia.Library.Settings;
@@ -21,7 +20,7 @@ namespace CroquetAustralia.Website
     ///     </para>
     ///     <para>
     ///         This source code was originally inspired by blog post http://blog.elmah.io/configuring-elmah-io-from-code/ to
-    ///         key Elmah.Io LogId out of source control. I extended it to use ErrorLogType in AppSettings.
+    ///         keep Elmah.Io LogId out of source control. I extended it to use ErrorLogType in AppSettings.
     ///     </para>
     /// </remarks>
     public static class ElmahConfig
@@ -55,14 +54,6 @@ namespace CroquetAustralia.Website
             };
         }
 
-        private static Dictionary<string, string> GetElmahIoConfig(string logId)
-        {
-            return new Dictionary<string, string>
-            {
-                {"LogId", logId}
-            };
-        }
-
         // todo: why is this method called twice during application startup when MemoryErrorLog is used.
         private static ErrorLog GetErrorLog(ElmahSettings elmahSettings)
         {
@@ -74,9 +65,6 @@ namespace CroquetAustralia.Website
             {
                 case "MemoryErrorLog":
                     return new MemoryErrorLog();
-
-                case "Elmah.Io":
-                    return new Elmah.Io.ErrorLog(GetElmahIoConfig(elmahSettings.LogId));
 
                 default:
                     throw new NotSupportedException(string.Format("ErrorLogType '{0}' is not supported.", errorLogType));
