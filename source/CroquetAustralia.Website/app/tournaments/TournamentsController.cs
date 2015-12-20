@@ -15,9 +15,9 @@ namespace CroquetAustralia.Website.App.tournaments
         }
 
         [Route("2016/ac/womens-open")]
-        public Task<ViewResult> Womens_AC_Open_2016()
+        public ViewResult Womens_AC_Open_2016()
         {
-            throw new NotImplementedException();
+            return View("gender-open");
         }
     }
 }
