@@ -425,7 +425,6 @@
     <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
     <Content Include="App\admin\home\EditPage.cshtml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
-    <None Include="App\_references.js" />
     <Content Include="_PageStart.cshtml" />
     <Content Include="README.md" />
     <Content Include="bower_components\angular\.bower.json" />

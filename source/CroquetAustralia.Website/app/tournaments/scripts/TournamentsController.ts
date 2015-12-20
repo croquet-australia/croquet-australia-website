@@ -17,17 +17,11 @@ module App {
             ];
 
             const functions = [
-                new TournamentItem('function', 'e759a9cf-c2e1-4961-b6c6-4e2eefcc1a63', 'Welcome BBQ, Friday 11 March 2016', 10),
-                new TournamentItem('function', '40b86428-7a89-48b1-ac29-9f468440bc84', 'Team member attending Eire Cup Teams Presentation, Tuesday 15 March 2016', 0),
-                new TournamentItem('function', '71f07231-2a77-417a-8a96-d6d65fd21652', 'Guests attending Eire Cup Teams Presentation, Tuesday 15 March', 30),
-                new TournamentItem('function', 'cbf3b788-0ee1-4f97-bf95-bc94985209ab', 'Team member attending Eire Cup presentation dinner, Sunday 20 March 2016', 0),
-                new TournamentItem('function', '19def587-7bfb-414f-8e99-55a4a43f396d', 'Guests attending Eire Cup presentation dinner, Sunday 20 March 2016', 50)
+                new TournamentItem('function', 'e759a9cf-c2e1-4961-b6c6-4e2eefcc1a63', 'Eire Cup Teams Reception - 6:30pm Tuesday 15 March by invitation', 0),
+                new TournamentItem('function', '40b86428-7a89-48b1-ac29-9f468440bc84', 'Eire Cup Presentation Dinner - 6:30pm Sunday 20 March', 50)
             ];
 
-            const products = [
-                new TournamentItem('product', '5afa7b83-1be6-495b-a6b9-806628404ac7', 'todo: S tshirt', 1.5),
-                new TournamentItem('product', 'f299644f-5de3-4b11-8353-a9ceb1f15cbb', 'todo: L tshirt', 3),
-                new TournamentItem('product', 'a266fc9a-004c-4aea-97ed-729b3ed61727', 'todo: XL tshirt', 4.5)
+            const merchandise = [
             ];
 
             this.tournament = new Tournament(
@@ -38,7 +32,7 @@ module App {
                 'Victorian Croquet Centre, Cairnlea, VIC',
                 events,
                 functions,
-                products
+                merchandise
             );
 
             this.player = new TournamentPlayer();

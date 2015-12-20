@@ -1,4 +1,4 @@
-<section>
+<section ng-show="vm.tournament.functions.length > 0">
   <h2>Functions</h2>
   <div class="tournament-item" ng-repeat="item in vm.tournament.functions">
     <div class="title">
@@ -16,6 +16,6 @@
   </div>
   <div class="dietary-requirements" ng-show="vm.showDietaryRequirements()">
     <label>Dietary Requirements:</label>
-    <textarea rows="10" ng-model="vm.dietaryRequirements" placeholder="Dietary Requirements..." /> 
+      <textarea rows="10" ng-model="vm.dietaryRequirements" placeholder="Dietary Requirements..."></textarea>
   </div>
 </section>
