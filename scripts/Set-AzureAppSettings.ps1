@@ -15,8 +15,6 @@ param(
     [Parameter(Mandatory = $true)] 
     [string] $OAuthGoogleClientSecret,
     [Parameter(Mandatory = $true)] 
-    [string] $ElmahLogId,
-    [Parameter(Mandatory = $false)] 
     [string] $WebSiteName = "croquet-australia",
     [Parameter(Mandatory = $false)] 
     [string] $ContentRepositoryUrl = "https://github.com/croquet-australia/website-content.git",
@@ -27,11 +25,13 @@ param(
     [Parameter(Mandatory = $false)] 
     [string] $ContentBlogDirectoryName = "news",
     [Parameter(Mandatory = $false)] 
-    [string] $ElmahErrorLogType = "Elmah.Io",
+    [string] $ElmahErrorLogType = "MemoryErrorLog", # todo: add logging
     [Parameter(Mandatory = $false)] 
     [string] $SupportEmail = "tim@26tp.com",
     [Parameter(Mandatory = $false)] 
-    [string] $SupportName = "Tim Murphy"
+    [string] $SupportName = "Tim Murphy",
+    [Parameter(Mandatory = $false)]
+    [string] $WebApiBaseUri = "https://croquet-australia-api.azurewebsites.net/"
 )
 
 $appSettings = @{ ` 
@@ -42,11 +42,11 @@ $appSettings = @{ `
     "Content:Repository:Password" = $ContentRepositoryPassword; `
     "Content:PublishedRepository:FullDirectoryPath" = $ContentPublishedRepositoryFullDirectoryPath; `
     "Elmah:ErrorLogType" = $ElmahErrorLogType; `
-    "Elmah:LogId" = $ElmahLogId; `
     "OAuth:Google:ClientId" = $OAuthGoogleClientId; `
     "OAuth:Google:ClientSecret" = $OAuthGoogleClientSecret; `
     "Support:Email" = $SupportEmail; `
-    "Support:Name" = $SupportName;
+    "Support:Name" = $SupportName; `
+    "WebApi:BaseUri" = $WebApiBaseUri;
 }
 
 Set-AzureWebsite -Name "$WebSiteName" -AppSettings $appSettings 

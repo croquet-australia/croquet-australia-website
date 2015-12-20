@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{A661C7FB-B35C-4833-8E37-AF18C9530EBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{DB0E79D1-F28A-4067-8215-F30505D5BE11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Specifications", "Specifications", "{C9526EAB-6803-44FB-AEFA-EE40A44E5897}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CroquetAustralia.Library", "source\CroquetAustralia.Library\CroquetAustralia.Library.csproj", "{437FDB12-8311-41BA-9777-E7F7E8DFA5AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CroquetAustralia.Website", "source\CroquetAustralia.Website\CroquetAustralia.Website.csproj", "{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CroquetAustralia.Website.Specifications", "tests\CroquetAustralia.Website.Specifications\CroquetAustralia.Website.Specifications.csproj", "{01024830-82B5-4298-A9B6-8720E4B628EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01024830-82B5-4298-A9B6-8720E4B628EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01024830-82B5-4298-A9B6-8720E4B628EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01024830-82B5-4298-A9B6-8720E4B628EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01024830-82B5-4298-A9B6-8720E4B628EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{437FDB12-8311-41BA-9777-E7F7E8DFA5AC} = {DB0E79D1-F28A-4067-8215-F30505D5BE11}
+		{5E2E83D6-5028-4AAC-958C-04F6EF4011E3} = {A661C7FB-B35C-4833-8E37-AF18C9530EBB}
+		{01024830-82B5-4298-A9B6-8720E4B628EF} = {C9526EAB-6803-44FB-AEFA-EE40A44E5897}
+	EndGlobalSection
+EndGlobal

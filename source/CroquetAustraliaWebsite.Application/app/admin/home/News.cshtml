@@ -1,8 +1,0 @@
-﻿@model CroquetAustraliaWebsite.Application.App.admin.home.NewsViewModel
-<h1>@Model.BlogDirectoryName</h1>
-<ul class="list-unstyled">
-    @foreach (var file in Model.BlogPosts)
-    {
-        <li><a href="@file.Url"><i class="fa fa-file"></i> @file.Text</a></li>
-    }
-</ul>

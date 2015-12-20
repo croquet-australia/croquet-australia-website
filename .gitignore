@@ -4,6 +4,7 @@
 
 bower_components/
 node_modules/
+typings/
 
 npm-debug.log
 
@@ -29,7 +30,11 @@ App_Data/
 # This solution
 ###########################################################
 
+Sandbox/
 spikes/
 
+**/app/**/*.js
+**/app/**/*.js.map
+
 AppSettings.config
-Sandbox/
+*.css

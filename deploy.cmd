@@ -66,35 +66,37 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 
 echo Handling .NET Web Application deployment.
 
-:: Restore npm modules
-echo Restoring npm modules...
-pushd "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application"
+:: Test if tsd exists
+echo Testing if tsd exists...
+call :ExecuteCmd tsd -V
+IF !ERRORLEVEL! NEQ 0 (
+  :: Install tsd
+  echo Installing tsd...
+  call :ExecuteCmd npm install tsd --global
+  IF !ERRORLEVEL! NEQ 0 goto error  
+)
+
+:: Run npm install
+echo Running npm install...
+pushd "%DEPLOYMENT_SOURCE%\source\CroquetAustralia.Website"
 call :ExecuteCmd npm install
 IF !ERRORLEVEL! NEQ 0 goto error
 popd
 
-:: Restore bower packages
-echo Restoring bower packages...
-pushd "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application"
-call :ExecuteCmd bower install
-IF !ERRORLEVEL! NEQ 0 goto error
-popd
-
 :: 1. Restore NuGet packages
-IF /I "CroquetAustraliaWebsite.sln" NEQ "" (
+IF /I "croquet-australia.com.au.sln" NEQ "" (
   echo Restoring NuGet packages...
-  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\CroquetAustraliaWebsite.sln"
+  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\croquet-australia.com.au.sln"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
 :: 2. Build to the temporary path
 echo Compiling the solution...
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustralia.Website\CroquetAustralia.Website.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
 ) ELSE (
-  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustraliaWebsite.Application\CroquetAustraliaWebsite.Application.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustralia.Website\CroquetAustralia.Website.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
 )
-
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 3. KuduSync

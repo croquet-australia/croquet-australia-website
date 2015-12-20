@@ -1,0 +1,13 @@
+﻿@model CroquetAustralia.Website.App.account.SignInViewModel
+@using System.Web.Mvc.Html
+
+@using (Html.BeginForm("ExternalSignIn", "Account", new { Model.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    foreach (var p in Model.AuthenticationDescriptions)
+    {
+        <p>
+            Sign in you with your <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button> account.
+        </p>
+    }
+}

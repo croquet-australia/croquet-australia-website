@@ -1,0 +1,21 @@
+<section>
+  <h2>Functions</h2>
+  <div class="tournament-item" ng-repeat="item in vm.tournament.functions">
+    <div class="title">
+      {{item.title}}
+    </div>
+    <div class="unit-price">
+      {{item.unitPrice | currency}}
+    </div>
+    <div class="quantity">
+      <input type="number" min="0" ng-model="item.quantity">
+    </div>
+    <div class="total-price">
+      {{item.totalPrice() | currency}}
+    </div>
+  </div>
+  <div class="dietary-requirements" ng-show="vm.showDietaryRequirements()">
+    <label>Dietary Requirements:</label>
+    <textarea rows="10" ng-model="vm.dietaryRequirements" placeholder="Dietary Requirements..." /> 
+  </div>
+</section>

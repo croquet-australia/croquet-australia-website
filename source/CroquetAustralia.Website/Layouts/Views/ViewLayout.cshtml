@@ -1,0 +1,9 @@
+﻿@* ViewLayout.cshtml is called by ~/App/_ViewStart.cshtml and is used by views served from ~/App/* folders. *@
+@using CroquetAustralia.Website.App.Infrastructure
+@using CroquetAustralia.Website.Layouts.Shared
+@model CroquetAustralia.Website.App.Infrastructure.IViewModel
+@{
+    var model = (Model ?? new ViewModel());
+
+    SharedLayout.Render(this, model);
+}

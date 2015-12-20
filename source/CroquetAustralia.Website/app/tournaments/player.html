@@ -1,0 +1,44 @@
+<section class="player">
+    <h2>Contact Details</h2>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.firstName.$invalid && (!tournamentEntryForm.firstName.$pristine || vm.submitted) }">
+        <label for="firstName">First Name</label>
+        <div>
+            <input type="text" name="firstName" id="firstName" ng-model="vm.player.firstName" placeholder="Jane" required>
+            <p ng-show="tournamentEntryForm.firstName.$invalid && (!tournamentEntryForm.firstName.$pristine || vm.submitted)" class="help-block">Your first name is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.lastName.$invalid && (!tournamentEntryForm.lastName.$pristine || vm.submitted) }">
+        <label for="lastName">Last Name</label>
+        <div>
+            <input type="text" name="lastName" id="lastName" ng-model="vm.player.lastName" placeholder="Doe" required>
+            <p ng-show="tournamentEntryForm.lastName.$invalid && (!tournamentEntryForm.lastName.$pristine || vm.submitted)" class="help-block">Your last name is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.email.$invalid && (!tournamentEntryForm.email.$pristine || vm.submitted) }">
+        <label for="email">Email</label>
+        <div>
+            <input type="email" name="email" id="email" ng-model="vm.player.email" placeholder="jane@example.org" required>
+            <p ng-show="tournamentEntryForm.email.$invalid && (!tournamentEntryForm.email.$pristine || vm.submitted)" class="help-block">Your email is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.phone.$invalid && (!tournamentEntryForm.phone.$pristine || vm.submitted) }">
+        <label for="phone">Mobile&nbsp;/ Phone</label>
+        <div>
+            <input type="text" name="phone" id="phone" ng-model="vm.player.phone" placeholder="0421 999 999" required>
+            <p ng-show="tournamentEntryForm.phone.$invalid && (!tournamentEntryForm.phone.$pristine || vm.submitted)" class="help-block">Your phone is required.</p>
+        </div>
+    </div>
+
+    <div ng-show="vm.showHandicap()" ng-class="{ 'has-error' : tournamentEntryForm.handicap.$invalid && (!tournamentEntryForm.handicap.$pristine || vm.submitted) }">
+        <label for="handicap">Handicap</label>
+        <div>
+            <input type="number" name="handicap" id="handicap" ng-model="vm.player.handicap" placeholder="0" ng-required="vm.showHandicap()">
+            <p ng-show="tournamentEntryForm.handicap.$invalid && (!tournamentEntryForm.handicap.$pristine || vm.submitted)" class="help-block">Your handicap is required.</p>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,178 @@
+﻿.tournament-entry {
+    header {
+        h1 {
+            border-bottom: 1px solid $gray-light;
+            margin-top: 0;
+        }
+
+        img {
+            float: right;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+    }
+
+    .tournament-entry-form {
+        @extend .form-horizontal;
+
+        $column-height: 3em;
+
+        div.dietary-requirements {
+            padding: 1em;
+        }
+
+        .dietary-requirements {
+            @extend .form-group;
+
+            label, textarea {
+                @include make-xs-column(12);
+            }
+        }
+
+        .total-payable {
+            padding-top: 2em;
+            font-size: large;
+
+            div {
+                @extend .light-border;
+                min-height: $column-height;
+                height: $column-height;
+                padding: 10px;
+                margin: 0;
+                // todo: Phase 2. Need to wrap text
+                white-space: nowrap;
+                width: 100%;
+                overflow: hidden; /* "overflow" value must be different from "visible" */
+                text-overflow: ellipsis;
+                font-weight: bold;
+                text-align: right;
+            }
+
+            .title {
+                @include make-xs-column(9);
+                @include make-sm-column(10);
+                @include make-md-column(10);
+            }
+
+            .total-price {
+                @include make-xs-column(3);
+                @include make-sm-column(2);
+                @include make-md-column(2);
+            }
+        }
+
+        .tournament-item {
+            @extend .form-group;
+            margin: 0;
+
+            div {
+                @extend .light-border;
+                min-height: $column-height;
+                height: $column-height;
+                padding: 10px;
+                margin: 0;
+                // todo: Phase 2. Need to wrap text
+                white-space: nowrap;
+                width: 100%;
+                overflow: hidden; /* "overflow" value must be different from "visible" */
+                text-overflow: ellipsis;
+            }
+
+
+            .title {
+                @include make-xs-column(6);
+                @include make-sm-column(6);
+                @include make-md-column(9);
+            }
+
+            .unit-price, .quantity {
+                @include make-xs-column(3);
+                @include make-sm-column(2);
+                @include make-md-column(1);
+            }
+
+            .total-price {
+                @extend .hidden-xs;
+                @include make-sm-column(2);
+                @include make-md-column(1);
+            }
+
+            .unit-price, .quantity, .total-price {
+                text-align: right;
+            }
+
+            .quantity {
+                padding: 0;
+                margin: 0;
+
+                input {
+                    width: 100%;
+                }
+
+                input[type=radio] {
+                    height: $column-height / 2;
+                    margin-top: 10px;
+                }
+
+                input[type=number] {
+                    height: $column-height;
+                    text-align: right;
+                }
+            }
+        }
+
+        .discount {
+            padding-top: 1em;
+            padding-bottom: 4em;
+
+            label.checkbox {
+                @include make-sm-column(12);
+                @extend .control-label;
+                text-align: left;
+                margin-left: 20px;
+                font-weight: normal;
+            }
+
+            input[type=checkbox] {
+                transform: scale(1.5);
+            }
+        }
+
+        .player {
+            h2 {
+                padding-top: 2em;
+            }
+
+            div {
+                @extend .form-group;
+
+                $smLabelColumn: 3;
+                $smControlColumn: 12 - $smLabelColumn;
+                $mdLabelColumn: 2;
+                $mdControlColumn: 12 - $mdLabelColumn;
+
+                label {
+                    @include make-sm-column(3);
+                    @include make-md-column(2);
+                    @extend .control-label;
+                    text-align: left;
+                }
+
+                div {
+                    @include make-sm-column($smControlColumn);
+                    @include make-md-column($mdControlColumn);
+
+                    input {
+                        @extend .form-control;
+                    }
+
+                    border: none;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
