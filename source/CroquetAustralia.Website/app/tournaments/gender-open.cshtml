@@ -1,44 +1,49 @@
 <div class="ng-cloak">
-    <div class="alert alert-danger row" role="alert">
-        <div class="col-sm-3">
-            <h1>Danger, Will Robinson!</h1>
-            <p>
-                The tournaments module is being tested. <strong>All orders will be deleted before going live</strong>.
-            </p>
+    <div ng-controller="TournamentsController as vm">
+        <div class="alert alert-danger row" role="alert">
+            <div class="col-sm-3">
+                <h1>Danger, Will Robinson!</h1>
+                <p>
+                    The tournaments module is being tested. <strong>All orders will be deleted before going live</strong>.
+                </p>
+                <p>
+                    absUrl: '{{ vm.absUrl }}'
+                </p>
+            </div>
+            <div class="col-sm-9">
+                <iframe width="420" height="315" src="https://www.youtube.com/embed/OWwOJlOI1nU" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-        <div class="col-sm-9">
-            <iframe width="420" height="315" src="https://www.youtube.com/embed/OWwOJlOI1nU" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-    <div class="tournament-entry container" ng-controller="TournamentsController as vm">
-        <div ng-show="vm.state === 'show-form'">
-            <header>
-                <div class="row">
-                    <div class="col-sm-10">
-                        <h1>{{ vm.tournament.title }}</h1>
-                        <h2>{{ vm.tournament.startsOn | date:'EEEE dd' }} to {{ vm.tournament.endsOn | date:'EEEE dd MMMM yyyy' }}</h2>
-                        <h3>{{ vm.tournament.location }}</h3>
+        <div class="tournament-entry container">
+            <div ng-show="vm.state === 'show-form'">
+                <header>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h1>{{ vm.tournament.title }}</h1>
+                            <h2>{{ vm.tournament.startsOn | date:'EEEE dd' }} to {{ vm.tournament.endsOn | date:'EEEE dd MMMM yyyy' }}</h2>
+                            <h3>{{ vm.tournament.location }}</h3>
+                        </div>
+                        <div class="hidden-xs col-sm-2">
+                            <img src="/assets/aca-logo-page-background.png" alt="ACA" />
+                        </div>
                     </div>
-                    <div class="hidden-xs col-sm-2">
-                        <img src="/assets/aca-logo-page-background.png" alt="ACA" />
-                    </div>
-                </div>
-            </header>
-            <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                <ng-include src="'/app/tournaments/events.html'"></ng-include>
-                <ng-include src="'/app/tournaments/functions.html'"></ng-include>
-                <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
-                <ng-include src="'/app/tournaments/summary.html'"></ng-include>
-                <ng-include src="'/app/tournaments/player.html'"></ng-include>
-                <button class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
-                <button class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
-            </form>
-        </div>
-        <div ng-show="vm.state === 'processing'">
-            <ng-include src="'/app/tournaments/processing.html'"></ng-include>
-        </div>
-        <div ng-show="vm.state === 'processed'">
-            <ng-include src="'/app/tournaments/processed.html'"></ng-include>
+                </header>
+                <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
+                    <ng-include src="'/app/tournaments/events.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/functions.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/summary.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/player.html'"></ng-include>
+                    <button class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
+                    <button class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
+                </form>
+            </div>
+            <div ng-show="vm.state === 'processing'">
+                <ng-include src="'/app/tournaments/processing.html'"></ng-include>
+            </div>
+            <div ng-show="vm.state === 'processed'">
+                <ng-include src="'/app/tournaments/processed.html'"></ng-include>
+            </div>
         </div>
     </div>
 </div>

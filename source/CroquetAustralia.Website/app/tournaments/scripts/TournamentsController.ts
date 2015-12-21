@@ -8,11 +8,14 @@ module App {
         dietaryRequirements: number;
         submitted: boolean;
         state: string;
+        absUrl: string;
 
         constructor(private $http, private uuid2, private $scope, private $location) {
-            this.tournament = $location.absUrl().indexOf('/womens-open')>-1 ? this.getWomensOpen() : this.getMensOpen();
+            this.tournament = $location.absUrl().indexOf('/womens-open') > -1 ? this.getWomensOpen() : this.getMensOpen();
             this.player = new TournamentPlayer();
             this.state = 'show-form';
+
+            this.absUrl = $location.absUrl().substr($location.absUrl().length - 15);
 
             this.activate();
         }
