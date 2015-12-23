@@ -164,8 +164,8 @@ module App {
             const tournament = new Tournament(
                 tournamentId,
                 tournamentTitle,
-                new Date(2016, 3, 12),
-                new Date(2016, 3, 15),
+                new Date(2016, 2, 12),
+                new Date(2016, 2, 15),
                 'Victorian Croquet Centre, Cairnlea, VIC',
                 events,
                 functions,
