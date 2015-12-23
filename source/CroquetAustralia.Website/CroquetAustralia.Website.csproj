@@ -552,7 +552,7 @@
     <TypeScriptCompile Include="App\tournaments\scripts\Tournament.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentItem.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentPlayer.ts" />
-    <TypeScriptCompile Include="App\tournaments\scripts\TournamentsController.ts" />
+    <TypeScriptCompile Include="App\tournaments\scripts\TournamentsController-v2.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
