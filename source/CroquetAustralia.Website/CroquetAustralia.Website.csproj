@@ -273,6 +273,7 @@
     <Content Include="App\admin\home\AddPage.cshtml" />
     <Content Include="App\admin\home\News.cshtml" />
     <Content Include="App\admin\home\EditNews.cshtml" />
+    <Content Include="App\tournaments\deposited.cshtml" />
     <None Include="bowerComments.md" />
     <Content Include="bower_components\Angular.uuid2\dist\angular-uuid2.js" />
     <Content Include="bower_components\Angular.uuid2\dist\angular-uuid2.min.js" />
@@ -596,6 +597,7 @@
     <Compile Include="App\Infrastructure\UserExtensions.cs" />
     <Compile Include="App\Infrastructure\ViewModel.cs" />
     <Compile Include="App\tournaments\TournamentsController.cs" />
+    <Compile Include="App\tournaments\WebApi.cs" />
     <Compile Include="App_Start\ElmahConfig.cs" />
     <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="Layouts\Shared\SharedLayout.cs" />

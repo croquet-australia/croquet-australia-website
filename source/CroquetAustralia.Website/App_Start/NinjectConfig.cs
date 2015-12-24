@@ -18,6 +18,7 @@ using CroquetAustralia.Library.Authentication.Identity;
 using CroquetAustralia.Library.Content;
 using CroquetAustralia.Library.IO;
 using CroquetAustralia.Library.Settings;
+using CroquetAustralia.Website.App.tournaments;
 using Microsoft.AspNet.Identity;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
@@ -61,6 +62,8 @@ namespace CroquetAustralia.Website
             kernel.Bind<IMarkdownTransformer>().To<MarkdownTransformer>();
             kernel.Bind<IUserStore<IdentityUser, Guid>>().To<InMemoryUserStore>();
             kernel.Bind<IUserRepository>().To<InMemoryUserRepository>();
+            kernel.Bind<WebApi>().To<WebApi>();
+            kernel.Bind<WebApiSettings>().To<WebApiSettings>();
         }
 
         private static IBlogPostRepositorySettings BlogPostRepositorySettings(IContext context)
