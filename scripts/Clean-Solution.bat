@@ -1,5 +1,5 @@
 @echo off
-powershell -noprofile -file "%~dp0\Clean-Solution.ps1"
+powershell -noprofile -ExecutionPolicy Unrestricted -file "%~dp0\Clean-Solution.ps1"
 
 :exit
 echo.
