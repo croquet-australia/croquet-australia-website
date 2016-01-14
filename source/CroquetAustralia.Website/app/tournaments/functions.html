@@ -1,5 +1,10 @@
 <section ng-show="vm.tournament.functions.length > 0">
-  <h2>Functions</h2>
+    <div class="tournament-item-heading">
+        <div class="title">Functions</div>
+        <div class="unit-price">Price</div>
+        <div class="quantity">Quantity</div>
+        <div class="total-price">Total</div>
+    </div>
   <div class="tournament-item" ng-repeat="item in vm.tournament.functions">
     <div class="title">
       {{item.title}}

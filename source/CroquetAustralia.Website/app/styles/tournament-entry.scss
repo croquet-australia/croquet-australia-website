@@ -64,8 +64,34 @@
             }
         }
 
+        .tournament-item-heading {
+            @include make-row();
+
+            font-weight: bold;
+            padding-top: 2em;
+        }
+
         .tournament-item {
             @extend .form-group;
+
+            .quantity {
+                input {
+                    width: 100%;
+                }
+
+                input[type=radio] {
+                    height: $column-height / 2;
+                    margin-top: 10px;
+                }
+
+                input[type=number] {
+                    height: $column-height;
+                    text-align: right;
+                }
+            }
+        }
+
+        .tournament-item, .tournament-item-heading {
             margin: 0;
 
             div {
@@ -103,24 +129,13 @@
             .unit-price, .quantity, .total-price {
                 text-align: right;
             }
+        }
 
+        // I don't understand why but quantity padding must be set after `.tournament-item, .tournament-item-heading { ... }`
+        .tournament-item {
             .quantity {
                 padding: 0;
                 margin: 0;
-
-                input {
-                    width: 100%;
-                }
-
-                input[type=radio] {
-                    height: $column-height / 2;
-                    margin-top: 10px;
-                }
-
-                input[type=number] {
-                    height: $column-height;
-                    text-align: right;
-                }
             }
         }
 

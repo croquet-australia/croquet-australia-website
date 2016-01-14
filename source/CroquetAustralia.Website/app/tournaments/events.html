@@ -1,29 +1,34 @@
 <section ng-show="vm.tournament.events.length > 0">
-  <h2>Event</h2>
-  <div class="tournament-item" ng-repeat="item in vm.tournament.events">
-    <div class="title">
-      {{item.title}}
+    <div class="tournament-item-heading">
+        <div class="title">Event</div>
+        <div class="unit-price">Price</div>
+        <div class="quantity"></div>
+        <div class="total-price">Total</div>
     </div>
-    <div class="unit-price">
-      {{item.unitPrice | currency}}
+    <div class="tournament-item" ng-repeat="item in vm.tournament.events">
+        <div class="title">
+            {{item.title}}
+        </div>
+        <div class="unit-price">
+            {{item.unitPrice | currency}}
+        </div>
+        <div class="quantity">
+            <input type="radio" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)">
+        </div>
+        <div class="total-price">
+            {{item.totalPrice() | currency}}
+        </div>
     </div>
-    <div class="quantity">
-      <input type="radio" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)">
+    <div class="discount">
+        <div>
+            <label class="checkbox">
+                <input type="checkbox" ng-model="vm.player.under21" ng-change="vm.discountChanged()">I am under 21 (as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
+            </label>
+        </div>
+        <div>
+            <label class="checkbox">
+                <input type="checkbox" ng-model="vm.player.fullTimeStudentUnder25" ng-change="vm.discountChanged()">I am a full time student (under 25 as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
+            </label>
+        </div>
     </div>
-    <div class="total-price">
-      {{item.totalPrice() | currency}}
-    </div>
-  </div>
-  <div class="discount">
-    <div>
-      <label class="checkbox">
-        <input type="checkbox" ng-model="vm.player.under21"  ng-change="vm.discountChanged()">I am under 21 (as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
-      </label>
-    </div>
-    <div>
-      <label class="checkbox">
-        <input type="checkbox" ng-model="vm.player.fullTimeStudentUnder25" ng-change="vm.discountChanged()">I am a full time student (under 25 as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
-      </label>
-    </div>
-  </div>
 </section>
