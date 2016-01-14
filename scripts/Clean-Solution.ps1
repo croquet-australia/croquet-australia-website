@@ -23,7 +23,7 @@ Function Delete-Folders([string] $folderName)
     Write-Host "Deleting $folderName folders..."
     Get-ChildItem -Directory -Recurse |
         Where-Object { $_.Name -eq $folderName } |
-        ForEach-Object { Remove-Item $_.FullName }
+        ForEach-Object { Remove-Item $_.FullName -Recurse -Force }
 }
 
 Function Delete-Folder([string] $folder)
