@@ -158,7 +158,21 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
     echo ----------------------
     call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\source\CroquetAustralia.Website\CroquetAustralia.Website.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
     IF !ERRORLEVEL! NEQ 0 goto error
-    
+
+    echo.
+    echo Running 'gulp before-kudusync'
+    echo ------------------------------
+    pushd %DEPLOYMENT_SOURCE%\source\CroquetAustralia.Website
+    IF !ERRORLEVEL! NEQ 0 goto error
+    call :ExecuteCmd call gulp before-kudusync
+    SET GULP_ERRORLEVEL=%ERRORLEVEL%
+    popd
+    IF "%GULP_ERRORLEVEL%" NEQ "" (
+        IF "%GULP_ERRORLEVEL%" NEQ "0" (
+            goto error
+        )
+    )
+          
     echo.
     echo Deploying website with KuduSync
     echo -------------------------------
