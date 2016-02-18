@@ -11,6 +11,14 @@ module App {
             public merchandise: TournamentItem[]) {
         }
 
+        eventsAreOpen(): boolean {
+            return false;
+        }
+
+        eventsAreClosed(): boolean {
+            return !this.eventsAreOpen();
+        }
+
         discountChanged(player: TournamentPlayer) {
             const discountPercentage = (player.fullTimeStudentUnder25 || player.under21) ? 50 : 0;
 

@@ -251,6 +251,7 @@
     <TypeScriptCompile Include="App\app.ts" />
     <None Include="App\styles\styles.scss" />
     <Content Include="App\styles\styles.css" />
+    <Content Include="App\tournaments\events-closed.html" />
     <Content Include="App\tournaments\processed.html" />
     <Content Include="App\tournaments\processing.html" />
     <Content Include="App\tournaments\gender-open.cshtml" />
@@ -553,7 +554,7 @@
     <TypeScriptCompile Include="App\tournaments\scripts\Tournament.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentItem.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentPlayer.ts" />
-    <TypeScriptCompile Include="App\tournaments\scripts\TournamentsController-v2.ts" />
+    <TypeScriptCompile Include="App\tournaments\scripts\TournamentsController.ts" />
     <TypeScriptCompile Include="typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />

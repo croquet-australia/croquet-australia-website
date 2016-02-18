@@ -14,7 +14,7 @@
                 </div>
             </header>
             <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                <ng-include src="'/app/tournaments/events.html'"></ng-include>
+                <div ng-include="vm.tournament.eventsAreOpen() ? '/app/tournaments/events.html' : '/app/tournaments/events-closed.html'"></div>
                 <ng-include src="'/app/tournaments/functions.html'"></ng-include>
                 <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
                 <ng-include src="'/app/tournaments/summary.html'"></ng-include>

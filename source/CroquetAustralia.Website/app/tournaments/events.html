@@ -1,4 +1,4 @@
-<section ng-show="vm.tournament.events.length > 0">
+<section ng-show="vm.tournament.events.length > 0 && vm.tournament.eventsAreOpen()">
     <div class="tournament-item-heading">
         <div class="title">Event</div>
         <div class="unit-price">Price</div>
