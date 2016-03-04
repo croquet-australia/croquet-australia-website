@@ -13,15 +13,22 @@
                     </div>
                 </div>
             </header>
-            <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                <div ng-include="vm.tournament.eventsAreOpen() ? '/app/tournaments/events.html' : '/app/tournaments/events-closed.html'"></div>
-                <ng-include src="'/app/tournaments/functions.html'"></ng-include>
-                <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
-                <ng-include src="'/app/tournaments/summary.html'"></ng-include>
-                <ng-include src="'/app/tournaments/player.html'"></ng-include>
-                <button class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
-                <button class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
-            </form>
+            <div ng-show="vm.tournament.isOpen()">
+                <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
+                    <div ng-include="vm.tournament.eventsAreOpen() ? '/app/tournaments/events.html' : '/app/tournaments/events-closed.html'"></div>
+                    <ng-include src="'/app/tournaments/functions.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/summary.html'"></ng-include>
+                    <ng-include src="'/app/tournaments/player.html'"></ng-include>
+                    <button class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
+                    <button class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
+                </form>
+            </div>
+            <div ng-show="vm.tournament.isClosed()">
+                <div class="alert alert-info" role="alert">
+                    <p>Entries for this tournament closed 3pm on Friday 4 March Eastern Summer Time – 2pm Queensland time, 2.30pm in South Australia and midday in Western Australia.</p>
+                </div>
+            </div>
         </div>
         <div ng-show="vm.state === 'processing'">
             <ng-include src="'/app/tournaments/processing.html'"></ng-include>

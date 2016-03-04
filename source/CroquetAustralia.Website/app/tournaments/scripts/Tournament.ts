@@ -11,6 +11,14 @@ module App {
             public merchandise: TournamentItem[]) {
         }
 
+        discountChanged(player: TournamentPlayer) {
+            const discountPercentage = (player.fullTimeStudentUnder25 || player.under21) ? 50 : 0;
+
+            this.events.forEach((event: TournamentItem) => {
+                event.discountPercentage = discountPercentage;
+            });
+        }
+
         eventsAreOpen(): boolean {
             return false;
         }
@@ -19,12 +27,12 @@ module App {
             return !this.eventsAreOpen();
         }
 
-        discountChanged(player: TournamentPlayer) {
-            const discountPercentage = (player.fullTimeStudentUnder25 || player.under21) ? 50 : 0;
+        isClosed(): boolean {
+            return !this.isOpen();
+        }
 
-            this.events.forEach((event: TournamentItem) => {
-                event.discountPercentage = discountPercentage;
-            });
+        isOpen(): boolean {
+            return true;
         }
 
         totalPayable(): number {
