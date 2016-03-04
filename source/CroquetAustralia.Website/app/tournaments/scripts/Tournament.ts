@@ -32,7 +32,7 @@ module App {
         }
 
         isOpen(): boolean {
-            return true;
+            return false;
         }
 
         totalPayable(): number {
