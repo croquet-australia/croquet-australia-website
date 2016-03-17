@@ -25,6 +25,7 @@ namespace CroquetAustralia.Website.App.Infrastructure
                         new NavigationItem("Coaching", "~/disciplines/association-croquet/coaching"),
                         new NavigationItem("Refereeing", "~/disciplines/association-croquet/refereeing"),
                         new NavigationItem("Resources", "~/disciplines/association-croquet/resources")),
+                    new NavigationItem("Gateball", "http://gateball.com.au"),
                     new NavigationItem("Golf Croquet",
                         new NavigationItem("Coaching", "~/disciplines/golf-croquet/coaching"),
                         new NavigationItem("Refereeing", "~/disciplines/golf-croquet/refereeing"),
