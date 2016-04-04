@@ -18,11 +18,17 @@
     "ng-file-upload": "~4.1.3",
     "markdown-editpreview-ng": "~1.0.0-rc3",
     "bootstrap-sass": "~3.3.6",
-    "Angular.uuid2": "angular-uuid2#*"
+    "Angular.uuid2": "angular-uuid2#*",
+    "moment-timezone": "~0.5.2",
+    "angular-moment": "1.0.0-beta.5",
+    "moment": "~2.10.6"
   },
   "overrides": {
     "bootstrap-sass": {
       "main": []
     }
+  },
+  "resolutions": {
+    "moment": ">=2.8.0 <2.11.0"
   }
 }

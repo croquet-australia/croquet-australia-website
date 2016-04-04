@@ -5,30 +5,33 @@
                 <div class="row">
                     <div class="col-sm-10">
                         <h1>{{ vm.tournament.title }}</h1>
-                        <h2>{{ vm.tournament.startsOn | date:'EEEE dd' }} to {{ vm.tournament.endsOn | date:'EEEE dd MMMM yyyy' }}</h2>
+                        <h2>{{ vm.tournament.starts | amDateFormat:'dddd Do' }} to {{ vm.tournament.finishes | amDateFormat:'dddd Do MMMM YYYY' }}</h2>
                         <h3>{{ vm.tournament.location }}</h3>
                     </div>
                     <div class="hidden-xs col-sm-2">
-                        <img src="/assets/aca-logo-page-background.png" alt="ACA" />
+                        <img src="/assets/aca-logo-page-background.png" alt="ACA"/>
                     </div>
                 </div>
             </header>
-            <div ng-show="vm.tournament.isOpen()">
+            @* Angular requires <form>...</form> is in this file. You cannot use <ng-include>...</ng-include> *@
+            <section ng-show="vm.tournament.isOpen()">
                 <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                    <div ng-include="vm.tournament.eventsAreOpen() ? '/app/tournaments/events.html' : '/app/tournaments/events-closed.html'"></div>
-                    <ng-include src="'/app/tournaments/functions.html'"></ng-include>
-                    <ng-include src="'/app/tournaments/merchandise.html'"></ng-include>
+                    <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html'"></div>
+                    <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html'"></div>
+                    <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html'"></div>
+                    <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html'"></div>
                     <ng-include src="'/app/tournaments/summary.html'"></ng-include>
                     <ng-include src="'/app/tournaments/player.html'"></ng-include>
+                    <div ng-if="vm.tournament.isDoubles" ng-include="'/app/tournaments/partner.html'"></div>
                     <button class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
                     <button class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
                 </form>
-            </div>
-            <div ng-show="vm.tournament.isClosed()">
-                <div class="alert alert-info" role="alert">
-                    <p>Entries for this tournament closed 3pm on Friday 4 March Eastern Summer Time – 2pm Queensland time, 2.30pm in South Australia and midday in Western Australia.</p>
+            </section>
+            <section ng-show="vm.tournament.isClosed()">
+                <div id="tournament-closed" class="alert alert-info" role="alert">
+                    <p>Entries for this tournament closed {{ vm.tournament.closedOn() }}</p>
                 </div>
-            </div>
+            </section>
         </div>
         <div ng-show="vm.state === 'processing'">
             <ng-include src="'/app/tournaments/processing.html'"></ng-include>

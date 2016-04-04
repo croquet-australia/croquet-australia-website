@@ -1,0 +1,43 @@
+<section class="player">
+    <h2>Partner's Contact Details</h2>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.partnerFirstName.$invalid && (!tournamentEntryForm.partnerFirstName.$pristine || vm.submitted) }">
+        <label for="partnerFirstName">First Name</label>
+        <div>
+            <input type="text" name="partnerFirstName" id="partnerFirstName" ng-model="vm.partner.firstName" placeholder="John" required>
+            <p ng-show="tournamentEntryForm.partnerFirstName.$invalid && (!tournamentEntryForm.partnerFirstName.$pristine || vm.submitted)" class="help-block">Your partner's first name is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.partnerLastName.$invalid && (!tournamentEntryForm.partnerLastName.$pristine || vm.submitted) }">
+        <label for="partnerLastName">Last Name</label>
+        <div>
+            <input type="text" name="partnerLastName" id="partnerLastName" ng-model="vm.partner.lastName" placeholder="Doe" required>
+            <p ng-show="tournamentEntryForm.partnerLastName.$invalid && (!tournamentEntryForm.partnerLastName.$pristine || vm.submitted)" class="help-block">Your partner's last name is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.partnerEmail.$invalid && (!tournamentEntryForm.partnerEmail.$pristine || vm.submitted) }">
+        <label for="partnerEmail">Email</label>
+        <div>
+            <input type="email" name="partnerEmail" id="partnerEmail" ng-model="vm.partner.email" placeholder="john@example.org" required>
+            <p ng-show="tournamentEntryForm.partnerEmail.$invalid && (!tournamentEntryForm.partnerEmail.$pristine || vm.submitted)" class="help-block">Your partner's email is required.</p>
+        </div>
+    </div>
+
+    <div ng-show="vm.payingForPartner()" ng-class="{ 'has-error' : tournamentEntryForm.partnerPhone.$invalid && (!tournamentEntryForm.partnerPhone.$pristine || vm.submitted) }">
+        <label for="partnerPhone">Mobile&nbsp;/ Phone</label>
+        <div>
+            <input type="text" name="partnerPhone" id="partnerPhone" ng-model="vm.partner.phone" placeholder="0421 999 999" ng-required="vm.payingForPartner()">
+            <p ng-show="tournamentEntryForm.partnerPhone.$invalid && (!tournamentEntryForm.partnerPhone.$pristine || vm.submitted)" class="help-block">Your partner's phone is required.</p>
+        </div>
+    </div>
+
+    <div ng-show="vm.payingForPartner() && vm.showHandicap()" ng-class="{ 'has-error' : tournamentEntryForm.partnerHandicap.$invalid && (!tournamentEntryForm.partnerHandicap.$pristine || vm.submitted) }">
+        <label for="partnerHandicap">Handicap</label>
+        <div>
+            <input type="number" name="partnerHandicap" id="partnerHandicap" ng-model="vm.partner.handicap" placeholder="0" ng-required="vm.payingForPartner() && vm.showHandicap()">
+            <p ng-show="tournamentEntryForm.partnerHandicap.$invalid && (!tournamentEntryForm.partnerHandicap.$pristine || vm.submitted)" class="help-block">Your partner's handicap is required.</p>
+        </div>
+    </div>
+</section>

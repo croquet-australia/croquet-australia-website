@@ -13,22 +13,50 @@
             {{item.unitPrice | currency}}
         </div>
         <div class="quantity">
-            <input type="radio" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)">
+            <input type="radio" name="eventId" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)" required>
         </div>
         <div class="total-price">
             {{item.totalPrice() | currency}}
         </div>
     </div>
+    <p ng-show="!(vm.eventId) && vm.submitted" class="help-block">Which event you are entering is required.</p>
     <div class="discount">
         <div>
             <label class="checkbox">
-                <input type="checkbox" ng-model="vm.player.under21" ng-change="vm.discountChanged()">I am under 21 (as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
+                <input type="checkbox" ng-model="vm.player.under21" ng-change="vm.discountChanged()">I am under 21 (as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.
             </label>
         </div>
         <div>
             <label class="checkbox">
-                <input type="checkbox" ng-model="vm.player.fullTimeStudentUnder25" ng-change="vm.discountChanged()">I am a full time student (under 25 as at 31 December {{vm.tournament.startsOn.getFullYear()}}) and entitled to 50% discount on entry fees.
+                <input type="checkbox" ng-model="vm.player.fullTimeStudentUnder25" ng-change="vm.discountChanged()">I am a full time student (under 25 as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.
             </label>
+        </div>
+    </div>
+    <div ng-show="vm.tournament.isDoubles" class="paying-for-parnter">
+        <div>
+            <div>
+                <label class="radio">
+                    <input type="radio" name="payingFor" ng-model="vm.payingFor" value="myself-only" ng-change="vm.payingForChanged()" ng-required="vm.tournament.isDoubles">I am paying for myself only.
+                </label>
+            </div>
+            <div>
+                <label class="radio">
+                    <input type="radio" name="payingFor" ng-model="vm.payingFor" value="myself-and-partner" ng-change="vm.payingForChanged()">I am paying for myself and my partner.
+                </label>
+            </div>
+            <p ng-show="!(vm.payingFor) && vm.submitted" class="help-block">Who you are paying for is required.</p>
+        </div>
+        <div ng-show="vm.payingForPartner()" class="discount">
+            <div>
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="vm.partner.under21" ng-change="vm.discountChanged()">My partner is under 21 (as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.
+                </label>
+            </div>
+            <div>
+                <label class="checkbox">
+                    <input type="checkbox" ng-model="vm.partner.fullTimeStudentUnder25" ng-change="vm.discountChanged()">My partner is a full time student (under 25 as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.
+                </label>
+            </div>
         </div>
     </div>
 </section>

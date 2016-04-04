@@ -10,6 +10,15 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "11322524f8db9cdb921427cad84cd22fe2d4f965"
+    },
+    "moment-timezone/moment-timezone.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "moment/moment.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
     }
   }
 }

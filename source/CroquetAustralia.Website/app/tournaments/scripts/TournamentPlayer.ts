@@ -1,3 +1,5 @@
+'use strict';
+
 module App {
     export class TournamentPlayer {
         firstName: string;
