@@ -74,3 +74,7 @@
     </nav>
     <div class="body-content">
         <div class="@container">
+            @if (viewModel.ShowSidebar)
+            {
+                @RenderPage("BeginColumns.cshtml")
+            }

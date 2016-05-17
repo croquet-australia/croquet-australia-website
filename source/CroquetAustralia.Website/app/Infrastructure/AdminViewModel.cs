@@ -11,7 +11,7 @@ namespace CroquetAustralia.Website.App.Infrastructure
         }
 
         public AdminViewModel(IEnumerable<NavigationItem> navigationItems)
-            : base("container-fluid", navigationItems)
+            : base("container-fluid", navigationItems, false)
         {
         }
 

@@ -6,7 +6,7 @@ namespace CroquetAustralia.Website.App.account
 {
     public class SignInViewModel : ViewModel
     {
-        public SignInViewModel(string returnUrl, AuthenticationDescription[] authenticationDescriptions) 
+        public SignInViewModel(string returnUrl, AuthenticationDescription[] authenticationDescriptions)
         {
             Arg.MustNotBeEmpty(authenticationDescriptions, "authenticationDescriptions");
 

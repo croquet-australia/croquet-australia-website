@@ -6,5 +6,6 @@ namespace CroquetAustralia.Website.App.Infrastructure
     {
         string ContainerClass { get; }
         IEnumerable<NavigationItem> NavigationItems { get; }
+        bool ShowSidebar { get; }
     }
 }

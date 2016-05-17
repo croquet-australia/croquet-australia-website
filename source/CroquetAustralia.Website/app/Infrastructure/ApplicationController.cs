@@ -29,7 +29,12 @@ namespace CroquetAustralia.Website.App.Infrastructure
 
         protected virtual IViewModel CreateDefaultViewModel()
         {
-            return new ViewModel();
+            return CreateDefaultViewModel(true);
+        }
+
+        protected virtual IViewModel CreateDefaultViewModel(bool showSidebar)
+        {
+            return new ViewModel(showSidebar);
         }
 
         private string GetControllerName()

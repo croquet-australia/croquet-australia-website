@@ -27,5 +27,10 @@ namespace CroquetAustralia.Website.App.tournaments
             await _webApi.PostAsync("/tournament-entry/payment-received", new {entityId = id, paymentMethod = "EFT"});
             return View("deposited");
         }
+
+        protected override IViewModel CreateDefaultViewModel()
+        {
+            return CreateDefaultViewModel(false);
+        }
     }
 }

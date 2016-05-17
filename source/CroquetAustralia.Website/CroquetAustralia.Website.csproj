@@ -256,6 +256,7 @@
     <Content Include="App\tournaments\processed.html" />
     <Content Include="App\tournaments\processing.html" />
     <Content Include="App\tournaments\tournament.cshtml" />
+    <Content Include="App\styles\sticky-notes.scss" />
     <None Include="App\styles\tournament-entry.scss" />
     <Content Include="App\tournaments\summary.html" />
     <Content Include="assets\aca-logo-page-background.png" />
@@ -853,6 +854,9 @@
     <Content Include="bower_components\moment-timezone\data\unpacked\latest.json" />
     <Content Include="bower_components\moment-timezone\LICENSE" />
     <Content Include="bower_components\moment-timezone\README.md" />
+    <Content Include="Layouts\Shared\BeginColumns.cshtml" />
+    <Content Include="Layouts\Shared\EndColumns.cshtml" />
+    <Content Include="Layouts\Shared\Sidebar.cshtml" />
     <None Include="Properties\PublishProfiles\croquet-australia.pubxml" />
     <None Include="Properties\PublishProfiles\croquet-australia__staging.pubxml" />
     <None Include="Web.Debug.config">

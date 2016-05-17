@@ -5,22 +5,34 @@ namespace CroquetAustralia.Website.App.Infrastructure
     public class ViewModel : IViewModel
     {
         public ViewModel()
-            : this(PublicNavigationBar.GetNavigationItems())
+            : this(true)
+        {
+        }
+
+        public ViewModel(bool showSidebar)
+            : this(PublicNavigationBar.GetNavigationItems(), showSidebar)
         {
         }
 
         public ViewModel(IEnumerable<NavigationItem> navigationItems)
-            : this("container", navigationItems)
+            : this(navigationItems, true)
         {
         }
 
-        public ViewModel(string containerClass, IEnumerable<NavigationItem> navigationItems)
+        public ViewModel(IEnumerable<NavigationItem> navigationItems, bool showSidebar)
+            : this("container", navigationItems, showSidebar)
+        {
+        }
+
+        public ViewModel(string containerClass, IEnumerable<NavigationItem> navigationItems, bool showSidebar)
         {
             ContainerClass = containerClass;
             NavigationItems = navigationItems;
+            ShowSidebar = showSidebar;
         }
 
         public string ContainerClass { get; protected set; }
         public IEnumerable<NavigationItem> NavigationItems { get; set; }
+        public bool ShowSidebar { get; }
     }
 }
