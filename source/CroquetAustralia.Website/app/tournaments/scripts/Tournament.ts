@@ -15,6 +15,7 @@ module App {
             public merchandise: TournamentItem[],
             public merchandiseClose: any /*moment*/,
             public isDoubles: boolean,
+            public isEOI: boolean,
             private moment: any /*moment*/) {
         }
 
@@ -32,6 +33,7 @@ module App {
             const merchandise = this.deserializeLineItems(data.merchandise);
             const merchandiseClose = this.deserializeMoment(data.merchandiseClose, moment);
             const isDoubles = data.isDoubles;
+            const isEOI = data.isEOI;
 
             const tournament = new Tournament(
                 id,
@@ -46,6 +48,7 @@ module App {
                 merchandise,
                 merchandiseClose,
                 isDoubles,
+                isEOI,
                 moment);
             return tournament;
         }
@@ -64,10 +67,10 @@ module App {
         }
 
         closedOn(): string {
-            
+
             const time = 'h:mma';
             const closed = this.getMaxMoment([this.eventsClose, this.functionsClose, this.merchandiseClose]);
-            
+
             const canberraTime = closed.tz('Australia/Canberra').format(time);
             const queenslandTime = closed.tz('Australia/Brisbane').format(time);
             const adelaideTime = closed.tz('Australia/Adelaide').format(time);
@@ -87,7 +90,7 @@ module App {
 
             if (payingForPartner) {
                 if (player.fullTimeStudentUnder25 || player.under21) {
-                    discountPercentage = (partner.fullTimeStudentUnder25 || partner.under21) ? 50: 25;
+                    discountPercentage = (partner.fullTimeStudentUnder25 || partner.under21) ? 50 : 25;
                 } else if ((partner.fullTimeStudentUnder25 || partner.under21)) {
                     discountPercentage = 25;
                 }

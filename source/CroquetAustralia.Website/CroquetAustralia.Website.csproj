@@ -253,6 +253,7 @@
     <Content Include="App\styles\styles.css" />
     <Content Include="App\tournaments\partner.html" />
     <Content Include="App\tournaments\events-closed.html" />
+    <Content Include="App\tournaments\processed-eoi.html" />
     <Content Include="App\tournaments\processed.html" />
     <Content Include="App\tournaments\processing.html" />
     <Content Include="App\tournaments\tournament.cshtml" />

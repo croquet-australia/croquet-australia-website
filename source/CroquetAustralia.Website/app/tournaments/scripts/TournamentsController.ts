@@ -50,6 +50,10 @@ module App {
             this.payBy(1);
         }
 
+        sendEOI() {
+            this.payBy(2);
+        }
+
         payingForChanged(): void {
             this.updateEventQuantity(this.eventId);
             this.updateDiscount();
@@ -117,9 +121,10 @@ module App {
                     }
                 };
 
-                this.$http.post(url, JSON.stringify(data)).then(
-                    response => this.onPayByFulfilled(response),
-                    response => this.onPayByEftRejected(response));
+                this.$http.post(url, JSON.stringify(data))
+                    .then(
+                        response => this.onPayByFulfilled(response),
+                        response => this.onPayByEftRejected(response));
 
             } catch (e) {
                 alert(`Your entry could not be saved. Please contact support quoting error the following error:\n\n${e}`);
@@ -166,6 +171,10 @@ module App {
 
         showPage() {
             return true;
+        }
+
+        requiresPayment() {
+            return !this.tournament.isEOI;
         }
 
         private getEventId(): string {
