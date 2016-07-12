@@ -70,7 +70,7 @@ gulp.task('bust-caches',
     ['bust-caches-css', 'bust-caches-js'],
     function() {
         var sourceDirectory = get_Deployment_Temp_Directory();
-        log(`Renaming references in ${sourceDirectory}.`);
+        log('Renaming references in ' + sourceDirectory} + '.');
 
         return gulp
             .src(sourceDirectory + '/**/*.*html')
@@ -81,7 +81,7 @@ gulp.task('bust-caches',
 gulp.task('bust-caches-css',
     function() {
         var sourceDirectory = get_Deployment_Temp_Directory() + '/App';
-        log(`Renaming css resources in ${sourceDirectory}.`);
+        log('Renaming css resources in ' + sourceDirectory + '.');
 
         return gulp.src(sourceDirectory + '/**/*.css')
             .pipe(cachebust.resources())
@@ -91,7 +91,7 @@ gulp.task('bust-caches-css',
 gulp.task('bust-caches-js',
     function() {
         var sourceDirectory = get_Deployment_Temp_Directory() + '/App';
-        log(`Renaming js resources in ${sourceDirectory}.`);
+        log('Renaming js resources in ' + sourceDirectory + '.');
 
         return gulp.src(sourceDirectory + '/**/*.js')
             .pipe(cachebust.resources())
@@ -113,7 +113,7 @@ function get_Deployment_Temp_Directory() {
     directory = directory.replace(/\\/g, '/');
 
     if (!fs.existsSync(directory)) {
-        throw `Cannot find DEPLOYMENT_TEMP directoruy '${directory}'.`;
+        throw 'Cannot find DEPLOYMENT_TEMP directoruy \'' + directory + '\'.';
     }
 
     return directory;
@@ -133,6 +133,6 @@ function log(message) {
 }
 
 function watch(files, task) {
-    log(`Watching ${files} for ${task}`);
+    log('Watching ' + files + ' for ' + task);
     gulp.watch(files, [task]);
 }
