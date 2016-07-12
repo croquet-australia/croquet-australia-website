@@ -3,14 +3,14 @@
 module.exports = function() {
     'use strict';
 
-    const clientDirectory = '.';
+    var clientDirectory = '.';
 
-    const appJsFiles = ['./app/**/*.js', '!./App/_references.js'];
-    const layoutDirectory = './Layouts/Shared';
+    var appJsFiles = ['./app/**/*.js', '!./App/_references.js'];
+    var layoutDirectory = './Layouts/Shared';
     // todo: var cssDirectory = './app/css';
     // todo: var lessDirectory = './app/less';
 
-    const config = {
+    var config = {
 
         // Files
         // files are arrays for possible future use.
