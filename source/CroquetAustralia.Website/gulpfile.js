@@ -48,7 +48,7 @@ gulp.task('wireJavaScriptDependencies',
     function() {
         log('Wiring the JavaScript dependencies into layout file.');
 
-        const wiredep = require('wiredep').stream;
+        var wiredep = require('wiredep').stream;
 
         return gulp.src(config.javaScriptLayoutFile)
             .pipe(wiredep(config.wiredepOptions))
@@ -69,7 +69,7 @@ gulp.task('before-kudusync', ['bust-caches']);
 gulp.task('bust-caches',
     ['bust-caches-css', 'bust-caches-js'],
     function() {
-        const sourceDirectory = get_Deployment_Temp_Directory();
+        var sourceDirectory = get_Deployment_Temp_Directory();
         log(`Renaming references in ${sourceDirectory}.`);
 
         return gulp
@@ -80,7 +80,7 @@ gulp.task('bust-caches',
 
 gulp.task('bust-caches-css',
     function() {
-        const sourceDirectory = get_Deployment_Temp_Directory() + '/App';
+        var sourceDirectory = get_Deployment_Temp_Directory() + '/App';
         log(`Renaming css resources in ${sourceDirectory}.`);
 
         return gulp.src(sourceDirectory + '/**/*.css')
@@ -90,7 +90,7 @@ gulp.task('bust-caches-css',
 
 gulp.task('bust-caches-js',
     function() {
-        const sourceDirectory = get_Deployment_Temp_Directory() + '/App';
+        var sourceDirectory = get_Deployment_Temp_Directory() + '/App';
         log(`Renaming js resources in ${sourceDirectory}.`);
 
         return gulp.src(sourceDirectory + '/**/*.js')
