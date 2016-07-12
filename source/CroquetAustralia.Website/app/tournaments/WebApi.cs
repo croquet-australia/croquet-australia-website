@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CroquetAustralia.Library.Settings;
@@ -37,7 +36,7 @@ namespace CroquetAustralia.Website.App.tournaments
                     Data =
                     {
                         {"Data", JsonConvert.SerializeObject(data)},
-                        {"Response", JsonConvert.SerializeObject(new { response.ReasonPhrase, response.StatusCode})}
+                        {"Response", JsonConvert.SerializeObject(new {response.ReasonPhrase, response.StatusCode})}
                     }
                 };
             }

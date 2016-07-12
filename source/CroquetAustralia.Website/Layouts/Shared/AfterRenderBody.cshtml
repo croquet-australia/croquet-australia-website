@@ -1,49 +1,49 @@
 @using CroquetAustralia.Website.App.Infrastructure
 @* ReSharper disable All *@
 @{
-    var model = (IViewModel)PageData["model"];
+    var model = (IViewModel) PageData["model"];
     if (model.ShowSidebar)
     {
         @RenderPage("EndColumns.cshtml")
     }
 }
-        </div>
-    </div>
+</div>
+</div>
 
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
-    <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
-    <script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/bootstrap-markdown.js"></script>
-    <script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/markdown-editpreview-ng.js"></script>
-    <script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/Markdown.Converter.js"></script>
-    <script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/Markdown.Sanitizer.js"></script>
-    <script src="/bower_components/Angular.uuid2/dist/angular-uuid2.min.js"></script>
-    <script src="/bower_components/moment/moment.js"></script>
-    <script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
-    <script src="/bower_components/angular-moment/angular-moment.js"></script>
-    <!-- endbower -->
-    @* markdown-editpreview-ng.js requires jQuery is be before Angular *@
-    @*<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>*@
-    @*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>*@
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-    <script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/bower_components/bootstrap-submenu/js/bootstrap-submenu.js"></script>
-    <!-- inject:js -->
-    <script src="/app/app.js"></script>
-    <script src="/app/admin/files/FileUpload.Module.js"></script>
-    <script src="/app/admin/files/FileUpload.js"></script>
-    <script src="/app/admin/home/AddNews.Module.js"></script>
-    <script src="/app/admin/home/AddNews.js"></script>
-    <script src="/app/admin/home/AddPage.Module.js"></script>
-    <script src="/app/admin/home/AddPage.js"></script>
-    <script src="/app/tournaments/scripts/Tournament.js"></script>
-    <script src="/app/tournaments/scripts/TournamentItem.js"></script>
-    <script src="/app/tournaments/scripts/TournamentPlayer.js"></script>
-    <script src="/app/tournaments/scripts/TournamentsController.js"></script>
-    <!-- endinject -->
-    <script>
-        $('.dropdown-submenu > a').submenupicker();
-    </script>
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/bootstrap-submenu/dist/js/bootstrap-submenu.js"></script>
+<script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/bootstrap-markdown.js"></script>
+<script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/markdown-editpreview-ng.js"></script>
+<script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/Markdown.Converter.js"></script>
+<script src="/bower_components/markdown-editpreview-ng/lib/codemwnci/Markdown.Sanitizer.js"></script>
+<script src="/bower_components/Angular.uuid2/dist/angular-uuid2.min.js"></script>
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+<script src="/bower_components/angular-moment/angular-moment.js"></script>
+<!-- endbower -->
+@* markdown-editpreview-ng.js requires jQuery is be before Angular *@
+@*<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>*@
+@*<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>*@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/bower_components/bootstrap-submenu/js/bootstrap-submenu.js"></script>
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/admin/files/FileUpload.Module.js"></script>
+<script src="/app/admin/files/FileUpload.js"></script>
+<script src="/app/admin/home/AddNews.Module.js"></script>
+<script src="/app/admin/home/AddNews.js"></script>
+<script src="/app/admin/home/AddPage.Module.js"></script>
+<script src="/app/admin/home/AddPage.js"></script>
+<script src="/app/tournaments/scripts/Tournament.js"></script>
+<script src="/app/tournaments/scripts/TournamentItem.js"></script>
+<script src="/app/tournaments/scripts/TournamentPlayer.js"></script>
+<script src="/app/tournaments/scripts/TournamentsController.js"></script>
+<!-- endinject -->
+<script>
+    $('.dropdown-submenu > a').submenupicker();
+</script>

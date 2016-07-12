@@ -16,6 +16,6 @@ namespace CroquetAustralia.Website.Specifications.Pages.Infrastructure
             Url = new Uri(applicationUri, relativeUri).ToString();
         }
 
-        public string Url { get; private set; }
+        public string Url { get; }
     }
 }

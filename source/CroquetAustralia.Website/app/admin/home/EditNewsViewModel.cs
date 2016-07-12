@@ -14,6 +14,7 @@ namespace CroquetAustralia.Website.App.admin.home
         {
             // POST action requires empty constructor.
         }
+
         public EditNewsViewModel(BlogPost blogPost)
         {
             Title = blogPost.Title;
@@ -29,7 +30,7 @@ namespace CroquetAustralia.Website.App.admin.home
             get { return _title ?? ""; }
             set { _title = value.AsTrimmedString(); }
         }
-        
+
         [Required(AllowEmptyStrings = false, ErrorMessage = "Content is required.")]
         public string Content
         {

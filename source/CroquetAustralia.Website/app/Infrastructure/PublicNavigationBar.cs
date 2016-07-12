@@ -31,7 +31,6 @@ namespace CroquetAustralia.Website.App.Infrastructure
                         new NavigationItem("Refereeing", "~/disciplines/golf-croquet/refereeing"),
                         new NavigationItem("Resources", "~/disciplines/golf-croquet/resources"))),
                 new NavigationItem("WCF", "http://www.worldcroquet.org.uk/")
-
             };
         }
     }

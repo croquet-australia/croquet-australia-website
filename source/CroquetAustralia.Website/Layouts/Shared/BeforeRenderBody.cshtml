@@ -1,8 +1,8 @@
-﻿@* ReSharper disable All *@
-@using System.Web.Mvc.Html
+﻿@using CroquetAustralia.Library.Settings
 @using CroquetAustralia.Website.App.Infrastructure
+@* ReSharper disable All *@
 @{
-    var viewModel = (IViewModel)PageData["model"];
+    var viewModel = (IViewModel) PageData["model"];
     var container = viewModel.ContainerClass;
 }
 <!DOCTYPE html>
@@ -16,46 +16,46 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
 
     @* todo: add with gulp *@
-    <link rel="stylesheet" href="~/bower_components/bootstrap-submenu/dist/css/bootstrap-submenu.min.css" />
-    <link rel="stylesheet" href="~/bower_components/markdown-editpreview-ng/lib/codemwnci/bootstrap-markdown.min.css" />
+    <link rel="stylesheet" href="~/bower_components/bootstrap-submenu/dist/css/bootstrap-submenu.min.css"/>
+    <link rel="stylesheet" href="~/bower_components/markdown-editpreview-ng/lib/codemwnci/bootstrap-markdown.min.css"/>
 
     @* todo: cache buster with css *@
-    <link rel="stylesheet" href="~/app/styles/styles.css" />
+    <link rel="stylesheet" href="~/app/styles/styles.css"/>
 
     @*
         HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
         WARNING: Respond.js doesn't work if you view the page via file://
     *@
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
     <script>
         var webConfig = {
             webApi: {
-                baseUri: '@(new CroquetAustralia.Library.Settings.WebApiSettings().BaseUri)'
+                baseUri: '@(new WebApiSettings().BaseUri)'
             }
         };
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-        <div class="@container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    Menu
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">Croquet Australia</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @RenderPage("~/Layouts/Shared/_TopNavigationItems.cshtml", new { navigationItems = viewModel.NavigationItems })
-                </ul>
-                @* todo
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="@container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                Menu
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Croquet Australia</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @RenderPage("~/Layouts/Shared/_TopNavigationItems.cshtml", new {navigationItems = viewModel.NavigationItems})
+            </ul>
+            @* todo
                     @if (Request.IsAuthenticated)
                     {
                         <form action="~/sign-out" id="sign-out" method="post">
@@ -69,12 +69,12 @@
                             </ul>
                         </form>
                     }*@
-            </div>
         </div>
-    </nav>
-    <div class="body-content">
-        <div class="@container">
-            @if (viewModel.ShowSidebar)
-            {
-                @RenderPage("BeginColumns.cshtml")
-            }
+    </div>
+</nav>
+<div class="body-content">
+<div class="@container">
+@if (viewModel.ShowSidebar)
+{
+    @RenderPage("BeginColumns.cshtml")
+}

@@ -10,10 +10,10 @@ namespace CroquetAustralia.Website.App.admin.home
 {
     public class AddPageViewModel : AdminViewModel, INewMarkdownPageViewModel
     {
+        private string _content;
         private string _directory;
         private string _gitRepositoryDirectory;
         private string _pageName;
-        private string _content;
         private string _submitButton;
 
         public AddPageViewModel(string gitRepositoryDirectory, string directory)

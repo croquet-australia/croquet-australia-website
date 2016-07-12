@@ -9,7 +9,7 @@
                         <h3>{{ vm.tournament.location }}</h3>
                     </div>
                     <div class="hidden-xs col-sm-2">
-                        <img src="/assets/aca-logo-page-background.png" alt="ACA" />
+                        <img src="/assets/aca-logo-page-background.png" alt="ACA"/>
                     </div>
                 </div>
             </header>
@@ -20,11 +20,11 @@
                     <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html'"></div>
                     <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html'"></div>
                     <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html'"></div>
-                    <div ng-if="vm.tournament.requiresPayment()" ng-include="'/app/tournaments/summary.html'"></div>
+                    <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/summary.html'"></div>
                     <ng-include src="'/app/tournaments/player.html'"></ng-include>
                     <div ng-if="vm.tournament.isDoubles" ng-include="'/app/tournaments/partner.html'"></div>
-                    <button ng-if="vm.tournament.requiresPayment()" class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
-                    <button ng-if="vm.tournament.requiresPayment()" class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
+                    <button ng-if="vm.requiresPayment()" class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
+                    <button ng-if="vm.requiresPayment()" class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
                     <button ng-if="vm.tournament.isEOI" class="btn btn-primary" ng-click="vm.sendEOI()">Send Expression of Interest</button>
                 </form>
             </section>
@@ -38,7 +38,7 @@
             <ng-include src="'/app/tournaments/processing.html'"></ng-include>
         </div>
         <div ng-show="vm.state === 'processed'">
-            <div ng-if="vm.tournament.requiresPayment()" ng-include="'/app/tournaments/processed.html'"></div>
+            <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/processed.html'"></div>
             <div ng-if="vm.tournament.isEOI" ng-include="'/app/tournaments/processed-eoi.html'"></div>
         </div>
     </div>

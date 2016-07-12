@@ -10,6 +10,7 @@ using Microsoft.Practices.ServiceLocation;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
+
 namespace CroquetAustralia.Website
 {
     public class Startup
@@ -27,9 +28,9 @@ namespace CroquetAustralia.Website
             // config.MapHttpAttributeRoutes();
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional, controller = "values" });
+                "DefaultApi",
+                "{controller}/{id}",
+                new {id = RouteParameter.Optional, controller = "values"});
 
             //app.UseNinjectMiddleware(NinjectWebCommon.bootstrapper.Kernel).UseNinjectWebApi(config);
         }

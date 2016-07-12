@@ -10,9 +10,9 @@ namespace CroquetAustralia.Website.Specifications.Steps
     [Binding]
     public class SignInSteps
     {
+        private readonly GivenData _given;
         private readonly WebApplication _webApplication;
         private readonly IWebDriver _webDriver;
-        private readonly GivenData _given;
 
         public SignInSteps(WebApplication webApplication, IWebDriver webDriver, GivenData given)
         {

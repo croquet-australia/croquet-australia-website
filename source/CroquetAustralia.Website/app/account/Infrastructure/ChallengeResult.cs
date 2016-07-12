@@ -26,7 +26,7 @@ namespace CroquetAustralia.Website.App.account.Infrastructure
 
         public override void ExecuteResult(ControllerContext context)
         {
-            var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
+            var properties = new AuthenticationProperties {RedirectUri = RedirectUri};
 
             if (UserId != null)
             {

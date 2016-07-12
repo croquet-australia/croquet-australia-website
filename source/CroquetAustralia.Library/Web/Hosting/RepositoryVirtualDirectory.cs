@@ -31,10 +31,19 @@ namespace CroquetAustralia.Library.Web.Hosting
             get { return Directory.EnumerateFiles(_fullPath).Select(fullPath => new RepositoryVirtualFile(GetFileVirtualPath(fullPath), fullPath)); }
         }
 
+        public override IEnumerable Children
+        {
+            get
+            {
+                LogTo.Warn("todo: Children");
+                throw new NotImplementedException("todo: Children");
+            }
+        }
+
         private string GetFileVirtualPath(string fullPath)
         {
             var fileName = Path.GetFileName(fullPath);
-            
+
             if (fileName == null)
             {
                 LogTo.Warn("Expected GetFileVirtualPath(fullPath: {0}) to include a file name.", fullPath);
@@ -45,15 +54,6 @@ namespace CroquetAustralia.Library.Web.Hosting
             LogTo.Debug("GetFileVirtualPath(fullPath: {0}) => {1}", fullPath, virtualPath);
 
             return virtualPath;
-        }
-
-        public override IEnumerable Children
-        {
-            get
-            {
-                LogTo.Warn("todo: Children");
-                throw new NotImplementedException("todo: Children");
-            }
         }
     }
 }

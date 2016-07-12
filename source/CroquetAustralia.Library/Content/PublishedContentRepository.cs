@@ -11,8 +11,8 @@ namespace CroquetAustralia.Library.Content
 {
     public class PublishedContentRepository : IPublishedContentRepository
     {
-        private readonly PublishedContentRepositorySettings _publishedRepositorySettings;
         private readonly GitContentRepositorySettings _gitRepositorySettings;
+        private readonly PublishedContentRepositorySettings _publishedRepositorySettings;
 
         public PublishedContentRepository(PublishedContentRepositorySettings publishedRepositorySettings, GitContentRepositorySettings gitRepositorySettings)
         {

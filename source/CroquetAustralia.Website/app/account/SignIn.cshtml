@@ -1,7 +1,6 @@
 ﻿@model CroquetAustralia.Website.App.account.SignInViewModel
-@using System.Web.Mvc.Html
 
-@using (Html.BeginForm("ExternalSignIn", "Account", new { Model.ReturnUrl }))
+@using (Html.BeginForm("ExternalSignIn", "Account", new {Model.ReturnUrl}))
 {
     @Html.AntiForgeryToken()
     foreach (var p in Model.AuthenticationDescriptions)

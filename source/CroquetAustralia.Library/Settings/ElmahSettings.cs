@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CroquetAustralia.Library.Settings
+﻿namespace CroquetAustralia.Library.Settings
 {
     public class ElmahSettings : AppSettings
     {

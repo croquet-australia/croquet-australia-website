@@ -6,7 +6,7 @@ using CroquetAustralia.Website;
 using Elmah;
 using WebActivatorEx;
 
-[assembly: PreApplicationStartMethod(typeof (ElmahConfig), "Start")]
+[assembly: PreApplicationStartMethod(typeof(ElmahConfig), "Start")]
 
 namespace CroquetAustralia.Website
 {
@@ -42,7 +42,7 @@ namespace CroquetAustralia.Website
                     var container = new ServiceContainer(sp(context));
                     var elmahSettings = new ElmahSettings();
 
-                    container.AddService(typeof (ErrorLog), GetErrorLog(elmahSettings));
+                    container.AddService(typeof(ErrorLog), GetErrorLog(elmahSettings));
 
                     return container;
                 }

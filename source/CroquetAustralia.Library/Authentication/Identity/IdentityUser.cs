@@ -17,14 +17,14 @@ namespace CroquetAustralia.Library.Authentication.Identity
             _domainUser = domainUser;
         }
 
-        public Guid Id
-        {
-            get { return _domainUser.Id; }
-        }
-
         public IEnumerable<Role> Roles
         {
             get { return _domainUser.Roles; }
+        }
+
+        public Guid Id
+        {
+            get { return _domainUser.Id; }
         }
 
         public string UserName
