@@ -70,7 +70,7 @@ gulp.task('bust-caches',
     ['bust-caches-css', 'bust-caches-js'],
     function() {
         var sourceDirectory = get_Deployment_Temp_Directory();
-        log('Renaming references in ' + sourceDirectory} + '.');
+        log('Renaming references in ' + sourceDirectory + '.');
 
         return gulp
             .src(sourceDirectory + '/**/*.*html')
