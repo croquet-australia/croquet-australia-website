@@ -7,7 +7,7 @@
 
     function AddPage() {
 
-        var vm = this;
+        const vm = this;
 
         vm.content = '';
     }

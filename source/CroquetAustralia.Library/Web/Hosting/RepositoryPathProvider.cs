@@ -45,7 +45,7 @@ namespace CroquetAustralia.Library.Web.Hosting
 
             // Surprisingly we have to run Exists again to check it this VirtualPathProvider want to get virtualPath.
             return _repository.FileExists(FormatVirtualPathForRepository(virtualPath))
-                ? new RepositoryVirtualFile(virtualPath, _repository.GetFullPath(virtualPath)) 
+                ? new RepositoryVirtualFile(virtualPath, _repository.GetFullPath(virtualPath))
                 : Previous.GetFile(virtualPath);
         }
 

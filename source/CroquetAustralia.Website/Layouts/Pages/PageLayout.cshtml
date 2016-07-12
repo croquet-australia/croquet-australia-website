@@ -2,7 +2,7 @@
 @using CroquetAustralia.Website.Layouts.Shared
 @* PageLayout.cshtml is called by ~/_PageStart.cshtml and is used by pages served from ~/App_Data/Content/Published folder. *@
 @{
-    var model = (IViewModel)(Model ?? new ViewModel());
+    var model = (IViewModel) (Model ?? new ViewModel());
 
     SharedLayout.Render(this, model);
 }

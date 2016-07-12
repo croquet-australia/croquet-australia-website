@@ -3,13 +3,19 @@
 <ul class="list-unstyled">
     @foreach (var directory in Model.Directories)
     {
-        <li><a href="@directory.Url"><i class="fa fa-folder"></i> @directory.Text</a></li>
+        <li>
+            <a href="@directory.Url">
+                <i class="fa fa-folder"></i> @directory.Text</a>
+        </li>
     }
 </ul>
 
 <ul class="list-unstyled">
     @foreach (var file in Model.Pages)
     {
-        <li><a href="@file.Url"><i class="fa fa-file"></i> @file.Text</a></li>
+        <li>
+            <a href="@file.Url">
+                <i class="fa fa-file"></i> @file.Text</a>
+        </li>
     }
 </ul>

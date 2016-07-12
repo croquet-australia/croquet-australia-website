@@ -1,16 +1,16 @@
 /*global module */
 
-module.exports = function () {
+module.exports = function() {
     'use strict';
 
-    var clientDirectory = '.';
+    const clientDirectory = '.';
 
-    var appJsFiles = ['./app/**/*.js', '!./App/_references.js'];
-    var layoutDirectory = './Layouts/Shared';
+    const appJsFiles = ['./app/**/*.js', '!./App/_references.js'];
+    const layoutDirectory = './Layouts/Shared';
     // todo: var cssDirectory = './app/css';
     // todo: var lessDirectory = './app/less';
 
-    var config = {
+    const config = {
 
         // Files
         // files are arrays for possible future use.
@@ -24,7 +24,7 @@ module.exports = function () {
 
         // Options
         injectOptions: {
-            ignorePath: clientDirectory.substr(1)   // clientDirectory expect for leading .
+            ignorePath: clientDirectory.substr(1) // clientDirectory expect for leading .
         },
 
         wiredepOptions: {

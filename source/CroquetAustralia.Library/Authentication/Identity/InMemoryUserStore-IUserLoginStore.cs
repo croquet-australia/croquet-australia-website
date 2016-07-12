@@ -21,21 +21,6 @@ namespace CroquetAustralia.Library.Authentication.Identity
             return Task.Run(() => AddLogin(user, login));
         }
 
-        private void AddLogin(IdentityUser user, UserLoginInfo login)
-        {
-            List<UserLoginInfo> logins;
-
-            var gotLogins = Users.TryGetValue(user, out logins);
-
-            if (!gotLogins)
-            {
-                throw new Exception(string.Format("Cannot get logins for user '{0}'.", user.Id));
-            }
-
-            // ReSharper disable once PossibleNullReferenceException
-            logins.Add(login);
-        }
-
         [return: AllowNull]
         public async Task<IdentityUser> FindAsync(UserLoginInfo login)
         {
@@ -59,6 +44,21 @@ namespace CroquetAustralia.Library.Authentication.Identity
         {
             LogTo.Trace("RemoveLoginAsync(IdentityUser user, UserLoginInfo login)");
             throw new NotImplementedException();
+        }
+
+        private void AddLogin(IdentityUser user, UserLoginInfo login)
+        {
+            List<UserLoginInfo> logins;
+
+            var gotLogins = Users.TryGetValue(user, out logins);
+
+            if (!gotLogins)
+            {
+                throw new Exception(string.Format("Cannot get logins for user '{0}'.", user.Id));
+            }
+
+            // ReSharper disable once PossibleNullReferenceException
+            logins.Add(login);
         }
     }
 }

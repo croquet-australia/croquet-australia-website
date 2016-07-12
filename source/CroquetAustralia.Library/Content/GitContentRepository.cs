@@ -13,8 +13,8 @@ namespace CroquetAustralia.Library.Content
     // todo: refactor for better integration with Casper's Git repository.
     public class GitContentRepository : IGitContentRepository
     {
-        private readonly GitContentRepositorySettings _settings;
         private readonly Lazy<IGitRepository> _gitRepository;
+        private readonly GitContentRepositorySettings _settings;
 
         public GitContentRepository(GitContentRepositorySettings settings)
         {
@@ -22,14 +22,14 @@ namespace CroquetAustralia.Library.Content
             _gitRepository = new Lazy<IGitRepository>(() => new GitRepository(new GitRepositorySettings(new DirectoryInfo(_settings.Directory), _settings.UserName, _settings.Password)));
         }
 
-        public string Directory
-        {
-            get { return _settings.Directory; }
-        }
-
         private IGitRepository GitRepository
         {
             get { return _gitRepository.Value; }
+        }
+
+        public string Directory
+        {
+            get { return _settings.Directory; }
         }
 
         public void CommitAndPush(string relativePath, Author author)
@@ -38,16 +38,6 @@ namespace CroquetAustralia.Library.Content
 
             Commit(relativePath, author);
             Push();
-        }
-
-        private void Commit(string relativePath, Author author)
-        {
-            GitRepository.CommitAsync(GitBranches.Master, relativePath, string.Format("Published page '{0}'.", relativePath.TrimEnd(".md")), author).Wait();
-        }
-
-        private void Push()
-        {
-            GitRepository.PushAsync(GitBranches.Master).Wait();
         }
 
         public void Start()
@@ -60,6 +50,16 @@ namespace CroquetAustralia.Library.Content
             }
         }
 
+        private void Commit(string relativePath, Author author)
+        {
+            GitRepository.CommitAsync(GitBranches.Master, relativePath, string.Format("Published page '{0}'.", relativePath.TrimEnd(".md")), author).Wait();
+        }
+
+        private void Push()
+        {
+            GitRepository.PushAsync(GitBranches.Master).Wait();
+        }
+
         private void CloneRepository()
         {
             LogTo.Info("Cloning content repository...");
@@ -68,7 +68,7 @@ namespace CroquetAustralia.Library.Content
 
             string clonedToDirectory;
 
-            var options = new CloneOptions()
+            var options = new CloneOptions
             {
                 BranchName = "master",
                 CredentialsProvider = GitCredentials,

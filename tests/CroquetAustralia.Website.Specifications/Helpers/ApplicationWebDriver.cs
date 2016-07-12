@@ -49,14 +49,14 @@ namespace CroquetAustralia.Website.Specifications.Helpers
             _instance.Dispose();
         }
 
-        public IWebElement FindElement(By @by)
+        public IWebElement FindElement(By by)
         {
-            return _instance.FindElement(@by);
+            return _instance.FindElement(by);
         }
 
-        public ReadOnlyCollection<IWebElement> FindElements(By @by)
+        public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
-            return _instance.FindElements(@by);
+            return _instance.FindElements(by);
         }
 
         public IOptions Manage()

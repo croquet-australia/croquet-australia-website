@@ -16,7 +16,7 @@ namespace CroquetAustralia.Library.Authentication.DAL
         {
             // todo: remove hard coding.
             // I'm not concerned about storing these email addresses in public Git repository because the email addresses are already publicly known.
-            _users = new List<DomainUser>()
+            _users = new List<DomainUser>
             {
                 new DomainUser(new Guid("BFCFD227-9019-40B1-8903-BEA017C08F32"), "Tim Murphy", "tim@26tp.com", new Role[] {new Developer(), new Editor()}, TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time")),
                 new DomainUser(new Guid("CB16A14A-A15F-4854-9C71-6CB07F5EBFA2"), "Susan Linge", "croquet.australia@gmail.com", new Role[] {new Editor()}, TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time"))

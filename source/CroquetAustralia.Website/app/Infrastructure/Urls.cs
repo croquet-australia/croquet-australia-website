@@ -12,6 +12,8 @@ namespace CroquetAustralia.Website.App.Infrastructure
                 AddNews = "~/admin/add-news";
             }
 
+            public static string AddNews { get; private set; }
+
             public static string Index()
             {
                 return Index("");
@@ -41,8 +43,6 @@ namespace CroquetAustralia.Website.App.Infrastructure
             {
                 return string.Format(@"~/admin?directory={0}", Path.Combine(requestedDirectory, directoryName).ToUnixSlashes());
             }
-
-            public static string AddNews { get; private set; }
         }
     }
 }

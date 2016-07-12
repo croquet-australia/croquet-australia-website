@@ -33,6 +33,7 @@ namespace CroquetAustralia.Library.Web.Mvc
             // Use of extension method & NullGuard ensures exception is thrown if owin context is null.
             return controller.HttpContext.GetOwinContext();
         }
+
         public static async Task<DomainUser> GetDomainUserAsync(this Controller controller, IUserRepository userRepository)
         {
             var user = controller.User;
