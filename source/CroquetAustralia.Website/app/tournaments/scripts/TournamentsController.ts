@@ -166,7 +166,7 @@ module App {
         };
 
         showHandicap() {
-            return this.getSelectedItems(this.tournament.events).length > 0;
+            return this.tournament !== null && this.getSelectedItems(this.tournament.events).length > 0;
         }
 
         showPage() {
