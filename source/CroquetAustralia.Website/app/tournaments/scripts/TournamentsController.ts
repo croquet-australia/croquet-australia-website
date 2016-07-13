@@ -38,6 +38,10 @@ module App {
             this.updateEventQuantity(selectedEventId);
         }
 
+        eventIsRequired() {
+            return (this.tournament !== null) && (this.tournament.functions.length === 0);
+        }
+
         newEntry(slug: string): void {
             window.location.href = slug;
         }
@@ -153,6 +157,10 @@ module App {
             }
         }
 
+        requiresPayment() {
+            return (this.tournament == null) || (!this.tournament.isEOI);
+        }
+
         showDietaryRequirements() {
             var show = false;
 
@@ -182,10 +190,6 @@ module App {
 
         showPage() {
             return true;
-        }
-
-        requiresPayment() {
-            return (this.tournament == null) || (!this.tournament.isEOI);
         }
 
         private getEventId(): string {

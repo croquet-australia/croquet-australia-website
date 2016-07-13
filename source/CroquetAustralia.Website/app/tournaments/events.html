@@ -13,13 +13,13 @@
             {{item.unitPrice | currency}}
         </div>
         <div class="quantity">
-            <input type="radio" name="eventId" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)" required>
+            <input type="radio" name="eventId" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)" ng-required="vm.eventIsRequired()">
         </div>
         <div class="total-price">
             {{item.totalPrice() | currency}}
         </div>
     </div>
-    <p ng-show="!(vm.eventId) && vm.submitted" class="help-block">Which event you are entering is required.</p>
+    <p ng-show="vm.eventIsRequired() && vm.submitted" class="help-block">Which event you are entering is required.</p>
     <div class="discount">
         <div>
             <label class="checkbox">
