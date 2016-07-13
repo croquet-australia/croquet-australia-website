@@ -174,7 +174,7 @@ module App {
         }
 
         requiresPayment() {
-            return !this.tournament.isEOI;
+            return (this.tournament == null) || (!this.tournament.isEOI);
         }
 
         private getEventId(): string {
