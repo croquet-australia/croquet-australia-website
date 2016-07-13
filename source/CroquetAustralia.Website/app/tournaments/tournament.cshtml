@@ -16,7 +16,7 @@
             @* Angular requires <form>...</form> is in this file. You cannot use <ng-include>...</ng-include> *@
             <section ng-show="vm.tournament.isOpen()">
                 <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                    <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html'"></div>
+                    <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html?cache-buster=1'"></div>
                     <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html'"></div>
                     <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html?cache-buster=1'"></div>
                     <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html'"></div>
