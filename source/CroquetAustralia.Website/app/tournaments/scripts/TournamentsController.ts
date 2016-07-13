@@ -166,7 +166,18 @@ module App {
         };
 
         showHandicap() {
-            return (this.tournament !== null) && (this.getSelectedItems(this.tournament.events).length > 0);
+            if (this.tournament == null) {
+                console.debug(`showHandicap() == false because tournament == null`);
+                return false;
+            }
+
+            const events = this.tournament.events;
+            const selectedItems = this.getSelectedItems(events);
+            const result = selectedItems.length > 0;
+
+            console.debug(`showHandicap() == ${result} because ${selectedItems.length} > 0`);
+
+            return result;
         }
 
         showPage() {
