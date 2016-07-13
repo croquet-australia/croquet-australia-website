@@ -6,16 +6,16 @@
         <div class="total-price">Total</div>
     </div>
     <div class="tournament-item" ng-repeat="item in vm.tournament.functions">
-        <div class="title">
+        <div class="title" ng-class="item.isInformationOnly ? 'information-only' : ''">
             {{item.title}}
         </div>
-        <div class="unit-price">
+        <div class="unit-price" ng-show="!(item.isInformationOnly)">
             {{item.unitPrice | currency}}
         </div>
-        <div class="quantity">
+        <div class="quantity" ng-show="!(item.isInformationOnly)">
             <input type="number" min="0" ng-model="item.quantity">
         </div>
-        <div class="total-price">
+        <div class="total-price" ng-show="!(item.isInformationOnly)">
             {{item.totalPrice() | currency}}
         </div>
     </div>

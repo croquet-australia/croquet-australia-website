@@ -5,7 +5,7 @@ module App {
         quantity: number;
         discountPercentage: number;
 
-        constructor(public itemType: string, public id: string, public title: string, public unitPrice: number) {
+        constructor(public itemType: string, public id: string, public title: string, public unitPrice: number, public isInformationOnly: boolean) {
             this.discountPercentage = 0;
         }
 

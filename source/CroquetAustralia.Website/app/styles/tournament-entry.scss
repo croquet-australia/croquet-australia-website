@@ -70,7 +70,6 @@
 
         .tournament-item-heading {
             @include make-row();
-
             font-weight: bold;
             padding-top: 2em;
         }
@@ -111,11 +110,14 @@
                 text-overflow: ellipsis;
             }
 
-
             .title {
                 @include make-xs-column(6);
                 @include make-sm-column(5);
                 @include make-md-column(8);
+            }
+
+            .title.information-only {
+                @include make-xs-column(12);
             }
 
             .unit-price {
@@ -140,7 +142,6 @@
                 text-align: right;
             }
         }
-
         // I don't understand why but quantity padding must be set after `.tournament-item, .tournament-item-heading { ... }`
         .tournament-item {
             .quantity {

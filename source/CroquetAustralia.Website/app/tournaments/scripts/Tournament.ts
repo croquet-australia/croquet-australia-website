@@ -62,7 +62,8 @@ module App {
                 dataItem.itemType,
                 dataItem.id,
                 dataItem.title,
-                dataItem.unitPrice
+                dataItem.unitPrice,
+                dataItem.isInformationOnly
             ));
         }
 
