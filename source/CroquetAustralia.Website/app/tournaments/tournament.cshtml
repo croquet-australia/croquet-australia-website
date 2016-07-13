@@ -18,7 +18,7 @@
                 <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
                     <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html'"></div>
                     <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html'"></div>
-                    <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html'"></div>
+                    <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html?cache-buster=1'"></div>
                     <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html'"></div>
                     <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/summary.html'"></div>
                     <ng-include src="'/app/tournaments/player.html'"></ng-include>
