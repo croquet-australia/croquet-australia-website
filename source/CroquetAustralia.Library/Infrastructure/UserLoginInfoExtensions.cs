@@ -6,7 +6,7 @@ namespace CroquetAustralia.Library.Infrastructure
     {
         public static string ToLogString(this UserLoginInfo login)
         {
-            return string.Format("{{LoginProvider: {0}, ProviderKey: {1}}}", login.LoginProvider, login.ProviderKey);
+            return $"{{LoginProvider: {login.LoginProvider}, ProviderKey: {login.ProviderKey}}}";
         }
     }
 }

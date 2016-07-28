@@ -14,7 +14,7 @@ namespace CroquetAustralia.Library.Infrastructure
             }
             catch (Exception exception)
             {
-                LogTo.WarnException(string.Format("ServiceLocator failed to get an instance of '{0}'. Using default service '{1}'.", typeof(TService), typeof(TDefaultService)), exception);
+                LogTo.WarnException($"ServiceLocator failed to get an instance of '{typeof(TService)}'. Using default service '{typeof(TDefaultService)}'.", exception);
                 return new TDefaultService();
             }
         }

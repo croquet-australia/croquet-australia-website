@@ -16,7 +16,8 @@ module App {
             public merchandiseClose: any /*moment*/,
             public isDoubles: boolean,
             public isEOI: boolean,
-            private moment: any /*moment*/) {
+            private moment: any /*moment*/,
+            public isUnder21: boolean) {
         }
 
         static deserialize(data: any, moment: any /*moment*/): Tournament {
@@ -34,6 +35,7 @@ module App {
             const merchandiseClose = this.deserializeMoment(data.merchandiseClose, moment);
             const isDoubles = data.isDoubles;
             const isEOI = data.isEOI;
+            const isUnder21 = data.isUnder21;
 
             const tournament = new Tournament(
                 id,
@@ -49,7 +51,8 @@ module App {
                 merchandiseClose,
                 isDoubles,
                 isEOI,
-                moment);
+                moment,
+                isUnder21);
             return tournament;
         }
 
@@ -63,7 +66,8 @@ module App {
                 dataItem.id,
                 dataItem.title,
                 dataItem.unitPrice,
-                dataItem.isInformationOnly
+                dataItem.isInformationOnly,
+                dataItem.currency
             ));
         }
 
@@ -83,6 +87,20 @@ module App {
             } else {
                 return `${canberraTime} on ${canberraDay} Eastern Summer Time, ${queenslandTime} in Queensland, ${adelaideTime} in South Australia and ${perthTime} in Western Australia.`;
             }
+        }
+
+        currencySymbol(): string {
+            if (this.showCurrency()) {
+                const events = this.events.filter(event => event.quantity > 0);
+
+                if (events.length === 0) {
+                    return '$';
+                }
+
+                return events[0].currencySymbol(true);
+            }
+
+            return '$';
         }
 
         updateDiscount(player: TournamentPlayer, partner: TournamentPlayer, payingForPartner: boolean) {
@@ -118,6 +136,22 @@ module App {
 
         isOpen(): boolean {
             return this.eventsAreOpen() || this.functionsAreOpen() || this.merchandiseAreOpen();
+        }
+
+        showCurrency(): boolean {
+            if (this.events.filter(event => event.currency !== 'AUD').length > 0) {
+                return true;
+            }
+
+            if (this.functions.filter(event => event.currency !== 'AUD').length > 0) {
+                return true;
+            }
+
+            if (this.merchandise.filter(event => event.currency !== 'AUD').length > 0) {
+                return true;
+            }
+
+            return false;
         }
 
         showFunctions(): boolean {

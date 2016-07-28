@@ -25,10 +25,10 @@ namespace CroquetAustralia.Library.ComponentModel.DataAnnotations
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            LogTo.Trace("IsValid(value: {0}, validationContext: {1})", value, validationContext);
+            LogTo.Trace($"IsValid(value: {value}, validationContext: {validationContext})");
 
             // Required attribute will handle empty page names.
-            if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+            if (string.IsNullOrWhiteSpace(value?.ToString()))
             {
                 return ValidationResult.Success;
             }
@@ -37,7 +37,7 @@ namespace CroquetAustralia.Library.ComponentModel.DataAnnotations
 
             if (viewModel == null)
             {
-                throw new Exception(string.Format("'{0}' must implement '{1}' for '{2}' to work with '{3}' property.", validationContext.ObjectType, typeof(INewMarkdownPageViewModel), typeof(NewMarkdownPageAttribute), validationContext.MemberName));
+                throw new Exception($"'{validationContext.ObjectType}' must implement '{typeof(INewMarkdownPageViewModel)}' for '{typeof(NewMarkdownPageAttribute)}' to work with '{validationContext.MemberName}' property.");
             }
 
             var fileName = FormatFileName(value.ToString());
@@ -45,7 +45,7 @@ namespace CroquetAustralia.Library.ComponentModel.DataAnnotations
             var fullPath = Path.Combine(directory, fileName);
 
             return _file.Exists(fullPath)
-                ? new ValidationResult(string.Format("Page '{0}' already exists.", value))
+                ? new ValidationResult($"Page '{value}' already exists.")
                 : ValidationResult.Success;
         }
 

@@ -35,7 +35,7 @@ namespace CroquetAustralia.Library.Infrastructure
                 return directory.FullName;
             }
 
-            var exception = new ArgumentException("Value does not contain a directory.", "fullFilePath");
+            var exception = new ArgumentException("Value does not contain a directory.", nameof(fullFilePath));
 
             exception.Data.Add("fullFilePath", fullFilePath);
 

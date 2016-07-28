@@ -5,7 +5,7 @@ module App {
         quantity: number;
         discountPercentage: number;
 
-        constructor(public itemType: string, public id: string, public title: string, public unitPrice: number, public isInformationOnly: boolean) {
+        constructor(public itemType: string, public id: string, public title: string, public unitPrice: number, public isInformationOnly: boolean, public currency: string) {
             this.discountPercentage = 0;
         }
 
@@ -14,6 +14,14 @@ module App {
                 return null;
             }
             return this.quantity * this.unitPrice * (100 - this.discountPercentage) / 100;
+        }
+
+        currencySymbol(showCurrency: boolean): string {
+            if (showCurrency) {
+                return this.currency + ' $';
+            }
+
+            return '$';
         }
     }
 }

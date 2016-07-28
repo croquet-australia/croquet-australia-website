@@ -22,15 +22,9 @@ namespace CroquetAustralia.Library.Content
             _gitRepository = new Lazy<IGitRepository>(() => new GitRepository(new GitRepositorySettings(new DirectoryInfo(_settings.Directory), _settings.UserName, _settings.Password)));
         }
 
-        private IGitRepository GitRepository
-        {
-            get { return _gitRepository.Value; }
-        }
+        private IGitRepository GitRepository => _gitRepository.Value;
 
-        public string Directory
-        {
-            get { return _settings.Directory; }
-        }
+        public string Directory => _settings.Directory;
 
         public void CommitAndPush(string relativePath, Author author)
         {
@@ -52,7 +46,7 @@ namespace CroquetAustralia.Library.Content
 
         private void Commit(string relativePath, Author author)
         {
-            GitRepository.CommitAsync(GitBranches.Master, relativePath, string.Format("Published page '{0}'.", relativePath.TrimEnd(".md")), author).Wait();
+            GitRepository.CommitAsync(GitBranches.Master, relativePath, $"Published page '{relativePath.TrimEnd(".md")}'.", author).Wait();
         }
 
         private void Push()
@@ -109,7 +103,7 @@ namespace CroquetAustralia.Library.Content
 
             if (types != SupportedCredentialTypes.UsernamePassword)
             {
-                throw new ArgumentOutOfRangeException("types", types, "Value must be SupportedCredentialTypes.UsernamePassword.");
+                throw new ArgumentOutOfRangeException(nameof(types), types, "Value must be SupportedCredentialTypes.UsernamePassword.");
             }
 
             return new UsernamePasswordCredentials

@@ -54,7 +54,7 @@ namespace CroquetAustralia.Library.Authentication.Identity
 
             if (!gotLogins)
             {
-                throw new Exception(string.Format("Cannot get logins for user '{0}'.", user.Id));
+                throw new Exception($"Cannot get logins for user '{user.Id}'.");
             }
 
             // ReSharper disable once PossibleNullReferenceException

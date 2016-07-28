@@ -17,15 +17,9 @@ namespace CroquetAustralia.Library.Authentication.Identity
             _domainUser = domainUser;
         }
 
-        public IEnumerable<Role> Roles
-        {
-            get { return _domainUser.Roles; }
-        }
+        public IEnumerable<Role> Roles => _domainUser.Roles;
 
-        public Guid Id
-        {
-            get { return _domainUser.Id; }
-        }
+        public Guid Id => _domainUser.Id;
 
         public string UserName
         {
@@ -45,7 +39,7 @@ namespace CroquetAustralia.Library.Authentication.Identity
 
         internal string ToLogString()
         {
-            return string.Format("{{Id: {0}, UserName: {1}}}", Id, UserName);
+            return $"{{Id: {Id}, UserName: {UserName}}}";
         }
 
         private bool Equals([AllowNull] IdentityUser identityUser)

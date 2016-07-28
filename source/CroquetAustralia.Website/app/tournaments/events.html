@@ -10,17 +10,17 @@
             {{item.title}}
         </div>
         <div class="unit-price">
-            {{item.unitPrice | currency}}
+            {{item.unitPrice | currency : item.currencySymbol(vm.tournament.showCurrency())}}
         </div>
         <div class="quantity">
             <input type="radio" name="eventId" ng-model="vm.eventId" value="{{item.id}}" ng-change="vm.eventChanged(vm.eventId)" ng-required="vm.eventIsRequired()">
         </div>
         <div class="total-price">
-            {{item.totalPrice() | currency}}
+            {{item.totalPrice() | currency : item.currencySymbol(vm.tournament.showCurrency())}}
         </div>
     </div>
     <p ng-show="vm.eventIsRequired() && vm.submitted" class="help-block">Which event you are entering is required.</p>
-    <div class="discount">
+    <div class="discount" ng-show="vm.showDiscount()">
         <div>
             <label class="checkbox">
                 <input type="checkbox" ng-model="vm.player.under21" ng-change="vm.discountChanged()">I am under 21 (as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.

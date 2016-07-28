@@ -46,16 +46,37 @@ module App {
             window.location.href = slug;
         }
 
-        payByEFT() {
-            this.payBy(0);
+        onPayByEftRejected(response) {
+            this.state = 'show-form';
+
+            if (response.status === -1) {
+                alert(`Your entry could not be saved. Please contact support quoting error 'Likely CORS configuration error.'.`);
+
+            } else if (response.status === 500 && (response.data.ExceptionMessage)) {
+                alert(`Your entry could not be saved. Please contact support quoting error '${response.data.ExceptionMessage}'.`);
+
+            } else if (response.status === 400 && (response.data.ModelState)) {
+                alert(`Your entry could not be saved because:\n\n${this.getModelStateErrorMessage(response.data.ModelState)}`);
+
+            } else {
+                alert(`Your entry could not be saved. Please contact support quoting error 'status = ${response.status}, ${response.statusText}'.`);
+            }
+        }
+
+        onPayByFulfilled(response) {
+            this.state = 'processed';
+        }
+
+        payByCash() {
+            this.payBy(2);
         }
 
         payByCheque() {
             this.payBy(1);
         }
 
-        sendEOI() {
-            this.payBy(2);
+        payByEFT() {
+            this.payBy(0);
         }
 
         payingForChanged(): void {
@@ -67,6 +88,120 @@ module App {
             return this.payingFor === 'myself-and-partner';
         }
 
+        requiresPayment() {
+            return (this.tournament == null) || (!this.tournament.isEOI);
+        }
+
+        showDietaryRequirements() {
+            var show = false;
+
+            this.tournament.functions.forEach((item: TournamentItem) => {
+                if (item.quantity > 0) {
+                    show = true;
+                }
+            });
+
+            return show;
+        };
+
+        sendEOI() {
+            this.payBy(3);
+        }
+
+        showDiscount() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return !this.tournament.isUnder21;
+        }
+
+        showHandicap() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            const events = this.tournament.events;
+            const selectedItems = this.getSelectedItems(events);
+            const result = selectedItems.length > 0;
+
+            return result;
+        }
+
+        showNonResident() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return this.tournament.isUnder21;
+        }
+
+        showPage() {
+            return true;
+        }
+
+        showPayByCash() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return this.tournament.isUnder21 && this.player.nonResident;
+        }
+
+        showPayByCheque() {
+            if (this.tournament == null) {
+                return true;
+            }
+
+            return !this.tournament.isUnder21;
+        }
+
+        showPayByEFT() {
+            return !this.showPayByCash();
+        }
+
+        showYearOfBirth() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return this.tournament.isUnder21;
+        }
+
+        private getEventId(): string {
+            const items = this.getSelectedItems(this.tournament.events);
+
+            if (items.length === 0) {
+                return null;
+            }
+
+            return items[0].id;
+        }
+
+        private getModelStateErrorMessage(modelStateDictionary: any): string {
+            let errors = '';
+
+            for (let key in modelStateDictionary) {
+                if (modelStateDictionary.hasOwnProperty(key)) {
+                    const modelState = modelStateDictionary[key];
+
+                    for (let i = 0; i < modelState.length; i++) {
+                        const error = modelState[i];
+
+                        if (errors.indexOf(error) < 0) {
+                            errors = (errors === '' ? '' : errors + '\n') + error;
+                        }
+                    }
+                }
+            }
+
+            return errors;
+        }
+
+        private getSelectedItems(items: TournamentItem[]): TournamentItem[] {
+            return items.filter(item => item.quantity > 0);
+        }
+
         private getTournament(clientResource: string) {
 
             const apiUrl = `${webConfig.webApi.baseUri}${clientResource}`;
@@ -74,6 +209,11 @@ module App {
             this.$http.get(apiUrl)
                 .then(response => {
                     this.tournament = Tournament.deserialize(response.data, this.moment);
+
+                    if (this.tournament.isUnder21) {
+                        this.player.nonResident = false;
+                    }
+
                     this.state = 'show-form';
                 });
         }
@@ -112,7 +252,9 @@ module App {
                         phone: this.player.phone,
                         handicap: this.player.handicap,
                         under21: this.player.under21,
-                        fullTimeStudentUnder25: this.player.fullTimeStudentUnder25
+                        fullTimeStudentUnder25: this.player.fullTimeStudentUnder25,
+                        yearOfBirth: this.player.yearOfBirth,
+                        nonResident: this.player.nonResident
                     },
                     partner: {
                         firstName: this.partner.firstName,
@@ -121,7 +263,9 @@ module App {
                         phone: this.partner.phone,
                         handicap: this.partner.handicap,
                         under21: this.partner.under21,
-                        fullTimeStudentUnder25: this.partner.fullTimeStudentUnder25
+                        fullTimeStudentUnder25: this.partner.fullTimeStudentUnder25,
+                        yearOfBirth: this.partner.yearOfBirth,
+                        nonResident: this.partner.nonResident
                     }
                 };
 
@@ -134,96 +278,6 @@ module App {
                 alert(`Your entry could not be saved. Please contact support quoting error the following error:\n\n${e}`);
                 this.state = 'show-form';
             }
-        }
-
-        onPayByFulfilled(response) {
-            this.state = 'processed';
-        }
-
-        onPayByEftRejected(response) {
-            this.state = 'show-form';
-
-            if (response.status === -1) {
-                alert(`Your entry could not be saved. Please contact support quoting error 'Likely CORS configuration error.'.`);
-
-            } else if (response.status === 500 && (response.data.ExceptionMessage)) {
-                alert(`Your entry could not be saved. Please contact support quoting error '${response.data.ExceptionMessage}'.`);
-
-            } else if (response.status === 400 && (response.data.ModelState)) {
-                alert(`Your entry could not be saved because:\n\n${this.getModelStateErrorMessage(response.data.ModelState)}`);
-
-            } else {
-                alert(`Your entry could not be saved. Please contact support quoting error 'status = ${response.status}, ${response.statusText}'.`);
-            }
-        }
-
-        requiresPayment() {
-            return (this.tournament == null) || (!this.tournament.isEOI);
-        }
-
-        showDietaryRequirements() {
-            var show = false;
-
-            this.tournament.functions.forEach((item: TournamentItem) => {
-                if (item.quantity > 0) {
-                    show = true;
-                }
-            });
-
-            return show;
-        };
-
-        showHandicap() {
-            if (this.tournament == null) {
-                console.debug(`showHandicap() == false because tournament == null`);
-                return false;
-            }
-
-            const events = this.tournament.events;
-            const selectedItems = this.getSelectedItems(events);
-            const result = selectedItems.length > 0;
-
-            console.debug(`showHandicap() == ${result} because ${selectedItems.length} > 0`);
-
-            return result;
-        }
-
-        showPage() {
-            return true;
-        }
-
-        private getEventId(): string {
-            const items = this.getSelectedItems(this.tournament.events);
-
-            if (items.length === 0) {
-                return null;
-            }
-
-            return items[0].id;
-        }
-
-        private getSelectedItems(items: TournamentItem[]): TournamentItem[] {
-            return items.filter(item => item.quantity > 0);
-        }
-
-        private getModelStateErrorMessage(modelStateDictionary: any): string {
-            let errors = '';
-
-            for (let key in modelStateDictionary) {
-                if (modelStateDictionary.hasOwnProperty(key)) {
-                    const modelState = modelStateDictionary[key];
-
-                    for (let i = 0; i < modelState.length; i++) {
-                        const error = modelState[i];
-
-                        if (errors.indexOf(error) < 0) {
-                            errors = (errors === '' ? '' : errors + '\n') + error;
-                        }
-                    }
-                }
-            }
-
-            return errors;
         }
 
         private updateDiscount() {

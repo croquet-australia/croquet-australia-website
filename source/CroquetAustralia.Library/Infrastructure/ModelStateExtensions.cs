@@ -12,7 +12,7 @@ namespace CroquetAustralia.Library.Infrastructure
                 let fieldName = fieldErrors.Key
                 let errors = fieldErrors.Value.Errors
                 from error in errors
-                select string.Format("{0} => message: '{1}', exception: '{2}'", fieldName, error.ErrorMessage, error.Exception);
+                select $"{fieldName} => message: '{error.ErrorMessage}', exception: '{error.Exception}'";
 
             return string.Join(Environment.NewLine, errorLines);
         }

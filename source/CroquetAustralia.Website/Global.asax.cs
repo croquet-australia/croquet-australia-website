@@ -45,14 +45,11 @@ namespace CroquetAustralia.Website
 
             var httpException = e.Exception as HttpException;
 
-            if (httpException != null)
+            if (httpException?.GetHttpCode() == 404)
             {
-                if (httpException.GetHttpCode() == 404)
-                {
-                    LogTo.Warn("Page not found '{0}'.", Context.Request.Url.AbsolutePath);
-                    e.Dismiss();
-                    return;
-                }
+                LogTo.Warn($"Page not found '{Context.Request.Url.AbsolutePath}'.");
+                e.Dismiss();
+                return;
             }
 
             var baseException = e.Exception.GetBaseException();

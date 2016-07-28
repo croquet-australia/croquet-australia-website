@@ -12,7 +12,7 @@ namespace CroquetAustralia.Library.Infrastructure
             var text = markdownString.ToString();
             var lines = text.ToLines(true);
             var heading1Line = lines.FirstOrDefault(line => line.StartsWith("#") && !line.StartsWith("##"));
-            var pageTitle = heading1Line == null ? relativeUri.Humanize() : heading1Line.TextAfter("#").Trim();
+            var pageTitle = heading1Line?.TextAfter("#").Trim() ?? relativeUri.Humanize();
 
             return pageTitle;
         }

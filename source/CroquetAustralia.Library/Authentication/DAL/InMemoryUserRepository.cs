@@ -42,7 +42,7 @@ namespace CroquetAustralia.Library.Authentication.DAL
 
             if (domainUser == null)
             {
-                throw new Exception(string.Format("Cannot find user '{0}'.", id));
+                throw new Exception($"Cannot find user '{id}'.");
             }
 
             return Task.FromResult(domainUser);

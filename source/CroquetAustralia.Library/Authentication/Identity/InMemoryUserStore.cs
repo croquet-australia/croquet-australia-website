@@ -32,7 +32,7 @@ namespace CroquetAustralia.Library.Authentication.Identity
 
             if (!added)
             {
-                throw new Exception(string.Format("Cannot add identity user '{0}'.", user.Id));
+                throw new Exception($"Cannot add identity user '{user.Id}'.");
             }
         }
 

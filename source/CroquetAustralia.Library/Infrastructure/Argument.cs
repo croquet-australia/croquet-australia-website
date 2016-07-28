@@ -18,7 +18,7 @@ namespace CroquetAustralia.Library.Infrastructure
         {
             if (value == null)
             {
-                throw new ArgumentNullException("paramName");
+                throw new ArgumentNullException(nameof(paramName));
             }
         }
     }

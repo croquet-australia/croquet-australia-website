@@ -1,4 +1,5 @@
 <section class="player">
+
     <h2>Your Contact Details</h2>
 
     <div ng-class="{ 'has-error' : tournamentEntryForm.firstName.$invalid && (!tournamentEntryForm.firstName.$pristine || vm.submitted) }">
@@ -40,4 +41,20 @@
             <p ng-show="tournamentEntryForm.handicap.$invalid && (!tournamentEntryForm.handicap.$pristine || vm.submitted)" class="help-block">Your handicap is required.</p>
         </div>
     </div>
+
+    <div ng-show="vm.showYearOfBirth()" ng-class="{ 'has-error' : tournamentEntryForm.yearOfBirth.$invalid && (!tournamentEntryForm.yearOfBirth.$pristine || vm.submitted) }">
+        <label for="yearOfBirth">Year you were born</label>
+        <div>
+            <input type="number" name="yearOfBirth" id="yearOfBirth" ng-model="vm.player.yearOfBirth" placeholder="1998" ng-required="vm.showYearOfBirth()" min="1995" max="2010">
+            <p ng-show="tournamentEntryForm.yearOfBirth.$invalid && (!tournamentEntryForm.yearOfBirth.$pristine || vm.submitted)" class="help-block">Your year of birth is required and must be between 1995 and 2010.</p>
+        </div>
+    </div>
+
+    <div ng-show="vm.showNonResident()">
+        <label class="checkbox">
+            <input type="checkbox" ng-model="vm.player.nonResident">I do not live in Australia.
+        </label>
+    </div>
+
 </section>
+

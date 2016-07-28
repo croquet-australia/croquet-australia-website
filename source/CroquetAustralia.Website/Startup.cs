@@ -18,21 +18,7 @@ namespace CroquetAustralia.Website
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            ConfigureWebApi(app);
-        }
-
-        private void ConfigureWebApi(IAppBuilder app)
-        {
-            var config = new HttpConfiguration();
-
-            // config.MapHttpAttributeRoutes();
-            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
-            config.Routes.MapHttpRoute(
-                "DefaultApi",
-                "{controller}/{id}",
-                new {id = RouteParameter.Optional, controller = "values"});
-
-            //app.UseNinjectMiddleware(NinjectWebCommon.bootstrapper.Kernel).UseNinjectWebApi(config);
+            ConfigureWebsite();
         }
 
         private static void ConfigureAuth(IAppBuilder app)
@@ -54,6 +40,20 @@ namespace CroquetAustralia.Website
                 ClientId = WebConfigurationManager.AppSettings["OAuth:Google:ClientId"],
                 ClientSecret = WebConfigurationManager.AppSettings["OAuth:Google:ClientSecret"]
             });
+        }
+
+        private static void ConfigureWebsite()
+        {
+            var config = new HttpConfiguration();
+
+            // config.MapHttpAttributeRoutes();
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            config.Routes.MapHttpRoute(
+                "DefaultApi",
+                "{controller}/{id}",
+                new { id = RouteParameter.Optional, controller = "values" });
+
+            //app.UseNinjectMiddleware(NinjectWebCommon.bootstrapper.Kernel).UseNinjectWebApi(config);
         }
     }
 }

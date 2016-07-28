@@ -56,14 +56,14 @@
             }
 
             .title {
-                @include make-xs-column(9);
-                @include make-sm-column(10);
+                @include make-xs-column(6);
+                @include make-sm-column(9);
                 @include make-md-column(10);
             }
 
             .total-price {
-                @include make-xs-column(3);
-                @include make-sm-column(2);
+                @include make-xs-column(6);
+                @include make-sm-column(3);
                 @include make-md-column(2);
             }
         }
@@ -112,8 +112,8 @@
 
             .title {
                 @include make-xs-column(6);
-                @include make-sm-column(5);
-                @include make-md-column(8);
+                @include make-sm-column(4);
+                @include make-md-column(7);
             }
 
             .title.information-only {
@@ -134,8 +134,8 @@
 
             .total-price {
                 @extend .hidden-xs;
-                @include make-sm-column(2);
-                @include make-md-column(1);
+                @include make-sm-column(3);
+                @include make-md-column(2);
             }
 
             .unit-price, .quantity, .total-price {
@@ -188,6 +188,16 @@
                     @include make-md-column(2);
                     @extend .control-label;
                     text-align: left;
+                }
+
+                label.checkbox {
+                    @include make-sm-column(12);
+                    font-weight: bold;
+                    margin-left: 1.5em;
+                }
+
+                input[type=checkbox], input[type=radio] {
+                    transform: scale(1.5);
                 }
 
                 div {

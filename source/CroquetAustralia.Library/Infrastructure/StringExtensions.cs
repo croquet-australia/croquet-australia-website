@@ -13,7 +13,7 @@ namespace CroquetAustralia.Library.Infrastructure
         [return: AllowNull]
         public static string AsTrimmedString([AllowNull, AllowEmpty] this object value)
         {
-            return value == null ? null : value.ToString().Trim();
+            return value?.ToString().Trim();
         }
 
         public static string TrimSlashes([AllowNull, AllowEmpty] this string value)

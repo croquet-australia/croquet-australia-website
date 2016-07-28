@@ -4,7 +4,7 @@
             Total Payable
         </div>
         <div class="total-price">
-            {{ vm.tournament.totalPayable() | currency }}
+            {{ vm.tournament.totalPayable() | currency : vm.tournament.currencySymbol() }}
         </div>
     </div>
 </section>

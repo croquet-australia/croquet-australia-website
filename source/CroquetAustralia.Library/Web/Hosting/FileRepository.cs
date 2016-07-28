@@ -15,7 +15,7 @@ namespace CroquetAustralia.Library.Web.Hosting
 
             if (!Directory.Exists(rootDirectory))
             {
-                throw new ArgumentException(string.Format("rootDirectory {0} does not exist.", rootDirectory), "rootDirectory");
+                throw new ArgumentException($"rootDirectory {rootDirectory} does not exist.", nameof(rootDirectory));
             }
             _rootDirectory = rootDirectory;
         }
