@@ -1,2 +1,5 @@
 [config]
 command = deploy.cmd
+
+# Give NPM time to download & install all packages
+SCM_COMMAND_IDLE_TIMEOUT=1200
