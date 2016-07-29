@@ -51,16 +51,16 @@
       <HintPath>..\..\packages\Anotar.NLog.Fody.3.1.0\lib\Anotar.NLog.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Casper.Core, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Core.dll</HintPath>
+    <Reference Include="Casper.Core, Version=0.34.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.34.0\lib\net45\Casper.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Data.Git, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Data.Git.dll</HintPath>
+    <Reference Include="Casper.Data.Git, Version=0.34.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.34.0\lib\net45\Casper.Data.Git.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Casper.Domain, Version=0.33.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Casper.0.33.0\lib\net45\Casper.Domain.dll</HintPath>
+    <Reference Include="Casper.Domain, Version=0.34.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Casper.0.34.0\lib\net45\Casper.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CommonServiceLocator.NinjectAdapter.Unofficial, Version=3.2.2.0, Culture=neutral, processorArchitecture=MSIL">
