@@ -9,7 +9,7 @@ module App {
         handicap: number;
         under21: boolean;
         fullTimeStudentUnder25: boolean;
-        dateOfBirth: /* nullable */ number;
+        dateOfBirth: /* nullable */ Date;
         nonResident: /* nullable */ boolean;
 
         constructor() {
