@@ -17,7 +17,8 @@ module App {
             public isDoubles: boolean,
             public isEOI: boolean,
             private moment: any /*moment*/,
-            public isUnder21: boolean) {
+            public isUnder21: boolean,
+            public dateOfBirthRange: DateOfBirthRange) {
         }
 
         static deserialize(data: any, moment: any /*moment*/): Tournament {
@@ -36,6 +37,7 @@ module App {
             const isDoubles = data.isDoubles;
             const isEOI = data.isEOI;
             const isUnder21 = data.isUnder21;
+            const dateOfBirthRange = this.deserializeDateOfBirthRange(data.dateOfBirthRange);
 
             const tournament = new Tournament(
                 id,
@@ -52,12 +54,14 @@ module App {
                 isDoubles,
                 isEOI,
                 moment,
-                isUnder21);
+                isUnder21,
+                dateOfBirthRange);
+
             return tournament;
         }
 
-        private static deserializeMoment(data: any, moment: any /*moment*/): any {
-            return moment.tz(data.dateTime, data.timeZone);
+        private static deserializeDateOfBirthRange(data: any): DateOfBirthRange {
+            return (data) ? new DateOfBirthRange(data.minimum, data.maximum) : null;
         }
 
         private static deserializeLineItems(data: any): TournamentItem[] {
@@ -69,6 +73,10 @@ module App {
                 dataItem.isInformationOnly,
                 dataItem.currency
             ));
+        }
+
+        private static deserializeMoment(data: any, moment: any /*moment*/): any {
+            return moment.tz(data.dateTime, data.timeZone);
         }
 
         closedOn(): string {
