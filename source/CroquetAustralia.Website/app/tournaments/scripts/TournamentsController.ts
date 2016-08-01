@@ -39,7 +39,7 @@ module App {
         }
 
         eventIsRequired() {
-            return (this.tournament !== null) && (this.tournament.functions.length === 0);
+            return (this.tournament !== null) && (this.tournament.functions.length === 0) && !(this.eventId);
         }
 
         newEntry(slug: string): void {
