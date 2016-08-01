@@ -51,7 +51,7 @@ namespace CroquetAustralia.Website
             config.Routes.MapHttpRoute(
                 "DefaultApi",
                 "{controller}/{id}",
-                new { id = RouteParameter.Optional, controller = "values" });
+                new {id = RouteParameter.Optional, controller = "values"});
 
             //app.UseNinjectMiddleware(NinjectWebCommon.bootstrapper.Kernel).UseNinjectWebApi(config);
         }
