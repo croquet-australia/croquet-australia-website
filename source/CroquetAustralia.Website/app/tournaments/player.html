@@ -42,11 +42,11 @@
         </div>
     </div>
 
-    <div ng-show="vm.showYearOfBirth()" ng-class="{ 'has-error' : tournamentEntryForm.yearOfBirth.$invalid && (!tournamentEntryForm.yearOfBirth.$pristine || vm.submitted) }">
-        <label for="yearOfBirth">Year you were born</label>
+    <div ng-show="vm.showDateOfBirth()" ng-class="{ 'has-error' : tournamentEntryForm.dateOfBirth.$invalid && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted) }">
+        <label for="dateOfBirth">Year you were born</label>
         <div>
-            <input type="number" name="yearOfBirth" id="yearOfBirth" ng-model="vm.player.yearOfBirth" placeholder="1998" ng-required="vm.showYearOfBirth()" min="1995" max="2010">
-            <p ng-show="tournamentEntryForm.yearOfBirth.$invalid && (!tournamentEntryForm.yearOfBirth.$pristine || vm.submitted)" class="help-block">Your year of birth is required and must be between 1995 and 2010.</p>
+            <input type="date" name="dateOfBirth" id="dateOfBirth" ng-model="vm.player.dateOfBirth" ng-required="vm.showDateOfBirth()" min="{{vm.tournament.dateOfBirthRange.minimum | date:'yyyy-MM-dd'}}" max="{{vm.tournament.dateOfBirthRange.maximum | date:'yyyy-MM-dd'}}">
+            <p ng-show="tournamentEntryForm.dateOfBirth.$invalid && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted)" class="help-block">Your date of birth is required and must be between {{vm.tournament.dateOfBirthRange.minimum | date:'mediumDate'}} and {{vm.tournament.dateOfBirthRange.maximum | date:'mediumDate'}}.</p>
         </div>
     </div>
 
@@ -57,4 +57,3 @@
     </div>
 
 </section>
-

@@ -885,6 +885,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <TypeScriptCompile Include="App\tournaments\scripts\DateOfBirthRange.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\Tournament.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentItem.ts" />
     <TypeScriptCompile Include="App\tournaments\scripts\TournamentPlayer.ts" />

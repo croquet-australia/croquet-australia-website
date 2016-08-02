@@ -9,11 +9,11 @@ module App {
         handicap: number;
         under21: boolean;
         fullTimeStudentUnder25: boolean;
-        yearOfBirth: /* nullable */ number;
+        dateOfBirth: /* nullable */ Date;
         nonResident: /* nullable */ boolean;
 
         constructor() {
-            this.yearOfBirth = null;
+            this.dateOfBirth = null;
             this.nonResident = null;
         }
     }

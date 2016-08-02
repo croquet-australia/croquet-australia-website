@@ -39,7 +39,7 @@ module App {
         }
 
         eventIsRequired() {
-            return (this.tournament !== null) && (this.tournament.functions.length === 0);
+            return (this.tournament !== null) && (this.tournament.functions.length === 0) && !(this.eventId);
         }
 
         newEntry(slug: string): void {
@@ -160,7 +160,7 @@ module App {
             return !this.showPayByCash();
         }
 
-        showYearOfBirth() {
+        showDateOfBirth() {
             if (this.tournament == null) {
                 return false;
             }
@@ -253,7 +253,7 @@ module App {
                         handicap: this.player.handicap,
                         under21: this.player.under21,
                         fullTimeStudentUnder25: this.player.fullTimeStudentUnder25,
-                        yearOfBirth: this.player.yearOfBirth,
+                        dateOfBirth: this.player.dateOfBirth,
                         nonResident: this.player.nonResident
                     },
                     partner: {
@@ -264,7 +264,7 @@ module App {
                         handicap: this.partner.handicap,
                         under21: this.partner.under21,
                         fullTimeStudentUnder25: this.partner.fullTimeStudentUnder25,
-                        yearOfBirth: this.partner.yearOfBirth,
+                        dateOfBirth: this.partner.dateOfBirth,
                         nonResident: this.partner.nonResident
                     }
                 };
