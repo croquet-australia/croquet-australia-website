@@ -43,7 +43,7 @@
     </div>
 
     <div ng-show="vm.showDateOfBirth()" ng-class="{ 'has-error' : tournamentEntryForm.dateOfBirth.$invalid && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted) }">
-        <label for="dateOfBirth">Year you were born</label>
+        <label for="dateOfBirth">Date of Birth</label>
         <div>
             <input type="date" name="dateOfBirth" id="dateOfBirth" ng-model="vm.player.dateOfBirth" ng-required="vm.showDateOfBirth()" min="{{vm.tournament.dateOfBirthRange.minimum | date:'yyyy-MM-dd'}}" max="{{vm.tournament.dateOfBirthRange.maximum | date:'yyyy-MM-dd'}}">
             <p ng-show="tournamentEntryForm.dateOfBirth.$invalid && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted)" class="help-block">Your date of birth is required and must be between {{vm.tournament.dateOfBirthRange.minimum | date:'mediumDate'}} and {{vm.tournament.dateOfBirthRange.maximum | date:'mediumDate'}}.</p>
