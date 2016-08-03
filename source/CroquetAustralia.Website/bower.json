@@ -12,7 +12,6 @@
     "bower_components"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
     "angular": "~1.5.8",
     "bootstrap-submenu": "~1.2.11",
     "ng-file-upload": "~4.1.3",
@@ -25,6 +24,9 @@
   },
   "overrides": {
     "bootstrap-sass": {
+      "main": []
+    },
+    "jquery": {
       "main": []
     }
   },
