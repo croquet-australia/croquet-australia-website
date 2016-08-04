@@ -16,6 +16,8 @@ function modules() {
         'angularUUID2',
         'codemwnci.markdown-edit-preview',
         'ngFileUpload',
+        'ngAnimate',
+        'ui.bootstrap',
 
         // Application Features
         'App.AddNews',

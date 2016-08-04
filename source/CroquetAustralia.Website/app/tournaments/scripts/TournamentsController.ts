@@ -14,12 +14,14 @@ module App {
         submitted: boolean;
         state: string;
         payingFor: string;
+        datepickerOptions: any;
 
         constructor(private $http, private uuid2, private $scope, private $location, private moment) {
 
             this.player = new TournamentPlayer();
             this.partner = new TournamentPlayer();
             this.payingFor = '';
+            this.datepickerOptions = {};
 
             this.getTournament($location.path());
 
@@ -28,6 +30,36 @@ module App {
 
         activate() {
             // future use
+        }
+
+        dateOfBirthIsInvalid(): boolean {
+            if (!this.showDateOfBirth()) {
+                console.debug('DoB is valid because DoB is not visible');
+                return false;
+            }
+
+            if (!(this.player.dateOfBirth)) {
+                console.log(`DoB is invalid because DoB is ${this.player.dateOfBirth}`);
+                return true;
+            }
+
+            if (this.player.dateOfBirth.toString() === 'undefined') {
+                console.debug('DoB is invalid because DoB is undefined');
+                return true;
+            }
+
+            if (this.player.dateOfBirth < this.tournament.dateOfBirthRange.minimum) {
+                console.log(`DoB is invalid because ${this.player.dateOfBirth} < ${this.tournament.dateOfBirthRange.minimum}`);
+                return true;
+            }
+
+            if (this.player.dateOfBirth > this.tournament.dateOfBirthRange.maximum) {
+                console.log(`DoB is invalid because ${this.player.dateOfBirth} > ${this.tournament.dateOfBirthRange.maximum}`);
+                return true;
+            }
+
+            console.log(`DoB is valid`);
+            return false;
         }
 
         discountChanged() {
@@ -214,6 +246,13 @@ module App {
                         this.player.nonResident = false;
                     }
 
+                    if (this.showDateOfBirth()) {
+                        this.datepickerOptions = {
+                            minDate: this.tournament.dateOfBirthRange.minimum,
+                            maxDate: this.tournament.dateOfBirthRange.maximum
+                        };
+                    }
+
                     this.state = 'show-form';
                 });
         }
@@ -271,8 +310,8 @@ module App {
 
                 this.$http.post(url, JSON.stringify(data))
                     .then(
-                        response => this.onPayByFulfilled(response),
-                        response => this.onPayByEftRejected(response));
+                    response => this.onPayByFulfilled(response),
+                    response => this.onPayByEftRejected(response));
 
             } catch (e) {
                 alert(`Your entry could not be saved. Please contact support quoting error the following error:\n\n${e}`);
