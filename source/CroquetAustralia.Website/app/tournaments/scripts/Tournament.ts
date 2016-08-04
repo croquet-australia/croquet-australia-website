@@ -61,7 +61,8 @@ module App {
         }
 
         private static deserializeDateOfBirthRange(data: any): DateOfBirthRange {
-            return (data) ? new DateOfBirthRange(data.minimum, data.maximum) : null;
+            // todo: handle timezone
+            return (data) ? new DateOfBirthRange(new Date(data.minimum), new Date(data.maximum)) : null;
         }
 
         private static deserializeLineItems(data: any): TournamentItem[] {
