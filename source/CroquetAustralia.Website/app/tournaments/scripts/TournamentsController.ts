@@ -310,8 +310,8 @@ module App {
 
                 this.$http.post(url, JSON.stringify(data))
                     .then(
-                    response => this.onPayByFulfilled(response),
-                    response => this.onPayByEftRejected(response));
+                        response => this.onPayByFulfilled(response),
+                        response => this.onPayByEftRejected(response));
 
             } catch (e) {
                 alert(`Your entry could not be saved. Please contact support quoting error the following error:\n\n${e}`);

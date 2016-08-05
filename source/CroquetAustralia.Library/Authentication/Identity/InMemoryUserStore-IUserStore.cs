@@ -25,7 +25,6 @@ namespace CroquetAustralia.Library.Authentication.Identity
 
         public void Dispose()
         {
-            LogTo.Trace("Dispose()");
         }
 
         [return: AllowNull]

@@ -33,6 +33,8 @@ namespace CroquetAustralia.Website.App.account
         // todo: [ValidateAntiForgeryToken]
         public ActionResult ExternalSignIn(string provider, string returnUrl)
         {
+            LogTo.Trace($"ExternalSignIn(provider: {provider}, returnUrl: {returnUrl})");
+
             // Request a redirect to the external login provider
             return new ChallengeResult(provider, Url.Action("ExternalSignInCallback", "Account", new {ReturnUrl = returnUrl}));
         }
@@ -40,13 +42,13 @@ namespace CroquetAustralia.Website.App.account
         [Route("external-sign-in-callback")]
         public async Task<ActionResult> ExternalSignInCallback(string returnUrl)
         {
-            LogTo.Trace("ExternalSignInCallback(returnUrl: {0})", returnUrl);
+            LogTo.Trace($"ExternalSignInCallback(returnUrl: {returnUrl})");
 
             var loginInfo = await GetExternalLoginInfoAsync();
             await TryRegisterExternalLogin(loginInfo.Login, loginInfo.Email);
             var signInStatus = await this.GetSignInManager().ExternalSignInAsync(loginInfo, false);
 
-            LogTo.Debug("ExternalSignInCallback(returnUrl: {0}) - signInStatus: {1}", returnUrl, signInStatus);
+            LogTo.Debug($"ExternalSignInCallback(returnUrl: {returnUrl}) - signInStatus: {signInStatus}");
 
             switch (signInStatus)
             {
@@ -60,7 +62,7 @@ namespace CroquetAustralia.Website.App.account
                     return HandleExternalSignInRequiresVerification();
 
                 case SignInStatus.Failure:
-                    return HandleExternalSignInFailureAsync();
+                    return HandleExternalSignInFailure();
 
                 default:
                     throw new NotSupportedException(string.Format("SignInStatus '{0}' is not supported. It did not exist at time of writing code.", signInStatus));
@@ -70,6 +72,8 @@ namespace CroquetAustralia.Website.App.account
         [Route("sign-in")]
         public ActionResult SignIn(string returnUrl)
         {
+            LogTo.Trace($"SignIn(returnUrl: {returnUrl})");
+
             var authenticationTypes = HttpContext.GetOwinContext().Authentication.GetExternalAuthenticationTypes().ToArray();
 
             return View(new SignInViewModel(returnUrl, authenticationTypes));
@@ -77,6 +81,8 @@ namespace CroquetAustralia.Website.App.account
 
         private async Task<ExternalLoginInfo> GetExternalLoginInfoAsync()
         {
+            LogTo.Trace("GetExternalLoginInfoAsync()");
+
             var loginInfo = await this.GetAuthenticationManager().GetExternalLoginInfoAsync();
 
             if (loginInfo == null)
@@ -87,45 +93,59 @@ namespace CroquetAustralia.Website.App.account
             return loginInfo;
         }
 
-        private ActionResult HandleExternalSignInFailureAsync()
+        private static ActionResult HandleExternalSignInFailure()
         {
+            LogTo.Trace($"{nameof(HandleExternalSignInFailure)}()");
+
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Sign in failure.");
         }
 
         private static ActionResult HandleExternalSignInLockedOut()
         {
+            LogTo.Trace($"{nameof(HandleExternalSignInLockedOut)}()");
+
             return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "Account has been locked out.");
         }
 
         private static ActionResult HandleExternalSignInRequiresVerification()
         {
+            LogTo.Trace($"{nameof(HandleExternalSignInRequiresVerification)}()");
+
             throw new NotSupportedException();
         }
 
         private ActionResult HandleExternalSignInSuccess(string returnUrl)
         {
+            LogTo.Trace($"HandleExternalSignInSuccess(string '{returnUrl}')");
+
             return RedirectToLocal(returnUrl);
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
         {
+            LogTo.Trace($"RedirectToLocal(string '{returnUrl}')");
+
             if (Url.IsLocalUrl(returnUrl))
             {
+                LogTo.Trace($"RedirectToLocal(string '{returnUrl}') is redirecting to local");
                 return Redirect(returnUrl);
             }
+
+            LogTo.Trace($"RedirectToLocal(string '{returnUrl}') is redirecting to tournaments");
+            // ReSharper disable once Mvc.ActionNotResolved
             return RedirectToAction("Index", "Tournaments");
         }
 
         private async Task TryRegisterExternalLogin(UserLoginInfo login, string email)
         {
-            LogTo.Trace("TryRegisterExternalLogin(login: {0})", login.ToLogString());
+            LogTo.Trace($"TryRegisterExternalLogin(login: {login.ToLogString()})");
 
             var userManager = this.GetUserManager();
             var isRegistered = await userManager.IsRegisteredAsync(login);
 
             if (isRegistered)
             {
-                LogTo.Debug("External login '{0}' is registered.", email);
+                LogTo.Debug($"External login '{email}' is registered.");
                 return;
             }
 
@@ -134,7 +154,7 @@ namespace CroquetAustralia.Website.App.account
 
             if (!isDomainUser)
             {
-                LogTo.Debug("External login '{0}' is not a recognized user.", email);
+                LogTo.Debug($"External login '{email}' is not a recognized user.");
                 return;
             }
 
@@ -142,7 +162,7 @@ namespace CroquetAustralia.Website.App.account
             await userManager.CreateAsync(identityUser);
             await userManager.AddLoginAsync(identityUser.Id, login);
 
-            LogTo.Debug("Registered external login '{0}'.", email);
+            LogTo.Debug($"Registered external login '{email}'.");
         }
     }
 }
