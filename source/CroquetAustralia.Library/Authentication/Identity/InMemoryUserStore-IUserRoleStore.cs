@@ -20,8 +20,22 @@ namespace CroquetAustralia.Library.Authentication.Identity
 
         public Task<IList<string>> GetRolesAsync(IdentityUser user)
         {
-            LogTo.Trace("GetRolesAsync(user: {0})", user.ToLogString());
-            return Task.FromResult((IList<string>) user.Roles.Select(r => r.Name).ToList());
+            LogTo.Trace($"{nameof(GetRolesAsync)}(user: {user.ToLogString()})");
+
+            if (user.Roles == null)
+            {
+                LogTo.Error($"Expected roles for user '{user.ToLogString()}' would not be null.");
+            }
+
+            var roles = user.Roles.ToArray();
+
+            LogTo.Trace($"{nameof(GetRolesAsync)}(user: {user.ToLogString()}) -> roleCount: {roles.Length}");
+
+            var roleNames = roles.Select(r => r.Name).ToList();
+
+            LogTo.Trace($"{nameof(GetRolesAsync)}(user: {user.ToLogString()}) -> roles: {string.Join(", ", roleNames)}");
+
+            return Task.FromResult<IList<string>>(roleNames);
         }
 
         public Task<bool> IsInRoleAsync(IdentityUser user, string roleName)
