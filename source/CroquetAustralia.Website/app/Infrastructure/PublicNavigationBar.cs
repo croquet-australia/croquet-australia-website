@@ -16,6 +16,7 @@ namespace CroquetAustralia.Website.App.Infrastructure
                 new NavigationItem("Governance",
                     new NavigationItem("Background", "~/governance/background"),
                     new NavigationItem("Constitution, Regulations & Policies", "~/governance/constitution-regulations-and-policies"),
+                    new NavigationItem("Strategic Plan", "~/governance/strategic-plan"),
                     new NavigationItem("Members", "~/governance/members"),
                     new NavigationItem("Board Meeting Minutes", "~/governance/minutes/board-meeting-minutes"),
                     new NavigationItem("Insurance", "~/governance/insurance")),
