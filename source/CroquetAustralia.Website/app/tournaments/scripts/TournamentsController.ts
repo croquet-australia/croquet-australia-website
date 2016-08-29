@@ -165,7 +165,7 @@ module App {
                 return false;
             }
 
-            return this.tournament.isUnder21;
+            return this.tournament.isUnder21 && !this.tournament.isEOI;
         }
 
         showPage() {
