@@ -137,7 +137,7 @@ module App {
         };
 
         sendEOI() {
-            this.payBy(3);
+            this.payBy(-1);
         }
 
         showDiscount() {
