@@ -137,7 +137,7 @@ module App {
         };
 
         sendEOI() {
-            this.payBy(3);
+            this.payBy(-1);
         }
 
         showDiscount() {
@@ -165,7 +165,7 @@ module App {
                 return false;
             }
 
-            return this.tournament.isUnder21;
+            return this.tournament.isUnder21 && !this.tournament.isEOI;
         }
 
         showPage() {
