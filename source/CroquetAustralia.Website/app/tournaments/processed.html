@@ -4,7 +4,7 @@
             Thank you for your entry and/or order. An email confirming your order and payment details will be sent to you shortly.
         </p>
         <p ng-show="!vm.tournament.isUnder21">
-            Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('handicap-doubles')">Handicap Doubles</a> | <a href="#" ng-click="vm.newEntry('handicap-singles')">Handicap Singles</a>
+            Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('open-doubles')">Doubles</a> | <a href="#" ng-click="vm.newEntry('open-singles')">Singles</a>
         </p>
         <p ng-show="vm.tournament.isUnder21">
             Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('u21')">Under 21</a>
