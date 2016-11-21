@@ -487,6 +487,7 @@
     <Content Include="bower_components\jquery\src\core\ready-no-deferred.js" />
     <Content Include="bower_components\jquery\src\core\ready.js" />
     <Content Include="bower_components\jquery\src\core\readyException.js" />
+    <Content Include="bower_components\jquery\src\core\stripAndCollapse.js" />
     <Content Include="bower_components\jquery\src\core\support.js" />
     <Content Include="bower_components\jquery\src\core\var\rsingleTag.js" />
     <Content Include="bower_components\jquery\src\css.js" />
@@ -558,7 +559,7 @@
     <Content Include="bower_components\jquery\src\var\pnum.js" />
     <Content Include="bower_components\jquery\src\var\push.js" />
     <Content Include="bower_components\jquery\src\var\rcssNum.js" />
-    <Content Include="bower_components\jquery\src\var\rnotwhite.js" />
+    <Content Include="bower_components\jquery\src\var\rnothtmlwhite.js" />
     <Content Include="bower_components\jquery\src\var\slice.js" />
     <Content Include="bower_components\jquery\src\var\support.js" />
     <Content Include="bower_components\jquery\src\var\toString.js" />
@@ -910,7 +911,7 @@
     <Content Include="bower_components\jquery\dist\jquery.slim.min.map" />
     <Content Include="bower_components\jquery\external\sizzle\dist\sizzle.min.map" />
     <Content Include="bower_components\jquery\README.md" />
-    <Content Include="bower_components\jquery\src\.eslintrc" />
+    <Content Include="bower_components\jquery\src\.eslintrc.json" />
     <None Include="Properties\PublishProfiles\croquet-australia.pubxml" />
     <None Include="Properties\PublishProfiles\croquet-australia__staging.pubxml" />
     <None Include="Web.Debug.config">
