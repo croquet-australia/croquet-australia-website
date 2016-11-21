@@ -140,12 +140,28 @@ module App {
             this.payBy(-1);
         }
 
+        showCountry() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return this.tournament.isGcWorldQualifier2017EOI;
+        }
+
         showDiscount() {
             if (this.tournament == null) {
                 return false;
             }
 
             return !this.tournament.isUnder21;
+        }
+
+        showGCDGrade() {
+            if (this.tournament == null) {
+                return false;
+            }
+
+            return this.tournament.isGcWorldQualifier2017EOI;
         }
 
         showHandicap() {
@@ -293,7 +309,9 @@ module App {
                         under21: this.player.under21,
                         fullTimeStudentUnder25: this.player.fullTimeStudentUnder25,
                         dateOfBirth: this.player.dateOfBirth,
-                        nonResident: this.player.nonResident
+                        nonResident: this.player.nonResident,
+                        country: this.player.country,
+                        gcDGrade: this.player.gcDGrade
                     },
                     partner: {
                         firstName: this.partner.firstName,
@@ -304,7 +322,9 @@ module App {
                         under21: this.partner.under21,
                         fullTimeStudentUnder25: this.partner.fullTimeStudentUnder25,
                         dateOfBirth: this.partner.dateOfBirth,
-                        nonResident: this.partner.nonResident
+                        nonResident: this.partner.nonResident,
+                        country: this.partner.country,
+                        gcDGrade: this.partner.gcDGrade
                     }
                 };
 

@@ -11,6 +11,8 @@ module App {
         fullTimeStudentUnder25: boolean;
         dateOfBirth: /* nullable */ Date;
         nonResident: /* nullable */ boolean;
+        country: string;
+        gcDGrade: number;
 
         constructor() {
             this.dateOfBirth = null;

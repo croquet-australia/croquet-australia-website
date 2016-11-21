@@ -2,6 +2,8 @@
 
 module App {
     export class Tournament {
+        isGcWorldQualifier2017EOI: boolean;
+
         constructor(
             public id: string,
             public title: string,
@@ -19,6 +21,8 @@ module App {
             private moment: any /*moment*/,
             public isUnder21: boolean,
             public dateOfBirthRange: DateOfBirthRange) {
+
+            this.isGcWorldQualifier2017EOI = (id === 'e777de8c-cd14-4e9f-afda-b0fae09ef549');
         }
 
         static deserialize(data: any, moment: any /*moment*/): Tournament {

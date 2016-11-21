@@ -56,4 +56,20 @@
         </label>
     </div>
 
+    <div ng-show="vm.showCountry()" ng-class="{ 'has-error' : tournamentEntryForm.country.$invalid && (!tournamentEntryForm.country.$pristine || vm.submitted) }">
+        <label for="phone">Country</label>
+        <div>
+            <input type="text" name="country" id="country" ng-model="vm.player.country" placeholder="Australia" required>
+            <p ng-show="tournamentEntryForm.country.$invalid && (!tournamentEntryForm.country.$pristine || vm.submitted)" class="help-block">Your country is required.</p>
+        </div>
+    </div>
+
+    <div ng-show="vm.showGCDGrade()" ng-class="{ 'has-error' : tournamentEntryForm.gcDGrade.$invalid && (!tournamentEntryForm.gcDGrade.$pristine || vm.submitted) }">
+        <label for="phone">DGrade (<a href="http://rank.worldcroquet.org/gcrank/rank.php" target="_blank">Look up</a>)</label>
+        <div>
+            <input type="text" name="gcDGrade" id="gcDGrade" ng-model="vm.player.gcDGrade" placeholder="" required>
+            <p ng-show="tournamentEntryForm.gcDGrade.$invalid && (!tournamentEntryForm.gcDGrade.$pristine || vm.submitted)" class="help-block">Your current DGrade is required.</p>
+        </div>
+    </div>
+
 </section>
