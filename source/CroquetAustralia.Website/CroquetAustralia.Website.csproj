@@ -262,6 +262,7 @@
     <TypeScriptCompile Include="App\app.ts" />
     <None Include="App\styles\styles.scss" />
     <Content Include="App\styles\styles.css" />
+    <Content Include="App\tournaments\team.html" />
     <Content Include="App\tournaments\partner.html" />
     <Content Include="App\tournaments\events-closed.html" />
     <Content Include="App\tournaments\processed-eoi.html" />

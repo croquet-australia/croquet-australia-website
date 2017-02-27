@@ -21,6 +21,7 @@
                     <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html?cacheBuster=12'"></div>
                     <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html?cacheBuster=12'"></div>
                     <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/summary.html?cacheBuster=12'"></div>
+                    <div ng-if="vm.tournament.isGateball" ng-include="'/app/tournaments/team.html?cacheBuster=12'"></div>
                     <div ng-include="'/app/tournaments/player.html?cacheBuster=12'"></div>
                     <div ng-if="vm.tournament.isDoubles" ng-include="'/app/tournaments/partner.html?cacheBuster=12'"></div>
                     <button ng-if="vm.requiresPayment() && vm.showPayByEFT()" class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>

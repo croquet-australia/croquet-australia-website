@@ -20,7 +20,8 @@ module App {
             public isEOI: boolean,
             private moment: any /*moment*/,
             public isUnder21: boolean,
-            public dateOfBirthRange: DateOfBirthRange) {
+            public dateOfBirthRange: DateOfBirthRange,
+            public isGateball: boolean) {
 
             this.isGcWorldQualifier2017EOI = (id === 'e777de8c-cd14-4e9f-afda-b0fae09ef549');
         }
@@ -41,6 +42,7 @@ module App {
             const isDoubles = data.isDoubles;
             const isEOI = data.isEOI;
             const isUnder21 = data.isUnder21;
+            const isGateball = data.isGateball;
             const dateOfBirthRange = this.deserializeDateOfBirthRange(data.dateOfBirthRange);
 
             const tournament = new Tournament(
@@ -59,7 +61,8 @@ module App {
                 isEOI,
                 moment,
                 isUnder21,
-                dateOfBirthRange);
+                dateOfBirthRange,
+                isGateball);
 
             return tournament;
         }
