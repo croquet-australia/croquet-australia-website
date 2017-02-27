@@ -1,7 +1,8 @@
 <section class="player">
 
-    <h2>Your Contact Details</h2>
-
+    <h2 ng-if="!vm.tournament.isGateball">Your Contact Details</h2>
+    <h2 ng-if="vm.tournament.isGateball">Manager's Contact Details</h2>
+    
     <div ng-class="{ 'has-error' : tournamentEntryForm.firstName.$invalid && (!tournamentEntryForm.firstName.$pristine || vm.submitted) }">
         <label for="firstName">First Name</label>
         <div>

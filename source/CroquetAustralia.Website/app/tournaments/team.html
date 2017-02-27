@@ -1,0 +1,18 @@
+<section class="team">
+    <h2>Team Details</h2>
+    <div ng-class="{ 'has-error' : tournamentEntryForm.teamName.$invalid && (!tournamentEntryForm.teamName.$pristine || vm.submitted) }">
+        <label for="teamName">Name of Team</label>
+        <div>
+            <input type="text" name="teamName" id="teamName" ng-model="vm.teamName" placeholder="Team Name" required>
+            <p ng-show="tournamentEntryForm.teamName.$invalid && (!tournamentEntryForm.teamName.$pristine || vm.submitted)" class="help-block">Your team name is required.</p>
+        </div>
+    </div>
+
+    <div ng-class="{ 'has-error' : tournamentEntryForm.supportingClub.$invalid && (!tournamentEntryForm.supportingClub.$pristine || vm.submitted) }">
+        <label for="supportingClub">Club Supporting this Entry</label>
+        <div>
+            <input type="text" name="supportingClub" id="supportingClub" ng-model="vm.supportingClub" placeholder="Club Name" required>
+            <p ng-show="tournamentEntryForm.supportingClub.$invalid && (!tournamentEntryForm.supportingClub.$pristine || vm.submitted)" class="help-block">Club supporting this entry is required.</p>
+        </div>
+    </div>
+</section>

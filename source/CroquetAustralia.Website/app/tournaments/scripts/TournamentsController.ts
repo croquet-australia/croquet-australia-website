@@ -15,6 +15,8 @@ module App {
         state: string;
         payingFor: string;
         datepickerOptions: any;
+        teamName: string;
+        supportingClub: string;
 
         constructor(private $http, private uuid2, private $scope, private $location, private moment) {
 
@@ -153,7 +155,7 @@ module App {
                 return false;
             }
 
-            return !this.tournament.isUnder21;
+            return !this.tournament.isUnder21 && !this.tournament.isGateball;
         }
 
         showGCDGrade() {
@@ -165,7 +167,7 @@ module App {
         }
 
         showHandicap() {
-            if (this.tournament == null) {
+            if (this.tournament == null || this.tournament.isGateball) {
                 return false;
             }
 
@@ -252,6 +254,8 @@ module App {
 
         private getTournament(clientResource: string) {
 
+            console.debug('getTournament(clientResource)');
+
             const apiUrl = `${webConfig.webApi.baseUri}${clientResource}`;
 
             this.$http.get(apiUrl)
@@ -325,7 +329,9 @@ module App {
                         nonResident: this.partner.nonResident,
                         country: this.partner.country,
                         gcDGrade: this.partner.gcDGrade
-                    }
+                    },
+                    teamName: this.teamName,
+                    supportingClub: this.supportingClub
                 };
 
                 this.$http.post(url, JSON.stringify(data))
