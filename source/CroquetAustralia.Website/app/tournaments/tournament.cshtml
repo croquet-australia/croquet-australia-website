@@ -9,7 +9,8 @@
                         <h3>{{ vm.tournament.location }}</h3>
                     </div>
                     <div class="hidden-xs col-sm-2">
-                        <img src="/assets/aca-logo-page-background.png" alt="ACA"/>
+                        <img ng-if="!vm.tournament.isGateball" src="/assets/aca-logo-page-background.png" alt="ACA"/>
+                        <img ng-if="vm.tournament.isGateball" src="/assets/gateball-australia-logo-page-background.jpg" alt="Gateball" />
                     </div>
                 </div>
             </header>

@@ -291,6 +291,7 @@
     <Content Include="App\admin\home\EditNews.cshtml" />
     <Content Include="App\tournaments\deposited.cshtml" />
     <None Include="bowerComments.md" />
+    <Content Include="assets\gateball-australia-logo-page-background.jpg" />
     <Content Include="bower_components\angular-bootstrap\.bower.json" />
     <Content Include="bower_components\angular-bootstrap\.gitignore" />
     <Content Include="bower_components\angular-bootstrap\.npmignore" />
