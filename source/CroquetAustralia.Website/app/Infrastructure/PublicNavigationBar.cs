@@ -21,6 +21,7 @@ namespace CroquetAustralia.Website.App.Infrastructure
                     new NavigationItem("Board Meeting Minutes", "~/governance/minutes/board-meeting-minutes"),
                     new NavigationItem("Insurance", "~/governance/insurance")),
                 new NavigationItem("Tournaments", "~/tournaments"),
+                new NavigationItem("Results", "~/results"),
                 new NavigationItem("Disciplines",
                     new NavigationItem("Association Croquet",
                         new NavigationItem("Coaching", "~/disciplines/association-croquet/coaching"),
