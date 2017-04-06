@@ -3,6 +3,8 @@
 module App {
     export class Tournament {
         isGcWorldQualifier2017EOI: boolean;
+        isGC: boolean;
+        isAC: boolean;
 
         constructor(
             public id: string,
@@ -21,9 +23,12 @@ module App {
             private moment: any /*moment*/,
             public isUnder21: boolean,
             public dateOfBirthRange: DateOfBirthRange,
-            public isGateball: boolean) {
+            public isGateball: boolean,
+            public discipline: string) {
 
             this.isGcWorldQualifier2017EOI = (id === 'e777de8c-cd14-4e9f-afda-b0fae09ef549');
+            this.isGC = (discipline === 'gc');
+            this.isAC = (discipline === 'ac');
         }
 
         static deserialize(data: any, moment: any /*moment*/): Tournament {
@@ -44,6 +49,7 @@ module App {
             const isUnder21 = data.isUnder21;
             const isGateball = data.isGateball;
             const dateOfBirthRange = this.deserializeDateOfBirthRange(data.dateOfBirthRange);
+            const discipline = data.discipline;
 
             const tournament = new Tournament(
                 id,
@@ -62,7 +68,8 @@ module App {
                 moment,
                 isUnder21,
                 dateOfBirthRange,
-                isGateball);
+                isGateball,
+                discipline);
 
             return tournament;
         }
