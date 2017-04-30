@@ -145,30 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
-    <Compile Include="Authentication\Domain\Roles\Editor.cs" />
-    <Compile Include="Authentication\Domain\Roles\Developer.cs" />
-    <Compile Include="Authentication\Domain\IUserRepository.cs" />
-    <Compile Include="Authentication\Domain\Roles\Role.cs" />
-    <Compile Include="Authentication\Domain\DomainUser.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore-IUserRoleStore.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore-IUserTwoFactorStore.cs" />
-    <Compile Include="Authentication\Identity\SignInManager.cs" />
-    <Compile Include="Authentication\Identity\IdentityUser.cs" />
-    <Compile Include="Authentication\Identity\UserLoginInfoExtensions.cs" />
-    <Compile Include="Authentication\Identity\UserManager.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore-IUserStore.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore-IUserLoginStore.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore-IUserLockoutStore.cs" />
-    <Compile Include="Authentication\Identity\InMemoryUserStore.cs" />
-    <Compile Include="Authentication\DAL\InMemoryUserRepository.cs" />
     <Compile Include="Content\IMarkdownTransformer.cs" />
     <Compile Include="Content\MarkdownTransformer.cs" />
     <Compile Include="Infrastructure\Base64.cs" />
     <Compile Include="Content\MarkdownPage.cs" />
     <Compile Include="Infrastructure\Argument.cs" />
     <Compile Include="Infrastructure\DependencyResolver.cs" />
-    <Compile Include="ComponentModel\DataAnnotations\INewMarkdownPageViewModel.cs" />
-    <Compile Include="ComponentModel\DataAnnotations\NewMarkdownPageAttribute.cs" />
     <Compile Include="Content\GitContentRepository.cs" />
     <Compile Include="Content\PublishedContentRepository.cs" />
     <Compile Include="Content\IGitContentRepository.cs" />
@@ -180,7 +162,6 @@
     <Compile Include="Infrastructure\ModelStateExtensions.cs" />
     <Compile Include="Infrastructure\PathExtensions.cs" />
     <Compile Include="Infrastructure\StringExtensions.cs" />
-    <Compile Include="Infrastructure\UserLoginInfoExtensions.cs" />
     <Compile Include="IO\FileOperations.cs" />
     <Compile Include="IO\IFileOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

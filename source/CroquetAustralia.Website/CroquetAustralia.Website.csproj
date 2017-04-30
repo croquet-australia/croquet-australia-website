@@ -929,7 +929,6 @@
     <Compile Include="App\Infrastructure\PublicNavigationBar.cs" />
     <Compile Include="App\Infrastructure\RazorViewEngineExtensions.cs" />
     <Compile Include="App\Infrastructure\Urls.cs" />
-    <Compile Include="App\Infrastructure\UserExtensions.cs" />
     <Compile Include="App\Infrastructure\ViewModel.cs" />
     <Compile Include="App\tournaments\TournamentsController.cs" />
     <Compile Include="App\tournaments\WebApi.cs" />

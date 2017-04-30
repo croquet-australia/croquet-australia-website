@@ -12,9 +12,6 @@ using Casper.Domain.Features.Files;
 using Casper.Domain.Features.Pages;
 using Casper.Domain.Infrastructure.Messaging;
 using CommonServiceLocator.NinjectAdapter.Unofficial;
-using CroquetAustralia.Library.Authentication.DAL;
-using CroquetAustralia.Library.Authentication.Domain;
-using CroquetAustralia.Library.Authentication.Identity;
 using CroquetAustralia.Library.Content;
 using CroquetAustralia.Library.IO;
 using CroquetAustralia.Library.Settings;
@@ -44,7 +41,6 @@ namespace CroquetAustralia.Website
             kernel.Bind<IBlogPostRepositorySettings>().ToMethod(BlogPostRepositorySettings);
             kernel.Bind<IPageRepositorySettings>().ToMethod(PageRepositorySettings);
             kernel.Bind<IFileRepositorySettings>().ToMethod(FileRepositorySettings);
-            kernel.Bind<SignInManager>().ToMethod(SignInManagerFactory);
             kernel.Bind<ICommandBus>().ToMethod(CommandBusFactory);
 
             // Bind to classes
@@ -60,8 +56,6 @@ namespace CroquetAustralia.Website
             kernel.Bind<IYamlMarkdown>().To<YamlMarkdown>();
             kernel.Bind<IClock>().To<Clock>();
             kernel.Bind<IMarkdownTransformer>().To<MarkdownTransformer>();
-            kernel.Bind<IUserStore<IdentityUser, Guid>>().To<InMemoryUserStore>();
-            kernel.Bind<IUserRepository>().To<InMemoryUserRepository>();
             kernel.Bind<WebApi>().To<WebApi>();
             kernel.Bind<WebApiSettings>().To<WebApiSettings>();
         }
@@ -113,16 +107,6 @@ namespace CroquetAustralia.Website
             var options = new PageRepositorySettings(new DirectoryInfo(settings.Directory));
 
             return options;
-        }
-
-        private static SignInManager SignInManagerFactory(IContext context)
-        {
-            var kernel = context.Kernel;
-            var userManager = kernel.Get<UserManager>();
-            var owinContext = HttpContext.Current.GetOwinContext();
-            var authentication = owinContext.Authentication;
-
-            return new SignInManager(userManager, authentication);
         }
     }
 }
