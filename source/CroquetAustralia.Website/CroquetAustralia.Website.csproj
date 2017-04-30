@@ -82,32 +82,12 @@
     <Reference Include="LibGit2Sharp, Version=0.23.1.0, Culture=neutral, PublicKeyToken=7cbde695407f0333, processorArchitecture=MSIL">
       <HintPath>..\..\packages\LibGit2Sharp.0.23.1\lib\net40\LibGit2Sharp.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.Google.3.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -242,12 +222,6 @@
     <Content Include="500.html" />
     <Content Include="500.jpg" />
     <Content Include="401.jpg" />
-    <TypeScriptCompile Include="App\admin\files\FileUpload.ts" />
-    <TypeScriptCompile Include="App\admin\files\FileUpload.Module.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddNews.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddPage.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddNews.Module.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddPage.Module.ts" />
     <TypeScriptCompile Include="App\app.ts" />
     <None Include="App\styles\styles.scss" />
     <Content Include="App\styles\styles.css" />
@@ -274,10 +248,6 @@
     <None Include="AppSettings.Example.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="App\admin\home\Pages.cshtml" />
-    <Content Include="App\admin\home\AddPage.cshtml" />
-    <Content Include="App\admin\home\News.cshtml" />
-    <Content Include="App\admin\home\EditNews.cshtml" />
     <Content Include="App\tournaments\deposited.cshtml" />
     <None Include="bowerComments.md" />
     <Content Include="assets\gateball-australia-logo-page-background.jpg" />
@@ -882,14 +852,11 @@
     <Content Include="Layouts\Shared\AfterRenderScripts.cshtml" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
-    <Content Include="App\account\SignIn.cshtml" />
-    <Content Include="App\admin\home\AddNews.cshtml" />
     <Content Include="App\home\Index.cshtml" />
     <Content Include="App\home\Index-BlogPosts.cshtml" />
     <Content Include="Layouts\Shared\_TopNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownMenuNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
-    <Content Include="App\admin\home\EditPage.cshtml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <Content Include="_PageStart.cshtml" />
     <Content Include="README.md" />
@@ -933,30 +900,15 @@
     </Compile>
     <Compile Include="Api\Pages\PagesController.cs" />
     <Compile Include="Api\Infrastructure\ApplicationApiController.cs" />
-    <Compile Include="App\account\AccountController.cs" />
-    <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
-    <Compile Include="App\account\SignInViewModel.cs" />
-    <Compile Include="App\admin\files\FilesController.cs" />
-    <Compile Include="App\admin\home\EditNewsViewModel.cs" />
-    <Compile Include="App\admin\home\AddNewsViewModel.cs" />
-    <Compile Include="App\admin\home\NewsViewModel.cs" />
-    <Compile Include="App\admin\home\EditPageViewModel.cs" />
-    <Compile Include="App\admin\home\AddPageViewModel.cs" />
-    <Compile Include="App\admin\home\PagesViewModel.cs" />
     <Compile Include="App\home\BlogPostViewModel.cs" />
     <Compile Include="App\home\HomeController.cs" />
     <Compile Include="App\home\IndexViewModel.cs" />
-    <Compile Include="App\Infrastructure\AdminAuthorizeAttribute.cs" />
     <Compile Include="App\Infrastructure\ApplicationController.cs" />
-    <Compile Include="App\Infrastructure\AdminController.cs" />
-    <Compile Include="App\Infrastructure\AdminViewModel.cs" />
-    <Compile Include="App\admin\home\HomeController.cs" />
     <Compile Include="App\Infrastructure\IViewModel.cs" />
     <Compile Include="App\Infrastructure\NavigationItem.cs" />
     <Compile Include="App\Infrastructure\PublicNavigationBar.cs" />
     <Compile Include="App\Infrastructure\RazorViewEngineExtensions.cs" />
     <Compile Include="App\Infrastructure\Urls.cs" />
-    <Compile Include="App\Infrastructure\UserExtensions.cs" />
     <Compile Include="App\Infrastructure\ViewModel.cs" />
     <Compile Include="App\tournaments\TournamentsController.cs" />
     <Compile Include="App\tournaments\WebApi.cs" />
