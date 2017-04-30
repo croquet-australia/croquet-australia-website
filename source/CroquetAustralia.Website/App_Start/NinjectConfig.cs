@@ -16,7 +16,6 @@ using CroquetAustralia.Library.Content;
 using CroquetAustralia.Library.IO;
 using CroquetAustralia.Library.Settings;
 using CroquetAustralia.Website.App.tournaments;
-using Microsoft.AspNet.Identity;
 using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using Ninject.Activation;
