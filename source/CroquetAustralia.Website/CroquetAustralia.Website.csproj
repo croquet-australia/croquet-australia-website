@@ -242,12 +242,6 @@
     <Content Include="500.html" />
     <Content Include="500.jpg" />
     <Content Include="401.jpg" />
-    <TypeScriptCompile Include="App\admin\files\FileUpload.ts" />
-    <TypeScriptCompile Include="App\admin\files\FileUpload.Module.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddNews.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddPage.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddNews.Module.ts" />
-    <TypeScriptCompile Include="App\admin\home\AddPage.Module.ts" />
     <TypeScriptCompile Include="App\app.ts" />
     <None Include="App\styles\styles.scss" />
     <Content Include="App\styles\styles.css" />
@@ -274,10 +268,6 @@
     <None Include="AppSettings.Example.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="App\admin\home\Pages.cshtml" />
-    <Content Include="App\admin\home\AddPage.cshtml" />
-    <Content Include="App\admin\home\News.cshtml" />
-    <Content Include="App\admin\home\EditNews.cshtml" />
     <Content Include="App\tournaments\deposited.cshtml" />
     <None Include="bowerComments.md" />
     <Content Include="assets\gateball-australia-logo-page-background.jpg" />
@@ -882,14 +872,11 @@
     <Content Include="Layouts\Shared\AfterRenderScripts.cshtml" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
-    <Content Include="App\account\SignIn.cshtml" />
-    <Content Include="App\admin\home\AddNews.cshtml" />
     <Content Include="App\home\Index.cshtml" />
     <Content Include="App\home\Index-BlogPosts.cshtml" />
     <Content Include="Layouts\Shared\_TopNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownMenuNavigationItems.cshtml" />
     <Content Include="Layouts\Shared\_DropDownSubMenuNavigationItems.cshtml" />
-    <Content Include="App\admin\home\EditPage.cshtml" />
     <Content Include="Layouts\Views\ViewLayout.cshtml" />
     <Content Include="_PageStart.cshtml" />
     <Content Include="README.md" />
@@ -933,24 +920,10 @@
     </Compile>
     <Compile Include="Api\Pages\PagesController.cs" />
     <Compile Include="Api\Infrastructure\ApplicationApiController.cs" />
-    <Compile Include="App\account\AccountController.cs" />
-    <Compile Include="App\account\Infrastructure\ChallengeResult.cs" />
-    <Compile Include="App\account\SignInViewModel.cs" />
-    <Compile Include="App\admin\files\FilesController.cs" />
-    <Compile Include="App\admin\home\EditNewsViewModel.cs" />
-    <Compile Include="App\admin\home\AddNewsViewModel.cs" />
-    <Compile Include="App\admin\home\NewsViewModel.cs" />
-    <Compile Include="App\admin\home\EditPageViewModel.cs" />
-    <Compile Include="App\admin\home\AddPageViewModel.cs" />
-    <Compile Include="App\admin\home\PagesViewModel.cs" />
     <Compile Include="App\home\BlogPostViewModel.cs" />
     <Compile Include="App\home\HomeController.cs" />
     <Compile Include="App\home\IndexViewModel.cs" />
-    <Compile Include="App\Infrastructure\AdminAuthorizeAttribute.cs" />
     <Compile Include="App\Infrastructure\ApplicationController.cs" />
-    <Compile Include="App\Infrastructure\AdminController.cs" />
-    <Compile Include="App\Infrastructure\AdminViewModel.cs" />
-    <Compile Include="App\admin\home\HomeController.cs" />
     <Compile Include="App\Infrastructure\IViewModel.cs" />
     <Compile Include="App\Infrastructure\NavigationItem.cs" />
     <Compile Include="App\Infrastructure\PublicNavigationBar.cs" />
