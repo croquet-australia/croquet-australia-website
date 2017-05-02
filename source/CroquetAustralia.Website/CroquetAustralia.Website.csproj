@@ -568,8 +568,8 @@
     <Content Include="bower_components\markdown-editpreview-ng\README.md" />
     <Content Include="bower_components\moment-timezone\.bower.json" />
     <Content Include="bower_components\moment-timezone\bower.json" />
-    <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data-2010-2020.js" />
-    <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data-2010-2020.min.js" />
+    <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data-2012-2022.js" />
+    <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data-2012-2022.min.js" />
     <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data.js" />
     <Content Include="bower_components\moment-timezone\builds\moment-timezone-with-data.min.js" />
     <Content Include="bower_components\moment-timezone\builds\moment-timezone.min.js" />
