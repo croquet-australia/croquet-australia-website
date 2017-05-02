@@ -17,9 +17,9 @@
     "markdown-editpreview-ng": "~1.0.0-rc3",
     "bootstrap-sass": "~3.3.6",
     "Angular.uuid2": "angular-uuid2#*",
-    "moment-timezone": "~0.5.2",
+    "moment-timezone": "^0.5.13",
     "angular-moment": "1.0.0-beta.5",
-    "moment": "~2.10.6",
+    "moment": "^2.18.1",
     "angular-bootstrap": "^2.5.0"
   },
   "overrides": {
@@ -34,6 +34,6 @@
     }
   },
   "resolutions": {
-    "moment": ">=2.8.0 <2.11.0"
+    "moment": "^2.18.1"
   }
 }
