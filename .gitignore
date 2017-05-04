@@ -20,7 +20,6 @@ App_Data/
 [Pp]ackages/
 
 *.cache
-*.feature.cs
 *.GhostDoc.xml
 *.user
 *.received.*
