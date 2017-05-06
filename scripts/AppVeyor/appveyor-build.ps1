@@ -5,7 +5,6 @@ $ErrorActionPreference = "Stop"
 
 try {  
     Main
-    throw x
     Write-Host "todo: Successfully completed appveyor.ps1."
 }
 catch {
