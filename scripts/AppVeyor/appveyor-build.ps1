@@ -1,20 +1,22 @@
-Write-Host "Starting appveyor.ps1..."
+Write-Host "Starting appveyor-build.ps1..."
 
 Write-Host "Configuring powershell environment..."
 $ErrorActionPreference = "Stop"
 
+function Build() {
+    Restore-Dependencies
+}
+
+function Restore-Dependencies() {
+    Write-Host "Restoring dependencies..."
+    nuget
+}
+
 try {  
-    Main
-    Write-Host "todo: Successfully completed appveyor.ps1."
+    Build
+    Write-Host "todo: Successfully completed appveyor-build.ps1."
 }
 catch {
     Write-Error $_.Exception
 }
 
-function Main() {
-    Restore-Dependencies
-}
-
-function Restore-Dependencies() {
-    .where nuget
-}
