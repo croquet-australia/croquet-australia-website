@@ -5,7 +5,10 @@ $ErrorActionPreference = "Stop"
 
 try {  
     Write-Host "todo: Successfully completed appveyor.ps1."
+    Restore-Dependencies
 }
 catch {
     Write-Error $_.Exception
 }
+
+function Restore-Dependencies

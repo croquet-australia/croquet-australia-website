@@ -1,4 +1,5 @@
 version: 1.0.{build}
 build_script:
-- ps: .\appveyor.ps1
-test: off
+- ps: .\appveyor-build.ps1
+test_script:
+- ps: .\appveyor-tests.ps1
