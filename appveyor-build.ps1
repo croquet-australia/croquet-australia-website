@@ -11,4 +11,6 @@ catch {
     Write-Error $_.Exception
 }
 
-function Restore-Dependencies
+function Restore-Dependencies() {
+    .where nuget
+}
