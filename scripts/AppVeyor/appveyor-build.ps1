@@ -7,7 +7,6 @@ function Restore-Dependencies() {
 
     Install-NuGet
     Restore-NuGetPackages
-    Restore-BowerPackages
     Restore-NpmPackages
 }
 
@@ -29,7 +28,16 @@ function Install-NuGet() {
 }
 
 function Restore-NuGetPackages {
+    Write-Host "Restoring NuGet packages..."
     Run-Command { & $($settings.NuGetPath) restore }
+}
+
+function Restore-NpmPackages {
+    Write-Host "Restoring NPM packages..."
+
+    Push-Location $settings.WebSiteProjectFolder
+    Run-Command { & npm install }
+    Pop-Location
 }
 
 function Run-Command([scriptblock] $command) {
@@ -53,6 +61,7 @@ $settings.NuGetVersion = "v4.1.0"
 $settings.NuGetUrl = "https://dist.nuget.org/win-x86-commandline/$($settings.NuGetVersion)/nuget.exe"
 $settings.NuGetFolder = "$($settings.SolutionFolder)\.nuget\$($settings.NuGetVersion)"
 $settings.NuGetPath = "$($settings.NuGetFolder)\nuget.exe"
+$settings.WebSiteProjectFolder = "$($settings.SolutionFolder)\source\CroquetAustralia.Website"
 
 Write-Host "Changing to solution's root folder '$solutionFolder'..."
 Push-Location $solutionFolder
