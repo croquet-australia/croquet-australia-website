@@ -36,7 +36,10 @@ function Restore-NpmPackages {
     Write-Host "Restoring NPM packages..."
 
     Push-Location $settings.WebSiteProjectFolder
-    Run-Command { & npm install }
+    Run-Command { 
+        & npm --version
+        & npm install --no-optional
+    }
     Pop-Location
 }
 
