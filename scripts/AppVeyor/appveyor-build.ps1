@@ -34,9 +34,12 @@ function Restore-NuGetPackages {
 
 function Restore-NpmPackages {
     Write-Host "Restoring NPM packages..."
-
+    
     Push-Location $settings.WebSiteProjectFolder
     Run-Command { 
+        Write-Host "node version: "
+        & node --version
+        Write-Host "npm version: "
         & npm --version
         & npm install --no-optional
     }
@@ -54,7 +57,7 @@ Write-Host "Starting appveyor-build.ps1..."
 
 Write-Host "Configuring powershell environment..."
 
-$ErrorActionPreference = "Stop"
+# $ErrorActionPreference = "Stop"
 $WarningPreference = "Continue"
 $VerbosePreference = "SilentlyContinue"
 
