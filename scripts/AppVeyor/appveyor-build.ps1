@@ -41,6 +41,8 @@ function Restore-NpmPackages {
         & node --version
         Write-Host "npm version: "
         & npm --version
+        Write-Host "Cleaning npm cache"
+        & npm cache clean
         & npm install --no-optional
     }
     Pop-Location
