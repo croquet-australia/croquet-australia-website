@@ -43,6 +43,7 @@ function Restore-NpmPackages {
         & npm --version
         Write-Host "Installing npm@3..."
         & npm -g install npm@3
+        Write-Host "Installing packages..."
         & npm install --no-optional
     }
     Pop-Location
@@ -59,7 +60,7 @@ Write-Host "Starting appveyor-build.ps1..."
 
 Write-Host "Configuring powershell environment..."
 
-# $ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 $WarningPreference = "Continue"
 $VerbosePreference = "SilentlyContinue"
 
