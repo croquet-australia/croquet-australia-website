@@ -60,9 +60,9 @@ Write-Host "Starting appveyor-build.ps1..."
 
 Write-Host "Configuring powershell environment..."
 
-$ErrorActionPreference = "Stop"
-$WarningPreference = "Continue"
-$VerbosePreference = "SilentlyContinue"
+#$ErrorActionPreference = "Stop"
+#$WarningPreference = "Continue"
+#$VerbosePreference = "SilentlyContinue"
 
 $settings = @{}
 $settings.SolutionFolder = Resolve-Path $PSScriptRoot\..\..
@@ -75,13 +75,13 @@ $settings.WebSiteProjectFolder = "$($settings.SolutionFolder)\source\CroquetAust
 Write-Host "Changing to solution's root folder '$solutionFolder'..."
 Push-Location $solutionFolder
 
-
 try {  
     Build
     Write-Host "todo: Successfully completed appveyor-build.ps1."
 }
 catch {
     Write-Error $_.Exception
+    throw
 }
 finally {
     Pop-Location
