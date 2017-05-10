@@ -29,7 +29,7 @@ function Install-NuGet() {
 
 function Restore-NuGetPackages {
     Write-Host "Restoring NuGet packages..."
-    Run-Command { & $($settings.NuGetPath) restore }
+    Run-Command { & $($settings.NuGetPath) erestore }
 }
 
 function Restore-NpmPackages {
@@ -52,17 +52,13 @@ function Restore-NpmPackages {
 function Run-Command([scriptblock] $command) {
     & $command
     if ($lastexitcode -ne 0) {
-        throw
+        throw "An error occurred while running '$command'. `$lastexitcode: $lastexitcode"
     }
 }
 
 Write-Host "Starting appveyor-build.ps1..."
 
 Write-Host "Configuring powershell environment..."
-
-#$ErrorActionPreference = "Stop"
-#$WarningPreference = "Continue"
-#$VerbosePreference = "SilentlyContinue"
 
 $settings = @{}
 $settings.SolutionFolder = Resolve-Path $PSScriptRoot\..\..
@@ -72,16 +68,16 @@ $settings.NuGetFolder = "$($settings.SolutionFolder)\.nuget\$($settings.NuGetVer
 $settings.NuGetPath = "$($settings.NuGetFolder)\nuget.exe"
 $settings.WebSiteProjectFolder = "$($settings.SolutionFolder)\source\CroquetAustralia.Website"
 
-Write-Host "Changing to solution's root folder '$solutionFolder'..."
-Push-Location $solutionFolder
+Write-Host "Changing to solution's root folder '$($settings.SolutionFolder)'..."
+Push-Location $settings.SolutionFolder
 
 try {  
     Build
     Write-Host "todo: Successfully completed appveyor-build.ps1."
 }
 catch {
-    Write-Error $_.Exception
-    throw
+    Write-Error "`n`nappveyor-build.ps1 failed!!!`n`n$($_.Exception)`n`n"
+    throw 
 }
 finally {
     Pop-Location
