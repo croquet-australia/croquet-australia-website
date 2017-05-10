@@ -29,7 +29,7 @@ function Install-NuGet() {
 
 function Restore-NuGetPackages {
     Write-Host "Restoring NuGet packages..."
-    Run-Command { & $($settings.NuGetPath) erestore }
+    Run-Command { & $($settings.NuGetPath) restore }
 }
 
 function Restore-NpmPackages {
