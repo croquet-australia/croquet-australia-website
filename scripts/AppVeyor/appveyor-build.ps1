@@ -1,15 +1,13 @@
 function Build() {
     Restore-Dependencies
+    Compile-Solution
 }
 
-function Restore-Dependencies() {
-    Write-Host "Restoring dependencies..."
-
-    Install-NuGet
-    Restore-NuGetPackages
-    Restore-NpmPackages
+function Compile-Solution() {
+    Run-Command {
+        & msbuild
+    }
 }
-
 function Install-NuGet() {
     Write-Host "Installing nuget.exe..."
 
@@ -25,6 +23,14 @@ function Install-NuGet() {
 
     $webClient = New-Object System.Net.WebClient
     $webClient.DownloadFile($settings.NuGetUrl, $settings.NuGetPath)
+}
+
+function Restore-Dependencies() {
+    Write-Host "Restoring dependencies..."
+
+    Install-NuGet
+    Restore-NuGetPackages
+    Restore-NpmPackages
 }
 
 function Restore-NuGetPackages {
