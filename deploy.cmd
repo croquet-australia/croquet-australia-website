@@ -15,6 +15,18 @@ IF %ERRORLEVEL% NEQ 0 (
     goto error
 )
 
+:: Update npm to latest version
+
+echo.
+echo Updating npm to latest version
+npm install npm@latest -g
+IF %ERRORLEVEL% NEQ 0 (
+    echo.
+    echo Error while updating npm to latest version
+    echo.
+    goto error
+)
+
 :: Verify nuget.exe installed
 
 IF DEFINED NUGET_CMD (
