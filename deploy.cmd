@@ -215,6 +215,12 @@ echo MSBUILD_PATH: %MSBUILD_PATH%
 echo NEXT_MANIFEST_PATH: %NEXT_MANIFEST_PATH%
 echo POST_DEPLOYMENT_ACTION: %POST_DEPLOYMENT_ACTION% 
 echo PREVIOUS_MANIFEST_PATH: %PREVIOUS_MANIFEST_PATH%
+echo.
+echo node version:
+node --version
+echo npm version:
+npm --version
+
 echo ----------------------------------------------------------
 echo.
 exit /b 0
