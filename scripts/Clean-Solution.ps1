@@ -6,9 +6,10 @@ Function Main()
 
     try
     {
+        Delete-Folder .\.nuget
         Delete-Folder .\packages
-        Delete-Folder .\source\CroquetAustraliaWebsite.Application\bower_packages
-        Delete-Folder .\source\CroquetAustraliaWebsite.Application\node_modules
+        Delete-Folder .\source\CroquetAustralia.Website\bower_components
+        Delete-Folder .\source\CroquetAustralia.Website\node_modules
         Delete-Folders bin
         Delete-Folders obj
     }

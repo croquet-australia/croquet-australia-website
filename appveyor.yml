@@ -1,0 +1,6 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- ps: .\scripts\AppVeyor\appveyor-build.ps1
+test_script:
+- ps: .\scripts\AppVeyor\appveyor-tests.ps1
