@@ -217,9 +217,9 @@ echo POST_DEPLOYMENT_ACTION: %POST_DEPLOYMENT_ACTION%
 echo PREVIOUS_MANIFEST_PATH: %PREVIOUS_MANIFEST_PATH%
 echo.
 echo node version:
-node --version
+call node --version
 echo npm version:
-npm --version
+call npm --version
 
 echo ----------------------------------------------------------
 echo.
