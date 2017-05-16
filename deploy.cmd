@@ -19,7 +19,7 @@ IF %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo Updating npm to latest version
-npm install npm@latest -g
+call :ExecuteCmd npm install npm@latest -g
 IF %ERRORLEVEL% NEQ 0 (
     echo.
     echo Error while updating npm to latest version
