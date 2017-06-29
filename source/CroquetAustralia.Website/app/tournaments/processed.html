@@ -3,11 +3,11 @@
         <p>
             Thank you for your entry and/or order. An email confirming your order and payment details will be sent to you shortly.
         </p>
-        <p ng-show="vm.tournament.isGC">
+        <p ng-show="vm.tournament.isGC && !vm.tournament.isHandicap">
             Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('mens-open')">Men's Open</a> | <a href="#" ng-click="vm.newEntry('womens-open')">Women's Open</a>
         </p>
-        <p ng-show="vm.tournament.isAC">
-            Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('patrons-trophy')">Patron's Trophy</a>
+        <p ng-show="vm.tournament.isGC && vm.tournament.isHandicap">
+            Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('doubles')">Doubles</a> | <a href="#" ng-click="vm.newEntry('singles')">Singles</a>
         </p>
         <p ng-show="vm.tournament.isGateball">
             Do you wish to make another entry? <a href="#" ng-click="vm.newEntry('championships')">Gateball Championships</a>

@@ -5,6 +5,7 @@ module App {
         isGcWorldQualifier2017EOI: boolean;
         isGC: boolean;
         isAC: boolean;
+        isHandicap: boolean;
 
         constructor(
             public id: string,
@@ -29,6 +30,7 @@ module App {
             this.isGcWorldQualifier2017EOI = (id === 'e777de8c-cd14-4e9f-afda-b0fae09ef549');
             this.isGC = (discipline === 'gc');
             this.isAC = (discipline === 'ac');
+            this.isHandicap = (id === '8942c912-5844-4053-b122-7f8c9a6953ed' || id === '00a1dd57-ac07-4905-a434-5b418edab8a0');
         }
 
         static deserialize(data: any, moment: any /*moment*/): Tournament {
