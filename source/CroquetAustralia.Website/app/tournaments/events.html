@@ -46,7 +46,7 @@
             </div>
             <p ng-show="!(vm.payingFor) && vm.submitted" class="help-block">Who you are paying for is required.</p>
         </div>
-        <div ng-show="vm.payingForPartner()" class="discount">
+        <div ng-show="vm.payingForPartner() && vm.showDiscount()" class="discount">
             <div>
                 <label class="checkbox">
                     <input type="checkbox" ng-model="vm.partner.under21" ng-change="vm.discountChanged()">My partner is under 21 (as at 31 December {{vm.tournament.starts.format('YYYY')}}) and entitled to 50% discount on entry fees.
