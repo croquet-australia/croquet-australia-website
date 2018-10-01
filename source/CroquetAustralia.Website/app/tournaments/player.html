@@ -47,7 +47,7 @@
         <label for="dateOfBirth">Date of Birth</label>
         <div>
             <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" ng-model="vm.player.dateOfBirth" ng-required="vm.showDateOfBirth()" uib-datepicker-popup="d!/M!/yyyy" datepicker-options="vm.datepickerOptions" placeholder="dd/mm/yyyy">
-            <p ng-show="vm.dateOfBirthIsInvalid() && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted)" class="help-block">Your date of birth is required and must be before {{vm.tournament.dateOfBirthRange.maximum | date:'mediumDate'}}.</p>
+            <p ng-show="vm.dateOfBirthIsInvalid() && (!tournamentEntryForm.dateOfBirth.$pristine || vm.submitted)" class="help-block">Your date of birth is required and must be after {{vm.tournament.dateOfBirthRange.minimum | date:'mediumDate'}}.</p>
         </div>
     </div>
 
