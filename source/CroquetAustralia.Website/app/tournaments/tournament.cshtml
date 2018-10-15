@@ -17,14 +17,14 @@
             @* Angular requires <form>...</form> is in this file. You cannot use <ng-include>...</ng-include> *@
             <section ng-show="vm.tournament.isOpen()">
                 <form class="tournament-entry-form" name="tournamentEntryForm" novalidate>
-                    <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/summary.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.tournament.isGateball" ng-include="'/app/tournaments/team.html?cacheBuster=27'"></div>
-                    <div ng-include="'/app/tournaments/player.html?cacheBuster=27'"></div>
-                    <div ng-if="vm.tournament.isDoubles" ng-include="'/app/tournaments/partner.html?cacheBuster=27'"></div>
+                    <div ng-if="vm.tournament.eventsAreOpen()" ng-include="'/app/tournaments/events.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.tournament.eventsAreClosed()" ng-include="'/app/tournaments/events-closed.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.tournament.showFunctions()" ng-include="'/app/tournaments/functions.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.tournament.showMerchandise()" ng-include="'/app/tournaments/merchandise.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/summary.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.tournament.isGateball" ng-include="'/app/tournaments/team.html?cacheBuster=28'"></div>
+                    <div ng-include="'/app/tournaments/player.html?cacheBuster=28'"></div>
+                    <div ng-if="vm.tournament.isDoubles" ng-include="'/app/tournaments/partner.html?cacheBuster=28'"></div>
                     <button ng-if="vm.requiresPayment() && vm.showPayByEFT()" class="btn btn-primary" ng-click="vm.payByEFT()">Pay by EFT</button>
                     <button ng-if="vm.requiresPayment() && vm.showPayByCheque()" class="btn" ng-click="vm.payByCheque()">Pay by Cheque</button>
                     <button ng-if="vm.requiresPayment() && vm.showPayByCash()" class="btn btn-primary" ng-click="vm.payByCash()">Pay by Cash</button>
@@ -38,11 +38,11 @@
             </section>
         </div>
         <div ng-show="vm.state === 'processing'">
-            <div ng-include="'/app/tournaments/processing.html?cacheBuster=27'"></div>
+            <div ng-include="'/app/tournaments/processing.html?cacheBuster=28'"></div>
         </div>
         <div ng-show="vm.state === 'processed'">
-            <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/processed.html?cacheBuster=27'"></div>
-            <div ng-if="vm.tournament.isEOI" ng-include="'/app/tournaments/processed-eoi.html?cacheBuster=27'"></div>
+            <div ng-if="vm.requiresPayment()" ng-include="'/app/tournaments/processed.html?cacheBuster=28'"></div>
+            <div ng-if="vm.tournament.isEOI" ng-include="'/app/tournaments/processed-eoi.html?cacheBuster=28'"></div>
         </div>
     </div>
 </div>
